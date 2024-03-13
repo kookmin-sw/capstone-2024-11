@@ -12,7 +12,5 @@ def get_ratio(distances):
     rations.append(distances[4] / distances[1])
     rations.append(distances[3] / distances[4])
     rations.append(distances[6] / distances[5])
-    print("distances: ", distances, "\n")
-    print("Ratio: ", rations, "\n")
 
     return rations

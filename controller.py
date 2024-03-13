@@ -1,5 +1,7 @@
 from utils import landmark, line, norm, ratio, vector
-import csv
+import cv2
+import pandas as pd
+import os
 
 def get_vector(img_path):
 
@@ -9,28 +11,38 @@ def get_vector(img_path):
 
     norm_distances = norm.get_norm(distances) #거리정보 정규화
 
-    vector = vector.get_vector(pos)#각도 산출을 위한 벡터 추출
+    vectors = vector.get_vector(pos)#각도 산출을 위한 벡터 추출
 
-    angles = vector.get_angles(vector) #각도 추출
+    angles = vector.get_angles(vectors) #각도 추출
 
     rations = ratio.get_ratio(distances) #길이 간 비율 정보
 
 
-    # print("norm: ", norm_distances, "\n\n")
-    # print("angle: ", A, "\n\n")
-    # print("ratio: ", ratios, "\n\n")
+    print("norm: ", norm_distances, "\n\n")
+    print("angle: ", angles, "\n\n")
+    print("ratio: ", rations, "\n\n")
 
-    # cv2.imshow("Face Landmark", display_img)
-    # cv2.waitKey(0)
+    cv2.imshow("Face Landmark", display_img)
+    cv2.waitKey(0)
 
     return norm_distances, angles, rations
 
-img_path = './test/seulgi.jpeg'
-get_vector(img_path)
+def list_files(directory):
+    file_names = []
+    for root, _, files in os.walk(directory):
+        for file in files:
+            file_names.append(os.path.join(root, file))
+    return file_names
 
-def mk_label(norm_distances, angles, rations):
-    row = [
-            "D1","D2","D3","D4","D5","D6","D7","D8",
-            "R1","R2","R3","R4","R5","R6","R7","R8","R9","R10",
-            "A1","A2","A3"
-          ]
+def init_label(data):
+    row = ["D1","D2","D3","D4","D5","D6","D7","R1","R2","R3","R4","R5","R6","R7","R8","R9","R10","A1","A2","A3"]
+    df = pd.DataFrame(data, columns = row)
+    df.to_csv("./test.csv")
+    print(df)
+
+def add_label(norm_distances, rations, angle):
+    df = pd.read_csv("./test.csv")
+    df.loc[len(df)] = [len(df)]+norm_distances+rations+angle
+    df = df.drop_duplicates()
+    df.to_csv("./test.csv")
+

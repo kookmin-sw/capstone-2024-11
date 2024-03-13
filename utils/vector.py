@@ -7,7 +7,6 @@ def get_vector(pos):
     V.append( (pos[12][0] - pos[8][0], pos[12][1] - pos[8][1]) ) #D4
     V.append( (pos[12][0] - pos[4][0], pos[12][1] - pos[4][1]) ) #D5
     V.append( (pos[10][0] - pos[8][0], pos[10][1] - pos[8][1]) ) #8-10
-    print("Vector: ", V, "\n")
     return V
 
 def get_angles(V):
@@ -16,6 +15,5 @@ def get_angles(V):
     A.append(angle.get_angle(V[0], V[1]))
     A.append(angle.get_angle(V[0], V[3]))
     A.append(angle.get_angle(V[1], V[2]))
-    print("A:", A, "\n")
 
     return A

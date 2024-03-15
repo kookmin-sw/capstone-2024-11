@@ -15,6 +15,15 @@
 7. `chore`: **빌드 업무 수정, 패키지 매니저 수정**
 8. `comment`: **주석 추가 및 수정**
 
+## Branch Naming Convention
+
+브랜치를 새롭게 만들 때, 브랜치 이름은 항상 위 `Commit Convention`의 Header와 함께 작성되어야 합니다.
+
+### 예시
+
+> `feature/haru`  
+> `refactor/haru`
+
 ### 1. 프로잭트 소개
 
 프로젝트 소개

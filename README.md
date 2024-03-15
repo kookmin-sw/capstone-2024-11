@@ -1,7 +1,8 @@
 # Welcome We are On-You!
 
 2024년 국민대학교 캡스톤 11조
-[소개페이지]https://kookmin-sw.github.io/capstone-2024-11/
+ 
+ [소개페이지](https://kookmin-sw.github.io/capstone-2024-11/)
 
 ## Commit Convention
 

@@ -1,4 +1,4 @@
-# Welcome
+# Welcome We are On-You!
 
 2024년 국민대학교 캡스톤 11조
 
@@ -21,8 +21,8 @@
 
 ### 예시
 
-> `feature/haru`  
-> `refactor/haru`
+> `feat/On_you`  
+> `refactor/On_you`
 
 ### 1. 프로잭트 소개
 

@@ -8,3 +8,4 @@ def run_label(path):
         vectors.append(norm_distances + rations + angles)
 
     controller.make_label(vectors)
+

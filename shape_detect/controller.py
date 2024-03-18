@@ -39,7 +39,7 @@ def list_files(directory):
 def make_label(data):
     row = ["D1","D2","D3","D4","D5","D6","D7","R1","R2","R3","R4","R5","R6","R7","R8","R9","R10","A1","A2","A3"]
     df = pd.DataFrame(data, columns = row)
-    df.to_csv("./test.csv")
+    df.to_csv("./train.csv")
     print(df)
 
 

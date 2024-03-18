@@ -28,9 +28,7 @@ class trainer:
         clf = svm.SVC(kernel='linear', probability=True)
         clf.fit(self.x_data, self.y_data)
 
-        joblib.dump(clf, './shape_detect/models/svm_model.pkl') 
-        
-        
+        joblib.dump(clf, './shape_detect/models/svm_model.pkl')     
     
 if __name__ == "__main__":
     cls = trainer()

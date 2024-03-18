@@ -12,4 +12,4 @@ def get_knn():
 
     knn = KNeighborsClassifier(n_neighbors=3, weights="distance", metric="euclidean")
     knn.fit(x_train, y_train)
-    print(knn.predict_proba(x_valid))
+    return knn.predict_proba(x_valid)

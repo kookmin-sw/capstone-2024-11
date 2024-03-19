@@ -16,9 +16,8 @@ class FaceFeature(Enum):
     TEETH = 8
     BOTTOM_LIP = 9
     HAIR = 10
-    pass
 
-def get_skin_mask(img_path):
+def get_mask(img_path):
     img = cv2.imread(img_path)
     
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -40,16 +39,20 @@ def get_skin_mask(img_path):
     seg_probs = seg_probs.cpu()
     tensor = seg_probs.permute(0, 2, 3, 1)
     tensor = tensor.squeeze().numpy()
-    face_skin = tensor[:, :, 1]
 
-    third_channel = tensor[:, :, 6]
-    face_skin = cv2.add(face_skin, third_channel)
+    return tensor
 
-    binary_mask = (face_skin >= 0.5).astype(int)
+def get_feature_mask(mask, feature : FaceFeature):
+    return mask[:, :, feature]
 
-    x, y = np.nonzero(binary_mask > 0)
+def combine_feature(channel_one, channel_two):
+    return cv2.add(channel_one, channel_two)
 
-    masked_image = np.zeros_like(img)
-    masked_image[binary_mask == 1] = img[binary_mask == 1] #visualize
-    
+def extract_feature(origin_img, mask):
+    binary_mask = (mask >= 0.5).astype(int)
+
+    masked_image = np.zeros_like(origin_img)
+    masked_image[binary_mask == 1] = origin_img[binary_mask == 1] #visualize
+
     return masked_image
+

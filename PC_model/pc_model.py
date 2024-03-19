@@ -13,3 +13,4 @@ class PersonalColorModel:
 
     def test(self, test_x, test_y):
         pass
+

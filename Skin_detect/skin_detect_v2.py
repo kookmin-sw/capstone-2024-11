@@ -18,8 +18,6 @@ class FaceFeature(Enum):
     HAIR = 10
 
 def get_mask(img_path):
-    img = cv2.imread(img_path)
-    
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     image = facer.hwc2bchw(facer.read_hwc(img_path)).to(device=device)
 

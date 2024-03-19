@@ -1,8 +1,22 @@
+from enum import Enum
 import numpy as np
 import cv2
 import torch
 import facer
 
+class FaceFeature(Enum):
+    BACKGROUND = 0
+    FACE = 1
+    LEFT_EYEBROW = 2
+    RIGHT_EYEBROW = 3
+    LEFT_EYE = 4
+    RIGHT_EYE = 5
+    NOSE = 6
+    TOP_LIP = 7
+    TEETH = 8
+    BOTTOM_LIP = 9
+    HAIR = 10
+    pass
 
 def get_skin_mask(img_path):
     img = cv2.imread(img_path)
@@ -10,7 +24,7 @@ def get_skin_mask(img_path):
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     image = facer.hwc2bchw(facer.read_hwc(img_path)).to(device=device)
 
-    face_detector = facer.face_detector('retinafce/mobilenet', device=device)
+    face_detector = facer.face_detector('retinaface/mobilenet', device=device)
 
     with torch.inference_mode():
         faces = face_detector(image)

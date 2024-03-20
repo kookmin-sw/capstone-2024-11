@@ -1,8 +1,10 @@
+#%%
 from enum import Enum
 import numpy as np
 import cv2
 import torch
 import facer
+import matplotlib.pyplot as plt
 
 class FaceFeature(Enum):
     BACKGROUND = 0
@@ -38,15 +40,19 @@ def get_mask(img_path):
     tensor = seg_probs.permute(0, 2, 3, 1)
     tensor = tensor.squeeze().numpy()
 
+    if tensor.ndim > 3:
+        tensor = tensor[0, :, :, :].squeeze()
+
     return tensor
 
 def get_feature_mask(mask, feature : FaceFeature):
-    return mask[:, :, feature]
+    return mask[:, :, feature.value]
 
 def combine_feature(channel_one, channel_two):
     return cv2.add(channel_one, channel_two)
 
-def extract_feature(origin_img, mask):
+def extract_feature(origin_path, mask):
+    origin_img = cv2.imread(origin_path)
     binary_mask = (mask >= 0.5).astype(int)
 
     masked_image = np.zeros_like(origin_img)
@@ -54,3 +60,5 @@ def extract_feature(origin_img, mask):
 
     return masked_image
 
+
+# %%

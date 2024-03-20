@@ -8,7 +8,7 @@ import joblib
 class trainer:
 
     def __init__(self):
-        self.df = pd.read_csv("./test.csv")
+        self.df = pd.read_csv("./train.csv")
         self.x_data = self.df.loc[:, "D1":"A3"]
         self.y_data = self.df.loc[:, "shape"]
     
@@ -28,10 +28,13 @@ class trainer:
         clf = svm.SVC(kernel='linear', probability=True)
         clf.fit(self.x_data, self.y_data)
 
-        joblib.dump(clf, './shape_detect/models/svm_model.pkl')     
+        joblib.dump(clf, './shape_detect/models/svm_model.pkl')
+
+    def train_all(self):
+        self.train_knn()
+        self.train_mlr()
+        self.train_svm()   
     
 if __name__ == "__main__":
     cls = trainer()
-    a = cls.train_knn()
-    b = cls.train_mlr()
-    c = cls.train_svm()
+    cls.train_all()

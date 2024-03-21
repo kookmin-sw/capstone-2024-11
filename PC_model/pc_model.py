@@ -16,4 +16,8 @@ class PersonalColorModel:
         fig, ax = plt.subplots(figsize=(10, 12))
         plot_importance(self.model, ax = ax)
 
-# m = PersonalColorModel()
+m = PersonalColorModel()
+
+df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/train/_classes.csv")
+
+print(df)

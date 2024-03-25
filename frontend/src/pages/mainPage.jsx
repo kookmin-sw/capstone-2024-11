@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Section1Main from './section1/section1main';
 import Navbar from '../components/header/navbar';
 import Section2Main from './section2/section2main';
+import Section3Main from './section3/section3main';
 const MainPage = () => {
 
   return (
@@ -10,6 +11,7 @@ const MainPage = () => {
         <Navbar/>
         <Section1Main/>
         <Section2Main/>
+        <Section3Main/>
     </MainContainer>
   );
 };

@@ -7,31 +7,43 @@ const Input = styled.input.attrs({ type: 'checkbox', id: 'menuicon' })`
 
 const Label = styled.label.attrs({ htmlFor: 'menuicon' })`
   display: block;
-  width: 60px;
-  height: 40px;
+  width: 40px;
+  height: 30px;
   position: relative;
-  background-color: #ccc;
-  cursor: pointer;
+  z-index: 2;
+`;
+
+const Sidebar = styled.div`
+  width:300px;
+  height:100%;
+  background:#222;
+  position: fixed;
+  top: 0;
+  right: ${props => props.isChecked ? '0' : '-300px'};
+  z-index: 1;
+  transition: all .35s;
 `;
 
 const Span = styled.span`
   display: block;
-  width: 100%;
-  height: 5px;
+  width: 40px;
+  height: 6px;
   border-radius: 30px;
-  background-color: #000;
+  background-color: #9747FF;
   position: absolute;
   transition: transform 0.3s, opacity 0.3s;
-  
 `;
+
 const TopSpan = styled(Span)`
   top: ${props => props.isChecked ? '50%' : '0'};
   transform: translateY(-50%) ${props => props.isChecked ? 'rotate(45deg)' : 'none'};
 `;
+
 const MiddleSpan = styled(Span)`
   top:50%;
   transform: translateY(-50%);
 `;
+
 const BottomSpan = styled(Span)`
   bottom: ${props => props.isChecked ? '50%' : '0'};
   transform: translateY(50%) ${props => props.isChecked ? 'rotate(-45deg)' : 'none'};
@@ -39,11 +51,14 @@ const BottomSpan = styled(Span)`
 
 const StyledCheckbox = () => {
   const [isChecked,setIsChecked] = useState(false);
-  const handleCheckboxChange = ()=>{
+
+  const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   }
+
   return (
     <>
+      <Sidebar isChecked={isChecked}/>
       <Input checked={isChecked} onChange={handleCheckboxChange}/>
       <Label>
         <TopSpan isChecked={isChecked} />

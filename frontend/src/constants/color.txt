@@ -2,3 +2,4 @@
 FFD166 노랑
 5F87EC 파랑
 FFE5E5 핑크
+FFCBCB 진한 핑크

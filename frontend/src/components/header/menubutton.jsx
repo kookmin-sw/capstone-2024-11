@@ -4,9 +4,12 @@ import styled from 'styled-components';
 const Input = styled.input.attrs({ type: 'checkbox', id: 'menuicon' })`
   display: none;
 `;
+const LabelContainer = styled.div`  padding: 10px 20px;
+`;
 
 const Label = styled.label.attrs({ htmlFor: 'menuicon' })`
   display: block;
+  
   width: 40px;
   height: 30px;
   position: relative;
@@ -60,12 +63,14 @@ const StyledCheckbox = () => {
     <>
       <Sidebar isChecked={isChecked}/>
       <Input checked={isChecked} onChange={handleCheckboxChange}/>
-      <Label>
+      <LabelContainer>        
+        <Label>
         <TopSpan isChecked={isChecked} />
         <MiddleSpan style={{opacity: isChecked ?0:1}}/>
         <BottomSpan isChecked={isChecked}/>
-      </Label>
-    </>
+      </Label>  
+      </LabelContainer>
+          </>
   );
 };
 

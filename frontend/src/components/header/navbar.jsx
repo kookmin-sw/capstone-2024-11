@@ -12,16 +12,19 @@ const Navbar = () => {
   );
 };
 const NavbarContainer = styled.nav`
+  position: fixed;
   display: flex;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  /* padding: 10px 30px; */
   background-color: transparent; 
 `;
 
 const Logo = styled.img`
-  width: auto;
-  height: auto; 
+  padding: 10px 20px;
+  width: 80px;
+  height: 70px; 
 `;
 
 export default Navbar;

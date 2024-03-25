@@ -3,10 +3,13 @@
 ### 소개
 퍼스널 컬러 검출과 얼굴형 검출을 통해 알맞은 헤어스타일과 옷 스타일을 소개해 드립니다
 
-### Jekyll Themes
+### 구현
+1. cv2와 dlib을 사용하여 이미지속 사람의 얼굴을 인식합니다.
+2. 인식된 얼굴의 81개의 랜드마크 좌표를 활용하여 얼굴의 비율을 구합니다.
+3. 인식된 얼굴에서 피부 부분만을 추출합니다.
+4. 추출한 정보를 벡터화하여 학습데이터를 구축합니다.
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/kookmin-sw/cap-template/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+## 기술 스택
+Front-end:React
+Back-end:Spring boot
+AI:Pytorch

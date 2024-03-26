@@ -28,6 +28,15 @@ def make_hsv_data(csv_path, folder_name):
 
     df = pd.read_csv(csv_path)
 
+    # columns 명의 공백 제거
+    df.columns = [x.replace(' ', '') for x in df.columns]
+
+    # label이 포함된 경우 추출
+    label = []
+    if df.columns[-1] == "label":
+        label = df['label']
+        df.drop(columns='label', inplace=True)
+
     H = [0] * len(df)
     S = [0] * len(df)
     V = [0] * len(df)
@@ -57,11 +66,10 @@ def make_hsv_data(csv_path, folder_name):
     hsv_data = {'H' : H, 'S' : S, 'V': V}
     hsv_df = pd.DataFrame(hsv_data)
 
-    label = df['label']
-    df.drop(columns='label', inplace=True)
+    total_df = pd.concat([df, hsv_df], axis=1, ignore_index=True)
 
-    total_df = pd.concat([df, hsv_df], axis=1)
-    total_df = pd.concat([total_df, label])
+    if len(label) != 0:
+        total_df['label'] = label
     return total_df
 
 def make_rgb_data(csv_path, folder_name):
@@ -113,13 +121,3 @@ def make_rgb_data(csv_path, folder_name):
         total_df = pd.concat([total_df, label], axis=1, ignore_index=True)
 
     return total_df
-
-
-df1 = pd.read_csv("./personal_color_dataset/train/data.csv")
-df2 = pd.read_csv("./personal_color_dataset/train/_classes.csv")
-
-total_df = pd.concat([df2, df1], axis=0, ignore_index=True).sample(frac=1).reset_index(drop=True)
-
-print(total_df)
-
-save_data_csv(total_df, "./personal_color_dataset/train/data.csv")

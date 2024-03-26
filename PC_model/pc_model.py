@@ -27,7 +27,7 @@ class PersonalColorModel:
 
 m = PersonalColorModel()
 
-df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/train/_classes.csv")
+df = pd.read_csv("./personal_color_dataset/train/data.csv")
 
 train_x = df[['Red', 'Green', 'Blue']]
 train_y = df['label']

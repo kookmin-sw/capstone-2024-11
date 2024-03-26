@@ -115,12 +115,11 @@ def make_rgb_data(csv_path, folder_name):
     return total_df
 
 
+df1 = pd.read_csv("./personal_color_dataset/train/data.csv")
+df2 = pd.read_csv("./personal_color_dataset/train/_classes.csv")
 
-# total_df = make_hsv_data("/Users/ohs/Desktop/capstone/personal_color_dataset/train/data.csv", "personal_color_dataset")
-
-# total_df = make_rgb_data("./personal_color_dataset/train/data.csv", "personal_color_dataset")
-total_df = pd.read_csv("./personal_color_dataset/train/data.csv")
+total_df = pd.concat([df2, df1], axis=0, ignore_index=True).sample(frac=1).reset_index(drop=True)
 
 print(total_df)
 
-# save_data_csv(total_df, "./personal_color_dataset/train/data.csv")
+save_data_csv(total_df, "./personal_color_dataset/train/data.csv")

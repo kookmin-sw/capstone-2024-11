@@ -38,10 +38,13 @@ m.train(X_train, y_train)
 
 res_xgb, res_ovr, res_ovo = m.test(X_test)
 
+print("xgb 평가지표")
 get_evaluation(y_test, res_xgb)
 print()
 
+print("ovr 평가지표")
 get_evaluation(y_test, res_ovr)
 print()
 
+print("ovo 평가지표")
 get_evaluation(y_test, res_ovo)

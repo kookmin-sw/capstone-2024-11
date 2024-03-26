@@ -1,5 +1,6 @@
 .DS_store
 tempCodeRunnerFile.py
 personal_color_dataset/test/img*.jpg
+personal_color_dataset/train/*.jpg
 personal_color_dataset/train/img*.jpg
 personal_color_dataset/valid/img*.jpg

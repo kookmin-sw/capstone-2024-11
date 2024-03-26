@@ -1,13 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+import PersonalColorMain from "./personal_color/PesonalColorMain";
 const Section2Container = styled.div`
     width: 100%;
     height: 1200px;
-    background-color:#5F87EC ;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    background-color:#8ed1fc ;
 `;
 const Section2Main = ()=>{
     return(
         <Section2Container>
+            <PersonalColorMain/>
         </Section2Container>
     );
 };

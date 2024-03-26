@@ -21,7 +21,7 @@ def extract_hsv(mask, path):
     return hsv_img[points[:, 0], points[:, 1], :]
 
 def save_data_csv(df, csv_path):
-    df.to_csv(path_or_buf = csv_path, mode='w')
+    df.to_csv(path_or_buf = csv_path, mode='w', index = False)
 
 def make_hsv_data(csv_path, folder_name):
     sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
@@ -72,6 +72,12 @@ def make_rgb_data(csv_path, folder_name):
     # columns 명의 공백 제거
     df.columns = [x.replace(' ', '') for x in df.columns]
 
+    # label 포함 data일 시 label 추출
+    label = []
+    if df.columns[-1] == "label":
+        label = df['label']
+        df.drop(columns='label', inplace=True)
+
     # rgb 색상 저장할 list 생성
     red = [0] * len(df)
     green = [0] * len(df)
@@ -102,10 +108,19 @@ def make_rgb_data(csv_path, folder_name):
     rgb_data = {'Red' : red, 'Green' : green, 'Blue': blue}
     rgb_df = pd.DataFrame(rgb_data)
 
-    total_df = pd.concat([df, rgb_df], axis=1)
+    total_df = pd.concat([df, rgb_df], axis=1, ignore_index=True)
+    if len(label) == 0:
+        total_df = pd.concat([total_df, label], axis=1, ignore_index=True)
+
     return total_df
 
-total_df = make_hsv_data("/Users/ohs/Desktop/capstone/personal_color_dataset/train/_classes.csv", "personal_color_dataset")
+
+
+# total_df = make_hsv_data("/Users/ohs/Desktop/capstone/personal_color_dataset/train/data.csv", "personal_color_dataset")
+
+# total_df = make_rgb_data("./personal_color_dataset/train/data.csv", "personal_color_dataset")
+total_df = pd.read_csv("./personal_color_dataset/train/data.csv")
 
 print(total_df)
-save_data_csv(total_df)
+
+# save_data_csv(total_df, "./personal_color_dataset/train/data.csv")

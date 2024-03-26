@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import AboutTextAni from "./AboutTextAni";
 const Section3Container = styled.div`
   width: 100%;
   height: 100vh;
@@ -13,8 +14,10 @@ const AboutText = styled.p`
   font-weight: 700;
 `;
 const BottomContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+  height: auto;
+  width: auto;
+  /* display: flex; */
+  /* flex-direction: column; */
 `;
 const NameText = styled.div`
   color: black;
@@ -27,10 +30,7 @@ const Section3Main = () => {
     <Section3Container>
       <AboutText>About us</AboutText>
       <BottomContainer>
-        <NameText>소프트웨어학부 20191660 전병우</NameText>
-        <NameText>소프트웨어학부 20191660 전병우</NameText>
-        <NameText>소프트웨어학부 20191660 전병우</NameText>
-        <NameText>소프트웨어학부 20191660 전병우</NameText>
+        <AboutTextAni />
       </BottomContainer>
     </Section3Container>
   );

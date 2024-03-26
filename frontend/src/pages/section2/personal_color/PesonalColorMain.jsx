@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 const PersonalColorContainer = styled.div`
   width: 90%;
-  height: 650px;
+  height: 80vh;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -36,7 +36,7 @@ const TopTextContainer = styled.div`
 
 const PinkText = styled.p`
   color: #e547ff;
-  font-size: 2.5rem;
+  font-size: 5rem;
   font-weight: 700;
 `;
 const PersonalColorMain = () => {

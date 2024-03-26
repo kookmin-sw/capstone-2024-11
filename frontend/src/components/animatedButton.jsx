@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import gsap from "gsap";
 
@@ -35,54 +35,62 @@ const shapes = [
 ];
 
 const AnimatedButton = () => {
-  useEffect(() => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
     const container = document.querySelector(".anim-explode-container");
     const svg = container.querySelector(".anim-explode");
     const numberOfShapes = 10;
+    const animatedShapes = [];
 
-    container.addEventListener("mouseenter", (e) => {
-      const animatedShapes = [];
+    for (let i = 0; i < numberOfShapes; i++) {
+      const newElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      newElement.setAttribute("d", gsap.utils.random(shapes));
+      newElement.style.fill = gsap.utils.random(["#8EF6E4", "#A2D5F2", "#D59BF6", "#EDB1F1"]);
+      svg.appendChild(newElement);
+      animatedShapes.push(newElement);
+    }
 
-      for (let i = 0; i < numberOfShapes; i++) {
-        const newElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
-        newElement.setAttribute("d", gsap.utils.random(shapes));
-        newElement.style.fill = gsap.utils.random(["#8EF6E4", "#A2D5F2", "#D59BF6", "#EDB1F1"]);
-        svg.appendChild(newElement);
-        animatedShapes.push(newElement);
-      }
-
-      function killShapes() {
-        animatedShapes.forEach((shape) => {
-          svg.removeChild(shape);
-        });
-      }
-
-      gsap.set(animatedShapes, {
-        transformOrigin: "center",
-        scale: "random(0.4, 0.8)",
+    function killShapes() {
+      animatedShapes.forEach((shape) => {
+        svg.removeChild(shape);
       });
+    }
 
-      gsap.to(animatedShapes, {
-        onComplete: killShapes,
-        keyframes: [
-          {
-            rotate: "random(180, -180)",
-            x: "random([-150, -100, -200, 200, 100, 150])",
-            y: "random([-150, -100, -200, 200, 100, 150])",
-            ease: "expo.out",
-            duration: 4,
-            stagger: {
-              amount: 0.1,
-            },
-          },
-          { opacity: 0, delay: -3 },
-        ],
-      });
+    gsap.set(animatedShapes, {
+      transformOrigin: "center",
+      scale: "random(0.4, 0.8)",
     });
-  }, []);
+
+    gsap.to(animatedShapes, {
+      onComplete: killShapes,
+      keyframes: [
+        {
+          rotate: "random(180, -180)",
+          x: "random([-150, -100, -200, 200, 100, 150])",
+          y: "random([-150, -100, -200, 200, 100, 150])",
+          ease: "expo.out",
+          duration: 4,
+          stagger: {
+            amount: 0.1,
+          },
+        },
+        { opacity: 0, delay: -3 },
+      ],
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
 
   return (
-    <Container className="link anim-explode-container" href="#">
+    <Container
+      className="link anim-explode-container"
+      href="#"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}>
       <p>hover me</p>
       <svg className="anim-explode" role="presentational" viewBox="0 0 500 500"></svg>
     </Container>

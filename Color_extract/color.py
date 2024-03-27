@@ -73,7 +73,7 @@ def make_ycrcb_data(csv_path, folder_name):
     ycrcb_data = {'Y' : Y, 'Cr' : Cr, 'Cb': Cb}
     ycrcb_df = pd.DataFrame(ycrcb_data)
 
-    total_df = pd.concat([df, ycrcb_df], axis=1, ignore_index=True)
+    total_df = pd.concat([df, ycrcb_df], axis=1, ignore_index=False)
 
     if len(label) != 0:
         total_df['label'] = label
@@ -122,7 +122,7 @@ def make_hsv_data(csv_path, folder_name):
     hsv_data = {'H' : H, 'S' : S, 'V': V}
     hsv_df = pd.DataFrame(hsv_data)
 
-    total_df = pd.concat([df, hsv_df], axis=1, ignore_index=True)
+    total_df = pd.concat([df, hsv_df], axis=1, ignore_index=False)
 
     if len(label) != 0:
         total_df['label'] = label
@@ -172,8 +172,8 @@ def make_rgb_data(csv_path, folder_name):
     rgb_data = {'Red' : red, 'Green' : green, 'Blue': blue}
     rgb_df = pd.DataFrame(rgb_data)
 
-    total_df = pd.concat([df, rgb_df], axis=1, ignore_index=True)
+    total_df = pd.concat([df, rgb_df], axis=1, ignore_index=False)
     if len(label) == 0:
-        total_df = pd.concat([total_df, label], axis=1, ignore_index=True)
+        total_df = pd.concat([total_df, label], axis=1, ignore_index=False)
 
     return total_df

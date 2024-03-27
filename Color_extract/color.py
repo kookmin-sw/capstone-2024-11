@@ -27,6 +27,13 @@ def extract_ycrcb(mask, path):
     points = np.argwhere(mask)
     return ycrcb_img[points[:, 0], points[:, 1], :]
 
+def extract_lab(mask, path):
+    img = cv2.imread(path)
+    lab_img = cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
+
+    points = np.argwhere(mask)
+    return lab_img[points[:, 0], points[:, 1], :]
+
 def save_data_csv(df, csv_path):
     df.to_csv(path_or_buf = csv_path, mode='w', index = False)
 
@@ -175,5 +182,56 @@ def make_rgb_data(csv_path, folder_name):
     total_df = pd.concat([df, rgb_df], axis=1, ignore_index=False)
     if len(label) == 0:
         total_df = pd.concat([total_df, label], axis=1, ignore_index=False)
+
+    return total_df
+
+
+def make_lab_data(csv_path, folder_name):
+    sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+
+    df = pd.read_csv(csv_path)
+
+    # columns 명의 공백 제거
+    df.columns = [x.replace(' ', '') for x in df.columns]
+
+    # label이 포함된 경우 추출
+    label = []
+    if df.columns[-1] == "label":
+        label = df['label']
+        df.drop(columns='label', inplace=True)
+
+    L = [0] * len(df)
+    A = [0] * len(df)
+    B = [0] * len(df)
+
+    for idx, file in enumerate(df['filename']):
+        # 색상정보 검출할 파일 경로
+        path = os.path.join(os.getcwd(), folder_name, "train", file)
+        total_feat_mask = get_mask(path)
+
+        face_mask = get_feature_mask(total_feat_mask, FaceFeature.FACE)
+        nose_mask = get_feature_mask(total_feat_mask, FaceFeature.NOSE)
+
+        face_nose_mask = combine_feature(face_mask, nose_mask)
+
+        face_img = extract_feature(path, face_nose_mask)
+
+        lab = extract_lab(face_img, path)
+
+        lab_mean = lab.mean(axis=0).round()
+
+        L[idx] = lab_mean[0]
+        A[idx] = lab_mean[1]
+        B[idx] = lab_mean[2]
+
+        print("진행률 : {} / {}\n".format(idx, len(df)))
+
+    lab_data = {'L' : L, 'A' : A, 'B' : B}
+    lab_df = pd.DataFrame(lab_data)
+
+    total_df = pd.concat([df, lab_df], axis=1, ignore_index=False)
+
+    if len(label) != 0:
+        total_df['label'] = label
 
     return total_df

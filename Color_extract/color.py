@@ -235,9 +235,3 @@ def make_lab_data(csv_path, folder_name):
         total_df['label'] = label
 
     return total_df
-
-total_df = make_lab_data("./personal_color_dataset/train/data.csv", "personal_color_dataset")
-
-print(total_df)
-
-save_data_csv(total_df, "./personal_color_dataset/train/data.csv")

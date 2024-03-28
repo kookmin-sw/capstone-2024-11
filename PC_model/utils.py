@@ -1,6 +1,6 @@
 from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score
 from sklearn.metrics import confusion_matrix, f1_score
-from seaborn import pairplot
+import seaborn as sns
 import matplotlib.pyplot as plt
 
 
@@ -18,8 +18,10 @@ def get_evaluation(y_test, y_pred):
     print('F1: {:.4f}'.format(F1))
     # print('AUC: {:.4f}'.format(AUC))
 
-def feature_plot(data, label, label_name):
+def feature_plot(data, label_name):
     markers = ["o", "s", "d", "v"]
-    pairplot(data, hue=label_name, markers=markers)
+    sns.pairplot(data, hue=label_name, markers=markers)
     plt.show()
 
+def heatmap_plot(data, number = True):
+    sns.heatmap(data, annot=number)

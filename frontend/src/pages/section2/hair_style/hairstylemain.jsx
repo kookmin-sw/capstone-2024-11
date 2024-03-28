@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-const PersonalColorContainer = styled.div`
+const HairStyleContainer = styled.div`
   width: 90%;
   height: 80vh;
+  margin: 60px;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin: 60px;
   border-radius: 20px;
   background-color: white;
 `;
@@ -40,9 +40,9 @@ const PinkText = styled.p`
   font-size: 5rem;
   font-weight: 700;
 `;
-const PersonalColorMain = () => {
+const HairStyleMain = () => {
   return (
-    <PersonalColorContainer>
+    <HairStyleContainer>
       <TopContainer>
         <BlackCircle />
         <TopTextContainer>
@@ -50,7 +50,7 @@ const PersonalColorMain = () => {
         </TopTextContainer>
       </TopContainer>
       <BottomContainer></BottomContainer>
-    </PersonalColorContainer>
+    </HairStyleContainer>
   );
 };
-export default PersonalColorMain;
+export default HairStyleMain;

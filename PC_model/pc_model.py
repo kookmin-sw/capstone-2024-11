@@ -37,9 +37,9 @@ m = PersonalColorModel()
 # df = pd.read_csv("./personal_color_dataset/train/data.csv")
 df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/train/data.csv")
 
-features = ['Red', 'Green', 'Blue', 'Hair_Red', 'Hair_Green', 'Hair_Blue']
+features = ['Red', 'Green', 'Blue', 'Hair_Red', 'Hair_Green', 'Hair_Blue', 'Hue', 'Saturation', 'Value', "L", 'A', 'B']
 
-train_x = df.drop(columns=['label', 'filename'])
+train_x = df[features]
 train_y = df['label']
 
 mm = MinMaxScaler()

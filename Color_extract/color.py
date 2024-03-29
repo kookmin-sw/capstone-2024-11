@@ -235,3 +235,10 @@ def make_lab_data(csv_path, folder_name):
 
     return total_df
 
+df = pd.read_csv("./personal_color_dataset/train/data.csv")
+label = pd.read_csv("./personal_color_dataset/train/label.csv")['label']
+
+df['label'] = label
+save_data_csv(df, "./personal_color_dataset/train/data.csv")
+print(df)
+print(label)

@@ -37,13 +37,15 @@ m = PersonalColorModel()
 # df = pd.read_csv("./personal_color_dataset/train/data.csv")
 df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/train/data.csv")
 
+features = ['Red', 'Green', 'Blue', 'Hair_Red', 'Hair_Green', 'Hair_Blue']
+
 train_x = df.drop(columns=['label', 'filename'])
 train_y = df['label']
 
 mm = MinMaxScaler()
-train_x = mm.fit_transform(train_x)
+processing_x = mm.fit_transform(train_x)
 
-X_train, X_test, y_train, y_test = train_test_split(train_x, train_y, test_size=0.2, random_state=2024)
+X_train, X_test, y_train, y_test = train_test_split(processing_x, train_y, test_size=0.2, random_state=2024)
 
 m.train(X_train, y_train)
 
@@ -71,3 +73,9 @@ print()
 
 #%%
 feature_plot(df, "label")
+
+#%%
+feature_corr = train_x.corr()
+print(feature_corr)
+heatmap_plot(feature_corr)
+# %%

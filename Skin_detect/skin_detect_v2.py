@@ -58,4 +58,3 @@ def extract_feature(origin_path, mask):
     masked_image[binary_mask == 1] = origin_img[binary_mask == 1] #visualize
 
     return masked_image
-

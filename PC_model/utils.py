@@ -24,4 +24,4 @@ def feature_plot(data, label_name):
     plt.show()
 
 def heatmap_plot(data, number = True):
-    sns.heatmap(data, annot=number)
+    sns.heatmap(data, annot=number, fmt=".2f")

@@ -185,7 +185,6 @@ def make_rgb_data(csv_path, folder_name):
 
     return total_df
 
-
 def make_lab_data(csv_path, folder_name):
     sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 
@@ -235,3 +234,4 @@ def make_lab_data(csv_path, folder_name):
         total_df['label'] = label
 
     return total_df
+

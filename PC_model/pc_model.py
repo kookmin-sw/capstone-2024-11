@@ -31,7 +31,6 @@ class PersonalColorModel:
     def test(self, test_x):
         return self.xgb.predict(test_x), self.ovr.predict(test_x), self.ovo.predict(test_x), self.knn.predict(test_x), self.lr.predict(test_x)
 
-
 m = PersonalColorModel()
 
 # df = pd.read_csv("./personal_color_dataset/train/data.csv")

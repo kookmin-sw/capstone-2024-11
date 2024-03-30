@@ -159,8 +159,8 @@ def make_rgb_data(csv_path, folder_name):
         path = os.path.join(os.getcwd(), folder_name, "train", file)
         total_feat_mask = get_mask(path)
 
-        face_mask = get_feature_mask(total_feat_mask, FaceFeature.FACE)
-        nose_mask = get_feature_mask(total_feat_mask, FaceFeature.NOSE)
+        face_mask = get_feature_mask(total_feat_mask, FaceFeature.LEFT_EYE)
+        nose_mask = get_feature_mask(total_feat_mask, FaceFeature.RIGHT_EYE)
 
         face_nose_mask = combine_feature(face_mask, nose_mask)
 
@@ -176,11 +176,11 @@ def make_rgb_data(csv_path, folder_name):
 
         print("진행률 : {} / {}\n".format(idx, len(df)))
 
-    rgb_data = {'Red' : red, 'Green' : green, 'Blue': blue}
+    rgb_data = {'Eye_Red' : red, 'Eye_Green' : green, 'Eye_Blue': blue}
     rgb_df = pd.DataFrame(rgb_data)
 
     total_df = pd.concat([df, rgb_df], axis=1, ignore_index=False)
-    if len(label) == 0:
+    if len(label) != 0:
         total_df = pd.concat([total_df, label], axis=1, ignore_index=False)
 
     return total_df
@@ -234,11 +234,3 @@ def make_lab_data(csv_path, folder_name):
         total_df['label'] = label
 
     return total_df
-
-df = pd.read_csv("./personal_color_dataset/train/data.csv")
-label = pd.read_csv("./personal_color_dataset/train/label.csv")['label']
-
-df['label'] = label
-save_data_csv(df, "./personal_color_dataset/train/data.csv")
-print(df)
-print(label)

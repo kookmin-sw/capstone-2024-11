@@ -33,14 +33,20 @@ class PersonalColorModel:
 
 m = PersonalColorModel()
 
+#%%
 # df = pd.read_csv("./personal_color_dataset/train/data.csv")
 df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/train/data.csv")
 
-features = ['Red', 'Green', 'Blue', 'Hair_Red', 'Hair_Green', 'Hair_Blue', 'Hue', 'Saturation', 'Value', "L", 'A', 'B']
+features = ['filename','Red', 'Green', 'Blue', 'Hair_Red', 'Hair_Green', 'Hair_Blue', 'Hue', 'Saturation', 'A', 'B', 'Eye_Red', 'Eye_Green', 'Eye_Blue']
 
 train_x = df[features]
 train_y = df['label']
 
+#%%
+train_x[train_x.isna().any(axis=1)]
+print(df.shape)
+
+#%%
 mm = MinMaxScaler()
 processing_x = mm.fit_transform(train_x)
 

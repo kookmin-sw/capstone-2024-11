@@ -52,9 +52,8 @@ def combine_feature(channel_one, channel_two):
 
 def extract_feature(origin_path, mask):
     origin_img = cv2.imread(origin_path)
-    binary_mask = (mask >= 0.5).astype(int) 
 
     masked_image = np.zeros_like(origin_img)
-    masked_image[binary_mask == 1] = origin_img[binary_mask == 1] #visualize
+    masked_image[mask == 1] = origin_img[mask == 1] #visualize
 
     return masked_image

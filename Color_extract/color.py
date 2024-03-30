@@ -65,7 +65,9 @@ def make_ycrcb_data(csv_path, folder_name):
 
         face_nose_mask = combine_feature(face_mask, nose_mask)
 
-        face_img = extract_feature(path, face_nose_mask)
+        binary_mask = (face_nose_mask >= 0.5).astype(int) 
+
+        face_img = extract_feature(path, binary_mask)
 
         ycrcb = extract_ycrcb(face_img, path)
 
@@ -114,7 +116,9 @@ def make_hsv_data(csv_path, folder_name):
 
         face_nose_mask = combine_feature(face_mask, nose_mask)
 
-        face_img = extract_feature(path, face_nose_mask)
+        binary_mask = (face_nose_mask >= 0.5).astype(int)
+
+        face_img = extract_feature(path, binary_mask)
 
         hsv = extract_hsv(face_img, path)
 
@@ -164,7 +168,9 @@ def make_rgb_data(csv_path, folder_name):
 
         face_nose_mask = combine_feature(face_mask, nose_mask)
 
-        face_img = extract_feature(path, face_nose_mask)
+        binary_mask = (face_nose_mask >= 0.5).astype(int)
+
+        face_img = extract_feature(path, binary_mask)
 
         rgb = extract_rgb(face_img, path)
 
@@ -213,9 +219,9 @@ def make_lab_data(csv_path, folder_name):
 
         face_nose_mask = combine_feature(face_mask, nose_mask)
 
-        face_img = extract_feature(path, face_nose_mask)
+        binary_mask = (face_nose_mask >= 0.5).astype(int)
 
-        lab = extract_lab(face_img, path)
+        lab = extract_lab(binary_mask, path)
 
         lab_mean = lab.mean(axis=0).round()
 

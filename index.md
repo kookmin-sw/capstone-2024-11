@@ -1,21 +1,26 @@
+<div align=center>
+  
 ![header](https://capsule-render.vercel.app/api?type=waving&color=gradient&height=300&section=header&text=Only%20You&fontSize=90)
-# 2024 캡스톤 11조 **Only You**
-<br>
+  
+</div>
+
 <div align=center>
 
-# Only You
+# 2024 캡스톤 11조 **Only You**
 ***사람마다 어울리는 색과 머리스타일이 있다는 사실을 아시나요?***<br>저희 서비스는 퍼스널 컬러 검출과 얼굴형 검출을 통해 <br>본인에게 맞는 퍼스널 컬러와 헤어스타일을 추천해드립니다.
 
 <br>
 
 # 프로젝트 소개
-본인에게 맞는 헤어스타일과 퍼스널 컬러를 찾기위해서는 다양한 헤어스타일을 시도해보고 전문가의 도움을 구하여 퍼스널 컬러를 진단받아야 했습니다. 그렇기 때문에 많은 비용과 시간을 요구하기 때문에 접근하기에 어려움이 존재하였습니다. <br>
+본인에게 맞는 헤어스타일과 퍼스널 컬러를 찾기위해서는 다양한 헤어스타일을 시도해보고 전문가의 도움을 구하여 퍼스널 컬러를 진단받아야 했습니다. <br>
+이러한 과정은 많은 비용과 시간을 요구하기 때문에 접근하기에 어려움이 존재하였습니다. <br>
 그렇기 때문에 저희는 이러한 비용과 시간을 줄이고 나에게 맞는 색상과 스타일을 빠르게 알 수 있는 서비스를 제공하는 것을 목표로 하고있습니다.
 
 <br>
 
 # Abstract
-To find the right hairstyle and personal color, one typically needed to try various hairstyles and consult professionals for a personal color analysis. However, this process demanded significant costs and time, making it difficult to access. <br>
+To find the right hairstyle and personal color, one typically needed to try various hairstyles and consult professionals for a personal color analysis. 
+However, this process demanded significant costs and time, making it difficult to access. <br>
 Therefore, we aim to provide a service that reduces these costs and time, enabling individuals to quickly discover their personal colors and styles.
 
 <br>

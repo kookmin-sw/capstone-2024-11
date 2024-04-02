@@ -53,15 +53,14 @@ Therefore, we aim to provide a service that reduces these costs and time, enabli
 
 # :smile: 팀 소개
 ###  팀장 
-### :one: ****1660 정태성 <br>
+### :one: [****1668 정태성](https://github.com/Topadonijah) <br>
 Role: 얼굴형 검출 및 헤어스타일 추천 모델 구현
-- github: https://github.com/Topadonijah
 ###  팀원  <br>
-### :two: ****1660 오홍석
+### :two: [****1627 오홍석](https://github.com/lkl4502)
 Role: 백엔드 개발, 퍼스널컬러 진단 구현
-### :three: ****1660 전기정 
+### :three: [****1659 전기정](https://github.com/Jeon3625)
 Role: 퍼스널컬러 모델 구현
-### :four: ****1660 전병우  
+### :four: [****1660 전병우](https://github.com/wjsquddn)  
 Role: 프론트엔드 개발, 프론트 디자인
 <br>
 <br>

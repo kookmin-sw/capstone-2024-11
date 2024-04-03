@@ -1,8 +1,6 @@
-<div align=center>
   
-![header](https://capsule-render.vercel.app/api?type=waving&color=gradient&height=300&section=header&text=Only%20You&fontSize=90)
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&width=1000&height=300&section=header&text=Only%20You&fontSize=90" width=100%/>
   
-</div>
 
 <div align=center>
 

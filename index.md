@@ -1,3 +1,6 @@
+![header](https://capsule-render.vercel.app/api?type=waving&color=gradient&height=300&section=header&text=Only%20You&fontSize=90)
+
+<br> 
 
 # 2024 캡스톤 11조 **Only You**
 
@@ -38,21 +41,21 @@ Therefore, we aim to provide a service that reduces these costs and time, enabli
 
 ### 팀장
 
-### 1️⃣  [\*\*\*\*1668 정태성](https://github.com/Topadonijah) <br>
+### 1️. [\*\*\*\*1668 정태성](https://github.com/Topadonijah) <br>
 
 Role: 얼굴형 검출 및 헤어스타일 추천 모델 구현
 
 ### 팀원 <br>
 
-### 2️⃣  [\*\*\*\*1627 오홍석](https://github.com/lkl4502)
+### 2️. [\*\*\*\*1627 오홍석](https://github.com/lkl4502)
 
 Role: 백엔드 개발, 퍼스널컬러 진단 구현
 
-### 3️⃣  [\*\*\*\*1659 전기정](https://github.com/Jeon3625)
+### 3️. [\*\*\*\*1659 전기정](https://github.com/Jeon3625)
 
 Role: 퍼스널컬러 모델 구현
 
-### 4️⃣  [\*\*\*\*1660 전병우](https://github.com/wjsquddn)
+### 4️. [\*\*\*\*1660 전병우](https://github.com/wjsquddn)
 
 Role: 프론트엔드 개발, 프론트 디자인
 <br>

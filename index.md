@@ -1,4 +1,3 @@
-<div align=center>
 
 # 2024 캡스톤 11조 **Only You**
 
@@ -84,5 +83,3 @@ Role: 프론트엔드 개발, 프론트 디자인
 > > level 2
 > >
 > > > level 3<br> 여기에 쓰면 됩니다.
-
-</div>

@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 
 predictor_file = './shape_predictor_68_face_landmarks.dat' 
-image_file = './test/kimmingyu.jpeg' 
+image_file = '../test/kimmingyu.jpeg' 
 
 ALL = list(range(0, 68))
 
@@ -55,24 +55,6 @@ def eye_ousting(pos, img):
     left_eye_pos = [(x[0], x[1]) for x in pos[LEFT_EYE].tolist()]
     right_eye_pos = [(x[0], x[1]) for x in pos[RIGHT_EYE].tolist()]
 
-    # le_width = find_distance(left_eye_pos[0], left_eye_pos[3])
-    # ri_width = find_distance(right_eye_pos[0], right_eye_pos[3])
-
-    # le_height = find_distance(left_eye_pos[1], left_eye_pos[-2])
-    # ri_height = find_distance(right_eye_pos[1], right_eye_pos[-2])
-
-    # le_center = find_center(left_eye_pos[0], left_eye_pos[3])
-    # ri_center = find_center(right_eye_pos[0], right_eye_pos[3])
-
-    # left_slope = find_slope(left_eye_pos[0], left_eye_pos[3])
-    # right_slope = find_slope(right_eye_pos[0], right_eye_pos[3])
-
-    # left_axes_len = (le_width, le_height)
-    # right_axes_len = (ri_width, ri_height)
-
-    # mask = np.zeros_like(img[:, :])
-    # cv2.ellipse(img=mask, center=le_center, axes=left_axes_len, angle=left_slope, startAngle=0, endAngle=360, color=black, thickness=-1)
-    # cv2.ellipse(img=mask, center=ri_center, axes=right_axes_len, angle=right_slope, startAngle=0, endAngle=360, color=black, thickness=-1)
 
     left_pts = np.array(left_eye_pos, np.int32)
     left_pts = left_pts.reshape((-1, 1, 2))
@@ -84,10 +66,6 @@ def eye_ousting(pos, img):
 
     cv2.fillPoly(res, [left_pts], color=(0,0,0))
     cv2.fillPoly(res, [right_pts], color=(0,0,0))
-
-    # arr = np.array([0, 0, 0], dtype=np.uint8)
-    # mask = cv2.inRange(mask, arr, arr)
-    # res = cv2.bitwise_and(img, img, mask=mask)
 
     return res
 

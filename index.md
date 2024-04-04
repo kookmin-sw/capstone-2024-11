@@ -1,8 +1,6 @@
-  
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&width=1000&height=300&section=header&text=Only%20You&fontSize=90" width=100%/>
-  
+![header](https://capsule-render.vercel.app/api?type=waving&color=gradient&height=300&section=header&text=Only%20You&fontSize=90)
 
-<div align=center>
+<br> 
 
 # 2024 캡스톤 11조 **Only You**
 
@@ -28,42 +26,42 @@ Therefore, we aim to provide a service that reduces these costs and time, enabli
 
 # 프로젝트 구현 개요
 
-:one: cv2와 dlib을 사용하여 이미지속 사람의 얼굴을 인식합니다.<br>
-:two: 인식된 얼굴의 81개의 랜드마크 좌표를 활용하여 얼굴의 비율을 구합니다.<br>
-:three: 인식된 얼굴에서 피부 부분만을 추출합니다.<br>
-:four: 추출한 정보를 벡터화하여 학습데이터를 구축합니다.
+1️⃣ cv2와 dlib을 사용하여 이미지속 사람의 얼굴을 인식합니다.<br>
+2️⃣ 인식된 얼굴의 81개의 랜드마크 좌표를 활용하여 얼굴의 비율을 구합니다.<br>
+3️⃣ 인식된 얼굴에서 피부 부분만을 추출합니다.<br>
+4️⃣ 추출한 정보를 벡터화하여 학습데이터를 구축합니다.
 
 <br>
 
-# [:link: 소개 영상 :link:](www.youtube.com)
+# [🔗 소개 영상 🔗](www.youtube.com)
 
 <br>
 
-# :smile: 팀 소개
+# 😄 팀 소개
 
 ### 팀장
 
-### :one: [\*\*\*\*1668 정태성](https://github.com/Topadonijah) <br>
+### 1️. [\*\*\*\*1668 정태성](https://github.com/Topadonijah) <br>
 
 Role: 얼굴형 검출 및 헤어스타일 추천 모델 구현
 
 ### 팀원 <br>
 
-### :two: [\*\*\*\*1627 오홍석](https://github.com/lkl4502)
+### 2️. [\*\*\*\*1627 오홍석](https://github.com/lkl4502)
 
 Role: 백엔드 개발, 퍼스널컬러 진단 구현
 
-### :three: [\*\*\*\*1659 전기정](https://github.com/Jeon3625)
+### 3️. [\*\*\*\*1659 전기정](https://github.com/Jeon3625)
 
 Role: 퍼스널컬러 모델 구현
 
-### :four: [\*\*\*\*1660 전병우](https://github.com/wjsquddn)
+### 4️. [\*\*\*\*1660 전병우](https://github.com/wjsquddn)
 
 Role: 프론트엔드 개발, 프론트 디자인
 <br>
 <br>
 
-# :smile: 기술 스택
+# 😄 기술 스택
 
 ### AI
 
@@ -81,12 +79,10 @@ Role: 프론트엔드 개발, 프론트 디자인
 
 <br>
 
-# :video_game: 사용법
+# 🎮 사용법
 
 > level 1
 >
 > > level 2
 > >
 > > > level 3<br> 여기에 쓰면 됩니다.
-
-</div>

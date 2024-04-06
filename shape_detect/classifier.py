@@ -27,23 +27,28 @@ class classifier:
         for i,j,k in zip(a,b,c):
             result.append((i+j+k)/3)
         return result.index(max(result))
+    
+def main():
+    cls = classifier()
 
-cls = classifier()
+    a = cls.get_knn()
+    b = cls.get_mlr()
+    c = cls.get_svm()
 
-a = cls.get_knn()
-b = cls.get_mlr()
-c = cls.get_svm()
+    df = pd.read_csv("./test.csv")
+    answer = df.loc[:, "shape"]
 
-df = pd.read_csv("./test.csv")
-answer = df.loc[:, "shape"]
+    correct = 0
 
-correct = 0
+    for i in range(len(a)):
+        predict = cls.softvote(a[i],b[i],c[i])
+        if answer[i] == predict:
+            correct += 1
 
-for i in range(len(a)):
-    predict = cls.softvote(a[i],b[i],c[i])
-    if answer[i] == predict:
-        correct += 1
+    print("accuracy", correct/len(a))
 
-print("accuracy", correct/len(a))
+if __name__ == "__main__":
+    main()
+    
 
 

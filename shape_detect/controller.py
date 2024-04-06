@@ -28,12 +28,6 @@ def get_vector(img_path):
 
     return norm_distances, angles, rations
 
-def make_label(data):
-    row = ["D1","D2","D3","D4","D5","D6","D7","R1","R2","R3","R4","R5","R6","R7","R8","R9","R10","A1","A2","A3","shape"]
-    df = pd.DataFrame(data, columns = row)
-    df.to_csv("./train.csv")
-    print(df)
-
 def labeling(root):
     dataset = ImageFolder(root=root)
 
@@ -41,6 +35,9 @@ def labeling(root):
     for path, label in tqdm(dataset.imgs, desc="Caculating face vector"):
         norm_distances, angles, rations = get_vector(path)
         vectors.append(norm_distances + rations + angles + [label])
-    make_label(vectors)
+
+    row = ["D1","D2","D3","D4","D5","D6","D7","R1","R2","R3","R4","R5","R6","R7","R8","R9","R10","A1","A2","A3","shape"]
+    df = pd.DataFrame(vectors, columns=row)
+    df.to_csv("./train.csv")
 
 

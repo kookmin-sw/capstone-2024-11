@@ -14,7 +14,7 @@ class trainer:
         self.y_data = self.df.loc[:, "shape"]
     
     def train_knn(self):
-        knn = KNeighborsClassifier(n_neighbors=3, weights="distance", metric="euclidean")
+        knn = KNeighborsClassifier(n_neighbors=4, weights="distance", metric="euclidean")
         knn.fit(self.x_data, self.y_data)
 
         joblib.dump(knn, './shape_detect/models/knn_model.pkl') 
@@ -35,18 +35,23 @@ class trainer:
         self.train_knn()
         self.train_mlr()
         self.train_svm()
+        print("train complete")
 
 def main(args):
-    labeling(args.dataset)
-    # cls = trainer()
-    # cls.train_all()
+    print(args.label)
+    if args.label:
+        labeling(args.dataset)
+    cls = trainer()
+    cls.train_all()
     
     
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Train Command')
 
-    # dataset directory
+    # dataset, train option
     parser.add_argument('--dataset', type=str, default="./shape_detect/dataset")
+    parser.add_argument('--label', type=int, default=1)
+
     args = parser.parse_args()
     main(args)
     

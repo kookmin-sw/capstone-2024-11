@@ -4,6 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn import svm
 import joblib
+import argparse
 
 class trainer:
 
@@ -33,8 +34,18 @@ class trainer:
     def train_all(self):
         self.train_knn()
         self.train_mlr()
-        self.train_svm()   
-    
-if __name__ == "__main__":
+        self.train_svm()
+
+def main(args):
     cls = trainer()
     cls.train_all()
+    
+    
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='Train Command')
+
+    # dataset directory
+    parser.add_argument('--dataset', type=str, default="./dataset")
+    args = parser.parse_args()
+    main(args)
+    

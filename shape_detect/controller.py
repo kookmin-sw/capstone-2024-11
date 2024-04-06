@@ -42,4 +42,13 @@ def make_label(data):
     df.to_csv("./train.csv")
     print(df)
 
+def run_label(path):
+    data_set_directory = list_files(path)
+    vectors = []
+    for path in data_set_directory:
+        norm_distances, angles, rations = get_vector(path)
+        vectors.append(norm_distances + rations + angles)
+
+    make_label(vectors)
+
 

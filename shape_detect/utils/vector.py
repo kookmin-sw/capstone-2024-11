@@ -1,4 +1,4 @@
-import shape_detect.utils.angle as angle
+import utils.angle as angle
 
 def get_vector(pos):
     #각도를 구하기위한 벡터

@@ -1,10 +1,10 @@
 from sklearn.neighbors import KNeighborsClassifier
 import pandas as pd
-from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn import svm
 import joblib
 import argparse
+from controller import labeling
 
 class trainer:
 
@@ -37,15 +37,16 @@ class trainer:
         self.train_svm()
 
 def main(args):
-    cls = trainer()
-    cls.train_all()
+    labeling(args.dataset)
+    # cls = trainer()
+    # cls.train_all()
     
     
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Train Command')
 
     # dataset directory
-    parser.add_argument('--dataset', type=str, default="./dataset")
+    parser.add_argument('--dataset', type=str, default="./shape_detect/dataset")
     args = parser.parse_args()
     main(args)
     

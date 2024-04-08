@@ -15,11 +15,14 @@ FOREHEAD = list(range(68, 81))
 
 def get_landmark(img_path):
     image_file = img_path
+    print(img_path)
     predictor_file = './shape_predictor_81_face_landmarks.dat'
     detector = dlib.get_frontal_face_detector()
     predictor = dlib.shape_predictor(predictor_file)
 
     image = cv2.imread(image_file)
+    if image is None:
+        return False, False
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     display_image = image
 

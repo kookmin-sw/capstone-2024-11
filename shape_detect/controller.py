@@ -8,6 +8,9 @@ def get_vector(img_path):
 
     display_img, pos = landmark.get_landmark(img_path)#사진 랜드마크 처리
 
+    if not pos: # 얼굴 검출 실패시 패스
+        return 
+
     distances = line.get_line(display_img, pos)#랜드마크간 특징 거리 추출
 
     norm_distances = norm.get_norm(distances) #거리정보 정규화

@@ -27,6 +27,9 @@ def get_landmark(img_path):
 
     pos = []
 
+    if len(rects) != 1:
+        return False, False
+    
     print("Number of faces detected: {}".format(len(rects)))
 
     for (i, rect) in enumerate(rects):

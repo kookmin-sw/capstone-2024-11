@@ -2,6 +2,8 @@ from sklearn.neighbors import KNeighborsClassifier
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from sklearn import svm
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
 import joblib
 import argparse
 from controller import labeling
@@ -19,11 +21,11 @@ class trainer:
 
         joblib.dump(knn, './shape_detect/models/knn_model.pkl') 
 
-    def train_mlr(self):
-        logreg = LogisticRegression(max_iter=1000)
-        logreg.fit(self.x_data, self.y_data)
+    def train_dt(self):
+        dt = DecisionTreeClassifier()
+        dt.fit(self.x_data, self.y_data)
 
-        joblib.dump(logreg, './shape_detect/models/mlr_model.pkl') 
+        joblib.dump(dt, './shape_detect/models/dt_model.pkl') 
     
     def train_svm(self):
         clf = svm.SVC(kernel='linear', probability=True)
@@ -33,12 +35,11 @@ class trainer:
 
     def train_all(self):
         self.train_knn()
-        self.train_mlr()
+        self.train_dt()
         self.train_svm()
         print("train complete")
 
 def main(args):
-    print(args.label)
     if args.label:
         labeling(args.dataset)
     cls = trainer()
@@ -51,7 +52,7 @@ if __name__ == "__main__":
     # dataset, train option
     parser.add_argument('--dataset', type=str, default="./shape_detect/dataset/train")
     parser.add_argument('--label', type=int, default=1)
-
+    parser.add_argument('--output', type=str, default="train.csv")
     args = parser.parse_args()
     main(args)
     

@@ -249,3 +249,9 @@ def filter_by_brightness(rgb_codes, brightness_threshold=60):
     if lab[0] >= brightness_threshold:
       new_rgb_codes.append(rgb)
   return np.array(new_rgb_codes)
+
+# RGB 색공간의 상위 값 추출
+def extract_high_rank(rgb_codes, color_area, percent):
+  idx = int(rgb_codes.shape[0] * (percent / 100))
+  new_rgb_codes = sorted(rgb_codes, key = lambda x : x[color_area], reverse=True)[ : idx]
+  return np.array(new_rgb_codes)

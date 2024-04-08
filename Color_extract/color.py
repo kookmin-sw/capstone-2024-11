@@ -241,3 +241,11 @@ def make_lab_data(csv_path, folder_name):
 
     return total_df
 
+# lab 색공간의 l값을 이용한 밝기 필터링
+def filter_by_brightness(rgb_codes, brightness_threshold=60):
+  new_rgb_codes = []
+  for rgb in rgb_codes:
+    lab = cv2.cvtColor(np.array([[rgb]]), cv2.COLOR_RGB2LAB).squeeze()
+    if lab[0] >= brightness_threshold:
+      new_rgb_codes.append(rgb)
+  return np.array(new_rgb_codes)

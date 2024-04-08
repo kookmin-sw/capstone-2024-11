@@ -26,7 +26,7 @@ class PersonalColorModel:
         self.xgb = XGBClassifier(objective="multi:softmax")
         self.ovr = OneVsRestClassifier(LinearRegression())
         self.ovo = OneVsOneClassifier(SVC())
-        self.knn = KNeighborsClassifier(n_neighbors=5, n_jobs=-1)
+        self.knn = KNeighborsClassifier(n_neighbors=5, n_jobs=-1,)
         self.lr = LogisticRegression()
 
 
@@ -39,8 +39,6 @@ class PersonalColorModel:
 
     def test(self, test_x):
         return self.xgb.predict(test_x), self.ovr.predict(test_x), self.ovo.predict(test_x), self.knn.predict(test_x), self.lr.predict(test_x)
-
-m = PersonalColorModel()
 
 #%%
 df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/train/data.csv")
@@ -81,7 +79,7 @@ for idx, file in enumerate(df['filename']):
     rgb_codes = processing_image[points[:, 0], points[:, 1], :]
     new_rgb_codes = extract_high_rank(rgb_codes, 2, 10)
 
-    # 단순 평균
+    # 단순 평균 
     rgb_mean = new_rgb_codes.mean(axis=0).round()
 
     R[idx] = rgb_mean[0]
@@ -101,24 +99,29 @@ if len(label) != 0:
 #%%
 total_df
 save_data_csv(total_df, "/Users/ohs/Desktop/capstone/personal_color_dataset/train/data.csv")
+
+
 #%%
-features = ['Blue', 
-            'Hair_Blue', 
-            'Hue', 'Saturation', 'Value',
-            'A', 'B', 
-            'Eye_Blue',
-            'New Blue']
+# features = df.columns.drop(["filename", "label"])
+
+print(df.columns)
+
+features = ['Hue', 'Saturation', 'Value',
+            'Y', 'Cr', 'Cb',
+            'L', 'A', 'B', 
+            'New Red', 'New Green', 'New Blue']
 
 train_x = total_df[features]
 train_y = total_df['label']
 
+m = PersonalColorModel()
 #%%
 mm = MinMaxScaler()
 processing_x = mm.fit_transform(train_x)
 
 # %%
 
-X_train, X_test, y_train, y_test = train_test_split(processing_x, train_y, test_size=0.2)
+X_train, X_test, y_train, y_test = train_test_split(processing_x, train_y, test_size=0.2,random_state=2024)
 
 m.train(X_train, y_train)
 

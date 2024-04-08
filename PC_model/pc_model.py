@@ -81,6 +81,5 @@ feature_plot(df, "label")
 
 #%%
 feature_corr = train_x.corr()
-print(feature_corr)
 heatmap_plot(feature_corr)
 # %%

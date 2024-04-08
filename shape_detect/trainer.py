@@ -3,7 +3,6 @@ import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from sklearn import svm
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import accuracy_score
 import joblib
 import argparse
 from controller import labeling

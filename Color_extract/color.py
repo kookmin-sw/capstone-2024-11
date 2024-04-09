@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 from Skin_detect.skin_detect_v2 import *
+from image_processing.gamma_correction import *
 
 def extract_points(mask, img):
     points = np.argwhere(mask)
@@ -281,6 +282,7 @@ for i, name in enumerate(df['filename']):
 
     # image load
     image = cv2.imread(path)
+    image = gamma_correction(image, 0.8)
     rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     hsv_image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
     ycrcb_image = cv2.cvtColor(image, cv2.COLOR_BGR2YCrCb)
@@ -340,9 +342,7 @@ for i, name in enumerate(df['filename']):
     # New RGB
     binary_mask = (face_nose_mask >= 0.5).astype(int)
 
-    points = np.argwhere(binary_mask)
-
-    rgb_codes = rgb_image[points[:, 0], points[:, 1], :]
+    rgb_codes = extract_points(binary_mask, rgb_image)
     new_rgb_codes = extract_high_rank(rgb_codes, 2, 10)
 
     new_rgb_average = new_rgb_codes.mean(axis=0).round()

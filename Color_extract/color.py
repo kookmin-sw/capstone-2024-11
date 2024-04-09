@@ -45,7 +45,9 @@ def make_ycrcb_data(csv_path, folder_name):
 
         face_img = extract_feature(path, binary_mask)
 
-        ycrcb = extract_ycrcb(face_img, path)
+        image = cv2.imread(path)
+        ycrcb_image = cv2.cvtColor(image, cv2.COLOR_BGR2YCrCb)
+        ycrcb = extract_points(binary_mask, ycrcb_image)
 
         ycrcb_mean = ycrcb.mean(axis=0).round()
 
@@ -96,7 +98,10 @@ def make_hsv_data(csv_path, folder_name):
 
         face_img = extract_feature(path, binary_mask)
 
-        hsv = extract_hsv(face_img, path)
+        image = cv2.imread(path)
+        hsv_image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+
+        hsv = extract_points(binary_mask, hsv_image)
 
         hsv_mean = hsv.mean(axis=0).round()
 
@@ -148,7 +153,9 @@ def make_rgb_data(csv_path, folder_name):
 
         face_img = extract_feature(path, binary_mask)
 
-        rgb = extract_rgb(face_img, path)
+        image = cv2.imread(path)
+        rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        rgb = extract_points(binary_mask, rgb_image)
 
         rgb_mean = rgb.mean(axis=0).round()
 
@@ -197,7 +204,9 @@ def make_lab_data(csv_path, folder_name):
 
         binary_mask = (face_nose_mask >= 0.5).astype(int)
 
-        lab = extract_lab(binary_mask, path)
+        image = cv2.imread(path)
+        lab_image = cv2.cvtColor(image, cv2.COLOR_BGR2LAB)
+        lab = extract_points(binary_mask, lab_image)
 
         lab_mean = lab.mean(axis=0).round()
 
@@ -273,30 +282,33 @@ for i, name in enumerate(df['filename']):
     # image load
     image = cv2.imread(path)
     rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    hsv_image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+    ycrcb_image = cv2.cvtColor(image, cv2.COLOR_BGR2YCrCb)
+    lab_image = cv2.cvtColor(image, cv2.COLOR_BGR2LAB)
 
     #RGB
-    rgb = extract_rgb(binary_mask, path)
+    rgb = extract_points(binary_mask, rgb_image)
     rgb_average = rgb.mean(axis=0).round()
     data['Red'][i] = rgb_average[0]
     data['Green'][i] = rgb_average[1]
     data['Blue'][i] = rgb_average[2]
 
     #HSV
-    hsv = extract_hsv(binary_mask, path)
+    hsv = extract_points(binary_mask, hsv_image)
     hsv_average = hsv.mean(axis=0).round()
     data['Hue'][i] = hsv_average[0]
     data['Saturation'][i] = hsv_average[1]
     data['Value'][i] = hsv_average[2]
 
     #YCrCb
-    Ycrcb = extract_ycrcb(binary_mask, path)
+    Ycrcb = extract_points(binary_mask, ycrcb_image)
     Ycrcb_average = Ycrcb.mean(axis=0).round()
     data['Y'][i] = Ycrcb_average[0]
     data['Cr'][i] = Ycrcb_average[1]
     data['Cb'][i] = Ycrcb_average[2]
 
     #LAB
-    lab = extract_lab(binary_mask, path)
+    lab = extract_points(binary_mask, lab_image)
     lab_average = lab.mean(axis=0).round()
     data['L'][i] = lab_average[0]
     data['A'][i] = lab_average[1]
@@ -306,7 +318,7 @@ for i, name in enumerate(df['filename']):
     hair_mask = get_feature_mask(total_feat_mask, FaceFeature.HAIR)
     binary_mask = (hair_mask >= 0.5).astype(int)
 
-    hair_rgb = extract_rgb(binary_mask, path)
+    hair_rgb = extract_points(binary_mask, rgb_image)
     hair_rgb_average = hair_rgb.mean(axis=0).round()
     data['Hair_Red'][i] = hair_rgb_average[0]
     data['Hair_Green'][i] = hair_rgb_average[1]
@@ -319,7 +331,7 @@ for i, name in enumerate(df['filename']):
     eye_mask = combine_feature(le_mask, re_mask)
     binary_mask = (eye_mask >= 0.5).astype(int)
 
-    eye_rgb = extract_rgb(binary_mask, path)
+    eye_rgb = extract_points(binary_mask, rgb_image)
     eye_rgb_average = eye_rgb.mean(axis=0).round()
     data['Eye_Red'][i] = eye_rgb_average[0]
     data['Eye_Green'][i] = eye_rgb_average[1]

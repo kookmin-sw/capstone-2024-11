@@ -13,9 +13,9 @@ class classifier:
         probabilities = knn.predict_proba(self.x_data)
         return probabilities
     
-    def get_mlr(self):
-        mlr = joblib.load('./shape_detect/models/mlr_model.pkl')
-        probabilities = mlr.predict_proba(self.x_data)
+    def get_dt(self):
+        dt = joblib.load('./shape_detect/models/dt_model.pkl')
+        probabilities = dt.predict_proba(self.x_data)
         return probabilities
 
     def get_svm(self):
@@ -33,7 +33,7 @@ def main(args):
     cls = classifier()
 
     a = cls.get_knn()
-    b = cls.get_mlr()
+    b = cls.get_dt()
     c = cls.get_svm()
 
     df = pd.read_csv(args.testset)

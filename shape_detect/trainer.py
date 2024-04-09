@@ -15,7 +15,7 @@ class trainer:
         self.y_data = self.df.loc[:, "shape"]
     
     def train_knn(self):
-        knn = KNeighborsClassifier(n_neighbors=4, weights="distance", metric="euclidean")
+        knn = KNeighborsClassifier(n_neighbors=5, weights="distance", metric="euclidean")
         knn.fit(self.x_data, self.y_data)
 
         joblib.dump(knn, './shape_detect/models/knn_model.pkl') 

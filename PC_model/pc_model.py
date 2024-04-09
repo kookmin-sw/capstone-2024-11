@@ -41,65 +41,7 @@ class PersonalColorModel:
         return self.xgb.predict(test_x), self.ovr.predict(test_x), self.ovo.predict(test_x), self.knn.predict(test_x), self.lr.predict(test_x)
 
 #%%
-df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/train/data.csv")
-
-#%%
-
-df.columns = [x.replace(' ', '') for x in df.columns]
-
-label = []
-if df.columns[-1] == "label":
-    label = df['label']
-    df.drop(columns='label', inplace=True)
-
-
-R = [0] * len(df)
-G = [0] * len(df)
-B = [0] * len(df)
-
-for idx, file in enumerate(df['filename']):
-    # 색상정보 검출할 파일 경로
-    path = os.path.join(os.path.dirname(os.getcwd()), "personal_color_dataset", "train", file)
-    total_feat_mask = get_mask(path)
-
-    face_mask = get_feature_mask(total_feat_mask, FaceFeature.FACE)
-    nose_mask = get_feature_mask(total_feat_mask, FaceFeature.NOSE)
-
-    face_nose_mask = combine_feature(face_mask, nose_mask)
-
-    binary_mask = (face_nose_mask >= 0.5).astype(int)
-
-    points = np.argwhere(binary_mask)
-
-    # image processing
-    image = cv2.cvtColor(cv2.imread(path), cv2.COLOR_BGR2RGB)
-    processing_image = gamma_correction(image, 0.8)
-
-    # blue 영역의 상위값 추출
-    rgb_codes = processing_image[points[:, 0], points[:, 1], :]
-    new_rgb_codes = extract_high_rank(rgb_codes, 2, 10)
-
-    # 단순 평균 
-    rgb_mean = new_rgb_codes.mean(axis=0).round()
-
-    R[idx] = rgb_mean[0]
-    G[idx] = rgb_mean[1]
-    B[idx] = rgb_mean[2]
-
-    print("진행률 : {} / {}\n".format(idx, len(df)))
-
-rgb_data = {'New Red' : R, 'New Green' : G, 'New Blue' : B}
-rgb_df = pd.DataFrame(rgb_data)
-
-total_df = pd.concat([df, rgb_df], axis=1, ignore_index=False)
-
-if len(label) != 0:
-    total_df['label'] = label
-
-#%%
-total_df
-save_data_csv(total_df, "/Users/ohs/Desktop/capstone/personal_color_dataset/train/data.csv")
-
+df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/train/new_data.csv")
 
 #%%
 # features = df.columns.drop(["filename", "label"])
@@ -116,8 +58,8 @@ features = ['Hair_Red', 'Hue', 'Saturation', 'Cr', 'Cb',
 #             'Eye_Blue',
 #             'New Green']
 
-train_x = total_df[features]
-train_y = total_df['label']
+train_x = df[features]
+train_y = df['label']
 
 m = PersonalColorModel()
 #%%

@@ -16,12 +16,12 @@ class classifier:
     def get_dt(self):
         dt = joblib.load('./shape_detect/models/dt_model.pkl')
         probabilities = dt.predict_proba(self.x_data)
-        return probabilities
+        return probabilities * 0.5
 
     def get_svm(self):
         clf = joblib.load('./shape_detect/models/svm_model.pkl')
         probabilities = clf.predict_proba(self.x_data)
-        return probabilities
+        return probabilities * 2
     
     def softvote(d,a,b,c):
         result = []
@@ -45,8 +45,6 @@ def main(args):
         predict = cls.softvote(a[i],b[i],c[i])
         if answer[i] == predict:
             correct += 1
-        else:
-            print("predict: ", predict, "answer:", answer[i])
 
     print("accuracy", correct/len(a))
 

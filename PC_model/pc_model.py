@@ -104,12 +104,17 @@ save_data_csv(total_df, "/Users/ohs/Desktop/capstone/personal_color_dataset/trai
 #%%
 # features = df.columns.drop(["filename", "label"])
 
-print(df.columns)
+# print(df.columns)
 
-features = ['Hue', 'Saturation', 'Value',
-            'Y', 'Cr', 'Cb',
-            'L', 'A', 'B', 
-            'New Red', 'New Green', 'New Blue']
+features = ['Hair_Red', 'Hue', 'Saturation', 'Cr', 'Cb',
+            'A', 'B', 'New Blue', 'Eye_Red', 'Eye_Blue']
+
+# features = ['Blue', 
+#             'Hair_Blue', 
+#             'Hue', 'Saturation', 'Value',
+#             'A', 'B', 
+#             'Eye_Blue',
+#             'New Green']
 
 train_x = total_df[features]
 train_y = total_df['label']
@@ -121,7 +126,7 @@ processing_x = mm.fit_transform(train_x)
 
 # %%
 
-X_train, X_test, y_train, y_test = train_test_split(processing_x, train_y, test_size=0.2,random_state=2024)
+X_train, X_test, y_train, y_test = train_test_split(train_x, train_y, test_size=0.2,random_state=2024)
 
 m.train(X_train, y_train)
 
@@ -153,4 +158,6 @@ feature_plot(df, "label")
 #%%
 feature_corr = train_x.corr()   
 heatmap_plot(feature_corr)
+# %%
+plot_importance(m.xgb)
 # %%

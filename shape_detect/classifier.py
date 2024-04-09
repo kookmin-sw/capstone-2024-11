@@ -1,5 +1,6 @@
 import joblib
 import pandas as pd
+import argparse
 
 class classifier:
     def __init__(self):
@@ -28,14 +29,14 @@ class classifier:
             result.append((i+j+k)/3)
         return result.index(max(result))
     
-def main():
+def main(args):
     cls = classifier()
 
     a = cls.get_knn()
     b = cls.get_mlr()
     c = cls.get_svm()
 
-    df = pd.read_csv("./test.csv")
+    df = pd.read_csv(args.testset)
     answer = df.loc[:, "shape"]
 
     correct = 0
@@ -48,7 +49,12 @@ def main():
     print("accuracy", correct/len(a))
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description='Train Command')
+
+    # dataset, train option
+    parser.add_argument('--testset', type=str, default="./test.csv")
+    args = parser.parse_args()
+    main(args)
     
 
 

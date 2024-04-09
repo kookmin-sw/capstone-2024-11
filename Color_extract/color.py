@@ -6,33 +6,9 @@ import pandas as pd
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 from Skin_detect.skin_detect_v2 import *
 
-def extract_rgb(mask, path):
-    img = cv2.imread(path)
-    rgb_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-
+def extract_points(mask, img):
     points = np.argwhere(mask)
-    return rgb_img[points[:, 0], points[:, 1], :]
-
-def extract_hsv(mask, path):
-    img = cv2.imread(path)
-    hsv_img = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-
-    points = np.argwhere(mask)
-    return hsv_img[points[:, 0], points[:, 1], :]
-
-def extract_ycrcb(mask, path):
-    img = cv2.imread(path)
-    ycrcb_img = cv2.cvtColor(img, cv2.COLOR_BGR2YCrCb)
-
-    points = np.argwhere(mask)
-    return ycrcb_img[points[:, 0], points[:, 1], :]
-
-def extract_lab(mask, path):
-    img = cv2.imread(path)
-    lab_img = cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
-
-    points = np.argwhere(mask)
-    return lab_img[points[:, 0], points[:, 1], :]
+    return img[points[:, 0], points[:, 1], :]
 
 def save_data_csv(df, csv_path):
     df.to_csv(path_or_buf = csv_path, mode='w', index = False)

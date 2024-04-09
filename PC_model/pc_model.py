@@ -41,7 +41,7 @@ class PersonalColorModel:
         return self.xgb.predict(test_x), self.ovr.predict(test_x), self.ovo.predict(test_x), self.knn.predict(test_x), self.lr.predict(test_x)
 
 #%%
-df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/train/new_data.csv")
+train_df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/train/new_data.csv")
 
 #%%
 # features = df.columns.drop(["filename", "label"])
@@ -58,8 +58,8 @@ features = ['Hair_Red', 'Hue', 'Saturation', 'Cr', 'Cb',
 #             'Eye_Blue',
 #             'New Green']
 
-train_x = df[features]
-train_y = df['label']
+train_x = train_df[features]
+train_y = train_df['label']
 
 m = PersonalColorModel()
 #%%
@@ -67,12 +67,19 @@ mm = MinMaxScaler()
 processing_x = mm.fit_transform(train_x)
 
 # %%
+test_df = pd.read_csv("../personal_color_dataset/test/new_data.csv")
+test_x = test_df[features]
+test_y = test_df['label']
+#%%
 
-X_train, X_test, y_train, y_test = train_test_split(train_x, train_y, test_size=0.2,random_state=2024)
+# X_train, X_test, y_train, y_test = train_test_split(train_x, train_y, test_size=0.2,random_state=2024)
 
-m.train(X_train, y_train)
+# m.train(X_train, y_train)
 
-res_xgb, res_ovr, res_ovo, res_knn, res_lr = m.test(X_test)
+m.train(train_x, train_y)
+
+# res_xgb, res_ovr, res_ovo, res_knn, res_lr = m.test(X_test)
+res_xgb, res_ovr, res_ovo, res_knn, res_lr = m.test()
 
 print("xgb 평가지표")
 get_evaluation(y_test, res_xgb)

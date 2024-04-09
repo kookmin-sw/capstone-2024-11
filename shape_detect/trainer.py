@@ -52,7 +52,7 @@ if __name__ == "__main__":
 
     # dataset, train option
     parser.add_argument('--dataset', type=str, default="./shape_detect/dataset/train")
-    parser.add_argument('--train', type=int, default=1)
+    parser.add_argument('--train', type=int, default=0)
     parser.add_argument('--label', type=int, default=1)
     parser.add_argument('--output', type=str, default="./train.csv")
     args = parser.parse_args()

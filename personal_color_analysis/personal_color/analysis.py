@@ -10,7 +10,7 @@ import sys
 sys.path.append("../skin_detect_dlib")
 sys.path.append("../skin_vector")
 from skin_detect import dlib_segment
-from skin_vector import color_vector
+from color_extract import color_vector
 def is_warm_prob(lab_b, a):
 
 

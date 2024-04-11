@@ -79,6 +79,11 @@ Role: 프론트엔드 개발, 프론트 디자인
 
 <br>
 
+# 기술 보고서 및 노션
+[중간보고서](https://docs.google.com/document/d/1iTa3x-E7YmxUKW1-hci_tMWgnhhEDPhMeeO1PiM0z4E/edit)
+
+[팀 노션](https://www.notion.so/0b8cad71a4114ceba96f5f567968b44a?v=d4998220a26d44cdbe81a3cb746fdf15&pvs=4)
+
 # 🎮 사용법
 
 > level 1

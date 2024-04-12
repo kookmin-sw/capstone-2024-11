@@ -1,3 +1,7 @@
 .DS_store
 tempCodeRunnerFile.py
 shape_detect/dataset
+personal_color_dataset/test/img*.jpg
+personal_color_dataset/train/*.jpg
+personal_color_dataset/train/img*.jpg
+personal_color_dataset/valid/img*.jpg

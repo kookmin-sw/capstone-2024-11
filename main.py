@@ -1,8 +1,14 @@
 from shape_detect import shape_detect
 from Color_extract.color import *
 from Skin_detect.skin_detect_v2 import *
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
 import joblib
 
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Hello World!'
+
+if __name__ == '__main__':
+    app.run(port="5000", debug=True)

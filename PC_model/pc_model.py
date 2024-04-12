@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import sys
 import os
+import joblib
 
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 from image_processing.gamma_correction import gamma_correction
@@ -45,6 +46,9 @@ class PersonalColorModel:
 
     def test(self, test_x):
         return self.xgb.predict(test_x), self.ovr.predict(test_x), self.ovo.predict(test_x), self.knn.predict(test_x), self.lr.predict(test_x), self.voting.predict(test_x), self.rfc.predict(test_x)
+    
+    def save(self):
+        joblib.dump(self, os.path.join(os.path.dirname(os.path.dirname(__file__)), "test_model.pkl"))
     
 
 #%%

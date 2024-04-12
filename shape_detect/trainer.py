@@ -1,9 +1,11 @@
 from sklearn.neighbors import KNeighborsClassifier
 import pandas as pd
-from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn import svm
+from sklearn.tree import DecisionTreeClassifier
 import joblib
+import argparse
+from controller import labeling
 
 class trainer:
 
@@ -13,16 +15,16 @@ class trainer:
         self.y_data = self.df.loc[:, "shape"]
     
     def train_knn(self):
-        knn = KNeighborsClassifier(n_neighbors=3, weights="distance", metric="euclidean")
+        knn = KNeighborsClassifier(n_neighbors=5, weights="distance", metric="euclidean")
         knn.fit(self.x_data, self.y_data)
 
         joblib.dump(knn, './shape_detect/models/knn_model.pkl') 
 
-    def train_mlr(self):
-        logreg = LogisticRegression(max_iter=1000)
-        logreg.fit(self.x_data, self.y_data)
+    def train_dt(self):
+        dt = DecisionTreeClassifier()
+        dt.fit(self.x_data, self.y_data)
 
-        joblib.dump(logreg, './shape_detect/models/mlr_model.pkl') 
+        joblib.dump(dt, './shape_detect/models/dt_model.pkl') 
     
     def train_svm(self):
         clf = svm.SVC(kernel='linear', probability=True)
@@ -32,9 +34,27 @@ class trainer:
 
     def train_all(self):
         self.train_knn()
-        self.train_mlr()
-        self.train_svm()   
+        self.train_dt()
+        self.train_svm()
+        print("train complete")
+
+def main(args):
+    if args.label:
+        labeling(args.dataset, args.output)
+    
+    if args.train:
+        cls = trainer()
+        cls.train_all()
+    
     
 if __name__ == "__main__":
-    cls = trainer()
-    cls.train_all()
+    parser = argparse.ArgumentParser(description='Train Command')
+
+    # dataset, train option
+    parser.add_argument('--dataset', type=str, default="./shape_detect/dataset/train")
+    parser.add_argument('--train', type=int, default=0)
+    parser.add_argument('--label', type=int, default=1)
+    parser.add_argument('--output', type=str, default="./train.csv")
+    args = parser.parse_args()
+    main(args)
+    

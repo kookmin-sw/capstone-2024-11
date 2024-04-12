@@ -20,8 +20,8 @@ class FaceFeature(Enum):
 
 def get_mask(img_path):
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
-    image = facer.hwc2bchw(facer.read_hwc(img_path)).to(device=device)
 
+    image = facer.hwc2bchw(facer.read_hwc(img_path)).to(device=device)
     face_detector = facer.face_detector('retinaface/mobilenet', device=device)
 
     with torch.inference_mode():

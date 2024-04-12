@@ -1,3 +1,4 @@
+#%%
 import sys
 import os
 import cv2
@@ -5,34 +6,11 @@ import numpy as np
 import pandas as pd
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 from Skin_detect.skin_detect_v2 import *
+from image_processing.gamma_correction import *
 
-def extract_rgb(mask, path):
-    img = cv2.imread(path)
-    rgb_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-
+def extract_points(mask, img):
     points = np.argwhere(mask)
-    return rgb_img[points[:, 0], points[:, 1], :]
-
-def extract_hsv(mask, path):
-    img = cv2.imread(path)
-    hsv_img = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-
-    points = np.argwhere(mask)
-    return hsv_img[points[:, 0], points[:, 1], :]
-
-def extract_ycrcb(mask, path):
-    img = cv2.imread(path)
-    ycrcb_img = cv2.cvtColor(img, cv2.COLOR_BGR2YCrCb)
-
-    points = np.argwhere(mask)
-    return ycrcb_img[points[:, 0], points[:, 1], :]
-
-def extract_lab(mask, path):
-    img = cv2.imread(path)
-    lab_img = cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
-
-    points = np.argwhere(mask)
-    return lab_img[points[:, 0], points[:, 1], :]
+    return img[points[:, 0], points[:, 1], :]
 
 def save_data_csv(df, csv_path):
     df.to_csv(path_or_buf = csv_path, mode='w', index = False)
@@ -57,7 +35,7 @@ def make_ycrcb_data(csv_path, folder_name):
 
     for idx, file in enumerate(df['filename']):
         # 색상정보 검출할 파일 경로
-        path = os.path.join(os.getcwd(), folder_name, "train", file)
+        path = os.path.join(os.getcwd(), folder_name, "test", file)
         total_feat_mask = get_mask(path)
 
         face_mask = get_feature_mask(total_feat_mask, FaceFeature.FACE)
@@ -69,7 +47,9 @@ def make_ycrcb_data(csv_path, folder_name):
 
         face_img = extract_feature(path, binary_mask)
 
-        ycrcb = extract_ycrcb(face_img, path)
+        image = cv2.imread(path)
+        ycrcb_image = cv2.cvtColor(image, cv2.COLOR_BGR2YCrCb)
+        ycrcb = extract_points(binary_mask, ycrcb_image)
 
         ycrcb_mean = ycrcb.mean(axis=0).round()
 
@@ -108,7 +88,7 @@ def make_hsv_data(csv_path, folder_name):
 
     for idx, file in enumerate(df['filename']):
         # 색상정보 검출할 파일 경로
-        path = os.path.join(os.getcwd(), folder_name, "train", file)
+        path = os.path.join(os.getcwd(), folder_name, "test", file)
         total_feat_mask = get_mask(path)
 
         face_mask = get_feature_mask(total_feat_mask, FaceFeature.FACE)
@@ -120,7 +100,10 @@ def make_hsv_data(csv_path, folder_name):
 
         face_img = extract_feature(path, binary_mask)
 
-        hsv = extract_hsv(face_img, path)
+        image = cv2.imread(path)
+        hsv_image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+
+        hsv = extract_points(binary_mask, hsv_image)
 
         hsv_mean = hsv.mean(axis=0).round()
 
@@ -160,7 +143,7 @@ def make_rgb_data(csv_path, folder_name):
 
     for idx, file in enumerate(df['filename']):
         # 색상정보 검출할 파일 경로
-        path = os.path.join(os.getcwd(), folder_name, "train", file)
+        path = os.path.join(os.getcwd(), folder_name, "test", file)
         total_feat_mask = get_mask(path)
 
         face_mask = get_feature_mask(total_feat_mask, FaceFeature.LEFT_EYE)
@@ -172,7 +155,9 @@ def make_rgb_data(csv_path, folder_name):
 
         face_img = extract_feature(path, binary_mask)
 
-        rgb = extract_rgb(face_img, path)
+        image = cv2.imread(path)
+        rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        rgb = extract_points(binary_mask, rgb_image)
 
         rgb_mean = rgb.mean(axis=0).round()
 
@@ -211,7 +196,7 @@ def make_lab_data(csv_path, folder_name):
 
     for idx, file in enumerate(df['filename']):
         # 색상정보 검출할 파일 경로
-        path = os.path.join(os.getcwd(), folder_name, "train", file)
+        path = os.path.join(os.getcwd(), folder_name, "test", file)
         total_feat_mask = get_mask(path)
 
         face_mask = get_feature_mask(total_feat_mask, FaceFeature.FACE)
@@ -221,7 +206,9 @@ def make_lab_data(csv_path, folder_name):
 
         binary_mask = (face_nose_mask >= 0.5).astype(int)
 
-        lab = extract_lab(binary_mask, path)
+        image = cv2.imread(path)
+        lab_image = cv2.cvtColor(image, cv2.COLOR_BGR2LAB)
+        lab = extract_points(binary_mask, lab_image)
 
         lab_mean = lab.mean(axis=0).round()
 
@@ -240,3 +227,143 @@ def make_lab_data(csv_path, folder_name):
         total_df['label'] = label
 
     return total_df
+
+# lab 색공간의 l값을 이용한 밝기 필터링
+def filter_by_brightness(rgb_codes, brightness_threshold=60):
+  new_rgb_codes = []
+  for rgb in rgb_codes:
+    lab = cv2.cvtColor(np.array([[rgb]]), cv2.COLOR_RGB2LAB).squeeze()
+    if lab[0] >= brightness_threshold:
+      new_rgb_codes.append(rgb)
+  return np.array(new_rgb_codes)
+
+# RGB 색공간의 상위 값 추출
+def extract_high_rank(rgb_codes, color_area, percent):
+  idx = int(rgb_codes.shape[0] * (percent / 100))
+  new_rgb_codes = sorted(rgb_codes, key = lambda x : x[color_area], reverse=True)[ : idx]
+  return np.array(new_rgb_codes)
+
+# #%%
+# df = pd.read_csv("../personal_color_dataset/test/data.csv")
+
+# #%%
+# label = df['label']
+# df.drop(columns='label', inplace=True)
+
+# size = df.shape[0]
+
+# #%%
+
+# data = {'filename' : [0] * size, 'Red' : [0] * size, 'Green' : [0] * size, 'Blue' : [0] * size, 
+#         'Hue' : [0] * size, 'Saturation' : [0] * size, 'Value' : [0] * size, 
+#         'Y' : [0] * size, 'Cr' : [0] * size, 'Cb' : [0] * size, 
+#         'L' : [0] * size, 'A' : [0] * size, 'B' : [0] * size, 
+#         'Hair_Red' : [0] * size, 'Hair_Green' : [0] * size, 'Hair_Blue' : [0] * size,
+#        'Eye_Red' : [0] * size, 'Eye_Green' : [0] * size, 'Eye_Blue' : [0] * size, 
+#        'New Red' : [0] * size, 'New Green' : [0] * size, 'New Blue' : [0] * size}
+
+# #%%
+# for i, name in enumerate(df['filename']):
+#     path = os.path.join(os.path.dirname(os.getcwd()), "personal_color_dataset", "test", name)
+#     # file 이름 넣기
+#     data['filename'][i] = name
+
+#     # 전체 마스크
+#     total_feat_mask = get_mask(path)
+
+#     # 얼굴과 코 마스크
+#     face_mask = get_feature_mask(total_feat_mask, FaceFeature.FACE)
+#     nose_mask = get_feature_mask(total_feat_mask, FaceFeature.NOSE)
+
+#     # 마스크 합치기
+#     face_nose_mask = combine_feature(face_mask, nose_mask)
+
+#     # 이진 마스크로 변환
+#     binary_mask = (face_nose_mask >= 0.5).astype(int)
+
+#     # image load
+#     image = cv2.imread(path)
+#     image = gamma_correction(image, 0.8)
+#     rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+#     hsv_image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+#     ycrcb_image = cv2.cvtColor(image, cv2.COLOR_BGR2YCrCb)
+#     lab_image = cv2.cvtColor(image, cv2.COLOR_BGR2LAB)
+
+#     #RGB
+#     rgb = extract_points(binary_mask, rgb_image)
+#     rgb_average = rgb.mean(axis=0).round()
+#     data['Red'][i] = rgb_average[0]
+#     data['Green'][i] = rgb_average[1]
+#     data['Blue'][i] = rgb_average[2]
+
+#     #HSV
+#     hsv = extract_points(binary_mask, hsv_image)
+#     hsv_average = hsv.mean(axis=0).round()
+#     data['Hue'][i] = hsv_average[0]
+#     data['Saturation'][i] = hsv_average[1]
+#     data['Value'][i] = hsv_average[2]
+
+#     #YCrCb
+#     Ycrcb = extract_points(binary_mask, ycrcb_image)
+#     Ycrcb_average = Ycrcb.mean(axis=0).round()
+#     data['Y'][i] = Ycrcb_average[0]
+#     data['Cr'][i] = Ycrcb_average[1]
+#     data['Cb'][i] = Ycrcb_average[2]
+
+#     #LAB
+#     lab = extract_points(binary_mask, lab_image)
+#     lab_average = lab.mean(axis=0).round()
+#     data['L'][i] = lab_average[0]
+#     data['A'][i] = lab_average[1]
+#     data['B'][i] = lab_average[2]
+
+#     # Hair Color
+#     hair_mask = get_feature_mask(total_feat_mask, FaceFeature.HAIR)
+#     binary_mask = (hair_mask >= 0.5).astype(int)
+
+#     hair_rgb = extract_points(binary_mask, rgb_image)
+#     hair_rgb_average = hair_rgb.mean(axis=0).round()
+#     data['Hair_Red'][i] = hair_rgb_average[0]
+#     data['Hair_Green'][i] = hair_rgb_average[1]
+#     data['Hair_Blue'][i] = hair_rgb_average[2]
+    
+#     # Eye Color
+#     le_mask = get_feature_mask(total_feat_mask, FaceFeature.LEFT_EYE)
+#     re_mask = get_feature_mask(total_feat_mask, FaceFeature.RIGHT_EYE)
+
+#     eye_mask = combine_feature(le_mask, re_mask)
+#     binary_mask = (eye_mask >= 0.5).astype(int)
+
+#     eye_rgb = extract_points(binary_mask, rgb_image)
+#     eye_rgb_average = eye_rgb.mean(axis=0).round()
+#     data['Eye_Red'][i] = eye_rgb_average[0]
+#     data['Eye_Green'][i] = eye_rgb_average[1]
+#     data['Eye_Blue'][i] = eye_rgb_average[2]
+
+#     # New RGB
+#     binary_mask = (face_nose_mask >= 0.5).astype(int)
+
+#     rgb_codes = extract_points(binary_mask, rgb_image)
+#     new_rgb_codes = extract_high_rank(rgb_codes, 2, 10)
+
+#     new_rgb_average = new_rgb_codes.mean(axis=0).round()
+#     data['New Red'][i] = new_rgb_average[0]
+#     data['New Green'][i] = new_rgb_average[1]
+#     data['New Blue'][i] = new_rgb_average[2]
+
+#     print("진행률 : {} / {}\n".format(i, df.shape[0]))
+
+# #%%
+# new_df = pd.DataFrame(data)
+# #%%
+# new_df
+# #%%
+
+# new_df['label'] = label
+# save_data_csv(new_df, "../personal_color_dataset/test/new_data.csv")
+
+# #%% 
+# df = pd.read_csv("../personal_color_dataset/test/data.csv")
+# df
+
+# # %%

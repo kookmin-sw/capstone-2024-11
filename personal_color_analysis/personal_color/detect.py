@@ -2,8 +2,12 @@ import cv2
 import dlib
 import numpy as np
 
+# !pip install opencv-python
+# !pip install dlib
+# !wget   http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2 # DOWNLOAD LINK
+
 def dlib_segment(img) :
-  predictor_path = './shape_predictor_68_face_landmarks.dat'
+  predictor_path = '../../shape_predictor_68_face_landmarks.dat'
   predictor = dlib.shape_predictor(predictor_path)
 
   image = img

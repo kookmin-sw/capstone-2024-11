@@ -1,12 +1,9 @@
-
 # 방법2 ; k-means를 이용하여 대표 피부색상 검출 
 
 import cv2
 import dlib
 import numpy as np
 import sys
-sys.path.append("../skin_detect_dlib")
-from skin_detect import dlib_segment
 
 def color_vector(skin_image):
   # 검은색을 제외한 피부 영역에서 피부 색상 픽셀 추출
@@ -37,22 +34,3 @@ def color_vector(skin_image):
   # 대표 색상 출력
   dominant_color = np.uint8(weighted_avg_color)
   return dominant_color
-
-
-# image_path = "./test/kimmingyu.jpeg"
-# image = cv2.imread(image_path)
-# skin_image = dlib_segment(image)
-# dominant_color = color_vector(skin_image)
-
-# # 대표 색상 출력
-# print("Dominant Color (BGR):", dominant_color)
-
-# # 대표 색상 시각화
-# color_chip = np.zeros((100, 100, 3), dtype=np.uint8)
-# color_chip[:, :] = dominant_color
-# cv2.imshow("1",color_chip)
-# key = cv2.waitKey(0)
-
-# if key == ord('q'):
-#     cv2.destroyAllWindows()
-

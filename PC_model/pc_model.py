@@ -50,7 +50,13 @@ class PersonalColorModel:
     def save(self):
         joblib.dump(value=self, filename=os.path.join(os.path.dirname(os.path.dirname(__file__)), "test_model.pkl"))
     
-
+def save_model(model, path):
+    try:
+        joblib.dump(model, path)
+        return True
+    except:
+        print("model 저장에 실패하였습니다.")
+        return False
 #%%
 train_df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/train/new_data.csv")
 test_df = pd.read_csv("../personal_color_dataset/test/new_data.csv")

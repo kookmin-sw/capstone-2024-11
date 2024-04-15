@@ -54,7 +54,7 @@ def save_model(model, path):
     try:
         joblib.dump(model, path)
         return True
-    except:
+    except :
         print("model 저장에 실패하였습니다.")
         return False
 #%%
@@ -138,4 +138,6 @@ feature_corr = train_x.corr()
 heatmap_plot(feature_corr)
 # %%
 plot_importance(m.xgb)
+# %%
+save_model(m, os.path.join(os.path.dirname(__file__), "test_model.pkl"))
 # %%

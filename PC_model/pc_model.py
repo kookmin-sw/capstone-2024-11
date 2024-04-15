@@ -58,86 +58,87 @@ def save_model(model, path):
         print("model 저장에 실패하였습니다.")
         return False
 #%%
-train_df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/train/new_data.csv")
-test_df = pd.read_csv("../personal_color_dataset/test/new_data.csv")
+def test():
+    train_df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/train/new_data.csv")
+    test_df = pd.read_csv("../personal_color_dataset/test/new_data.csv")
 
-#%%
-# features = df.columns.drop(["filename", "label"])
+    #%%
+    # features = df.columns.drop(["filename", "label"])
 
-# print(df.columns)
+    # print(df.columns)
 
-features = ['Hair_Red', 'Hue', 'Saturation', 'Cr', 'Cb', 'L',
-            'A', 'B', 'New Blue', 'Eye_Red', 'Eye_Blue', 'New Green', 'New Red']
+    features = ['Hair_Red', 'Hue', 'Saturation', 'Cr', 'Cb', 'L',
+                'A', 'B', 'New Blue', 'Eye_Red', 'Eye_Blue', 'New Green', 'New Red']
 
-# features = ['Blue', 
-#             'Hair_Blue', 
-#             'Hue', 'Saturation', 'Value',
-#             'A', 'B', 
-#             'Eye_Blue',
-#             'New Blue']
+    # features = ['Blue', 
+    #             'Hair_Blue', 
+    #             'Hue', 'Saturation', 'Value',
+    #             'A', 'B', 
+    #             'Eye_Blue',
+    #             'New Blue']
 
-train_x = train_df[features]
-train_y = train_df['label']
+    train_x = train_df[features]
+    train_y = train_df['label']
 
-test_x = test_df[features]
-y_test = test_df['label']
+    test_x = test_df[features]
+    y_test = test_df['label']
 
-m = PersonalColorModel()
-#%%
-# mm = MinMaxScaler()
-scaler = StandardScaler()
+    m = PersonalColorModel()
+    #%%
+    # mm = MinMaxScaler()
+    scaler = StandardScaler()
 
-scaler.fit(train_x)
+    scaler.fit(train_x)
 
-# %%
-processing_train_x = scaler.transform(train_x)
-processing_test_x = scaler.transform(test_x)
-#%%
-# processing_test_x = mm.transform(test_x)
-# X_train, X_test, y_train, y_test = train_test_split(train_x, train_y, test_size=0.2,random_state=2024)
+    # %%
+    processing_train_x = scaler.transform(train_x)
+    processing_test_x = scaler.transform(test_x)
+    #%%
+    # processing_test_x = mm.transform(test_x)
+    # X_train, X_test, y_train, y_test = train_test_split(train_x, train_y, test_size=0.2,random_state=2024)
 
-# m.train(X_train, y_train)
+    # m.train(X_train, y_train)
 
-m.train(processing_train_x, train_y)
+    m.train(processing_train_x, train_y)
 
-# res_xgb, res_ovr, res_ovo, res_knn, res_lr = m.test(X_test)
-res_xgb, res_ovr, res_ovo, res_knn, res_lr, res_voting, res_rfc = m.test(processing_test_x)
+    # res_xgb, res_ovr, res_ovo, res_knn, res_lr = m.test(X_test)
+    res_xgb, res_ovr, res_ovo, res_knn, res_lr, res_voting, res_rfc = m.test(processing_test_x)
 
-print("xgb 평가지표")
-get_evaluation(y_test, res_xgb)
-print()
+    print("xgb 평가지표")
+    get_evaluation(y_test, res_xgb)
+    print()
 
-print("ovr 평가지표")
-get_evaluation(y_test, res_ovr)
-print()
+    print("ovr 평가지표")
+    get_evaluation(y_test, res_ovr)
+    print()
 
-print("ovo 평가지표")
-get_evaluation(y_test, res_ovo)
-print()
+    print("ovo 평가지표")
+    get_evaluation(y_test, res_ovo)
+    print()
 
-print("knn 평가지표")
-get_evaluation(y_test, res_knn)
-print()
+    print("knn 평가지표")
+    get_evaluation(y_test, res_knn)
+    print()
 
-print("lr 평가지표")
-get_evaluation(y_test, res_lr)
-print()
+    print("lr 평가지표")
+    get_evaluation(y_test, res_lr)
+    print()
 
-print("voting 평가지표")
-get_evaluation(y_test, res_voting)
-print()
+    print("voting 평가지표")
+    get_evaluation(y_test, res_voting)
+    print()
 
-print("rfc 평가지표")
-get_evaluation(y_test, res_rfc)
-print()
-#%%
-feature_plot(train_df, "label")
+    print("rfc 평가지표")
+    get_evaluation(y_test, res_rfc)
+    print()
+    #%%
+    feature_plot(train_df, "label")
 
-#%%
-feature_corr = train_x.corr()   
-heatmap_plot(feature_corr)
-# %%
-plot_importance(m.xgb)
-# %%
-save_model(m, os.path.join(os.path.dirname(__file__), "test_model.pkl"))
-# %%
+    #%%
+    feature_corr = train_x.corr()   
+    heatmap_plot(feature_corr)
+    # %%
+    plot_importance(m.xgb)
+    # %%
+    save_model(m, os.path.join(os.path.dirname(__file__), "test_model.pkl"))
+    # %%

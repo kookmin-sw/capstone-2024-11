@@ -46,9 +46,6 @@ def predict_color():
 
     # 예츨 결과
     raw_res = pc_model.test(preprocssing_data)
-    
-    # for i in pc_model.predict_probability(preprocssing_data):
-    #     print(i)
 
     predict_res = [""] * len(raw_res)
     for idx, predict in enumerate(raw_res):

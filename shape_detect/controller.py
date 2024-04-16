@@ -1,4 +1,4 @@
-from utils import landmark, line, norm, ratio, vector
+from shape_detect.utils import landmark, line, norm, ratio, vector
 import pandas as pd
 import os
 from torchvision.datasets import ImageFolder

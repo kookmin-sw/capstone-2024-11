@@ -1,4 +1,4 @@
-from shape_detect import shape_detect
+from shape_detect import classifier
 from Color_extract.color import *
 from Skin_detect.skin_detect_v2 import *
 import joblib

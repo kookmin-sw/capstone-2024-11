@@ -257,15 +257,15 @@ def extract_high_rank(rgb_codes, color_area, percent):
 #     data['filename'][i] = name
 
 def total_data_extract(path):
-    data = {'filename' : 0, 'Red' : 0, 'Green' : 0, 'Blue' : 0, 
+    data = {'Red' : 0, 'Green' : 0, 'Blue' : 0, 
         'Hue' : 0, 'Saturation' : 0, 'Value' : 0, 
         'Y' : 0, 'Cr' : 0, 'Cb' : 0, 
         'L' : 0, 'A' : 0, 'B' : 0, 
         'Hair_Red' : 0, 'Hair_Green' : 0, 'Hair_Blue' : 0,
        'Eye_Red' : 0, 'Eye_Green' : 0, 'Eye_Blue' : 0, 
        'New Red' : 0, 'New Green' : 0, 'New Blue' : 0}
+    
     # 전체 마스크
-    res = []
     total_feat_mask = get_mask(path)
 
     # 얼굴과 코 마스크

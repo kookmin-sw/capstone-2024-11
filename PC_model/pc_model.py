@@ -62,7 +62,6 @@ def test():
     train_df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/train/new_data.csv")
     test_df = pd.read_csv("../personal_color_dataset/test/new_data.csv")
 
-    #%%
     # features = df.columns.drop(["filename", "label"])
 
     # print(df.columns)
@@ -84,16 +83,14 @@ def test():
     y_test = test_df['label']
 
     m = PersonalColorModel()
-    #%%
     # mm = MinMaxScaler()
     scaler = StandardScaler()
 
     scaler.fit(train_x)
 
-    # %%
     processing_train_x = scaler.transform(train_x)
     processing_test_x = scaler.transform(test_x)
-    #%%
+
     # processing_test_x = mm.transform(test_x)
     # X_train, X_test, y_train, y_test = train_test_split(train_x, train_y, test_size=0.2,random_state=2024)
 
@@ -132,13 +129,11 @@ def test():
     get_evaluation(y_test, res_rfc)
     print()
     #%%
-    feature_plot(train_df, "label")
+    # feature_plot(train_df, "label")
 
     #%%
-    feature_corr = train_x.corr()   
-    heatmap_plot(feature_corr)
+    # feature_corr = train_x.corr()   
+    # heatmap_plot(feature_corr)
     # %%
-    plot_importance(m.xgb)
-    # %%
-    save_model(m, os.path.join(os.path.dirname(__file__), "test_model.pkl"))
-    # %%
+    # plot_importance(m.xgb)
+    

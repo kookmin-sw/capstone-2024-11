@@ -43,6 +43,10 @@ class PersonalColorModel:
         self.lr.fit(train_x, train_y)
         self.voting.fit(train_x, train_y)
         self.rfc.fit(train_x, train_y)
+    
+    def predict_probability(self, test_x):
+        # self.ovr.predict_proba(test_x), self.ovo.predict_proba(test_x), 
+        return self.xgb.predict_proba(test_x), self.knn.predict_proba(test_x), self.lr.predict_proba(test_x), self.voting.predict_proba(test_x), self.rfc.predict_proba(test_x)
 
     def test(self, test_x):
         return self.xgb.predict(test_x), self.ovr.predict(test_x), self.ovo.predict(test_x), self.knn.predict(test_x), self.lr.predict(test_x), self.voting.predict(test_x), self.rfc.predict(test_x)
@@ -97,37 +101,46 @@ def test():
     # m.train(X_train, y_train)
 
     m.train(processing_train_x, train_y)
+    save_model(scaler, os.path.join(os.path.dirname(os.path.dirname(__file__)), "scaler.pkl"))
+    save_model(m, os.path.join(os.path.dirname(os.path.dirname(__file__)), "test_model.pkl"))
 
-    # res_xgb, res_ovr, res_ovo, res_knn, res_lr = m.test(X_test)
-    res_xgb, res_ovr, res_ovo, res_knn, res_lr, res_voting, res_rfc = m.test(processing_test_x)
+#     # res_xgb, res_ovr, res_ovo, res_knn, res_lr = m.test(X_test)
+#     res_xgb, res_knn, res_lr, res_voting, res_rfc = m.predict_probability(processing_test_x)
+# # res_ovr, res_ovo,
+#     print("xgb 평가지표")
+#     print(res_xgb)
+#     # get_evaluation(y_test, res_xgb)
+#     print()
 
-    print("xgb 평가지표")
-    get_evaluation(y_test, res_xgb)
-    print()
+#     # print("ovr 평가지표")
+#     # print(res_ovr)
+#     # # get_evaluation(y_test, res_ovr)
+#     # print()
 
-    print("ovr 평가지표")
-    get_evaluation(y_test, res_ovr)
-    print()
+#     # print("ovo 평가지표")
+#     # print(res_ovo)
+#     # # get_evaluation(y_test, res_ovo)
+#     # print()
 
-    print("ovo 평가지표")
-    get_evaluation(y_test, res_ovo)
-    print()
+#     print("knn 평가지표")
+#     print(res_knn)
+#     # get_evaluation(y_test, res_knn)
+#     print()
 
-    print("knn 평가지표")
-    get_evaluation(y_test, res_knn)
-    print()
+#     print("lr 평가지표")
+#     print(res_lr)
+#     # get_evaluation(y_test, res_lr)
+#     print()
 
-    print("lr 평가지표")
-    get_evaluation(y_test, res_lr)
-    print()
+#     print("voting 평가지표")
+#     print(res_voting)
+#     # get_evaluation(y_test, res_voting)
+#     print()
 
-    print("voting 평가지표")
-    get_evaluation(y_test, res_voting)
-    print()
-
-    print("rfc 평가지표")
-    get_evaluation(y_test, res_rfc)
-    print()
+#     print("rfc 평가지표")
+#     print(res_rfc)
+#     # get_evaluation(y_test, res_rfc)
+#     print()
     #%%
     # feature_plot(train_df, "label")
 
@@ -136,4 +149,7 @@ def test():
     # heatmap_plot(feature_corr)
     # %%
     # plot_importance(m.xgb)
-    
+
+# %%
+# test()
+# %%

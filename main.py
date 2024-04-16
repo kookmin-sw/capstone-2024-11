@@ -15,6 +15,7 @@ app = Flask(__name__)
 
 image_path = os.path.join(os.path.dirname(__file__), "predict_image")
 pc_model : PersonalColorModel = joblib.load('./test_model.pkl')
+ss = joblib.load("./scaler.pkl")
 features = ['Hair_Red', 'Hue', 'Saturation', 'Cr', 'Cb', 'L',
                 'A', 'B', 'New Blue', 'Eye_Red', 'Eye_Blue', 'New Green', 'New Red']
 
@@ -24,7 +25,7 @@ def hello_world():
 
 @app.route('/predict_color', methods = ['POST'])
 def predict_color():
-    global features
+    global features, pc_model, ss
     # 이미지 저장
     f = request.files['image']
     f_path = os.path.join(image_path, f.filename)
@@ -39,17 +40,18 @@ def predict_color():
 
     # 학습에 사용된 features들만 가져오기
     predict_data = df[features]
+    print(predict_data)
 
     # Scaler
-    ss = StandardScaler()
-    ss.fit(predict_data)
     preprocssing_data = ss.transform(predict_data)
 
     # 예츨 결과
     raw_res = pc_model.test(preprocssing_data)
+    for i in pc_model.predict_probability(preprocssing_data):
+        print(i)
 
     predict_res = [""] * len(raw_res)
-
+    print(predict_res)
     for idx, predict in enumerate(raw_res):
         if predict[0] == 0:
             label = "spring"
@@ -60,7 +62,7 @@ def predict_color():
         else:
             label = "winter"
         predict_res[idx] = label
-
+    print(predict_res, end="\n")
     return predict_res
 
 @app.route('/predict_test')

@@ -10,6 +10,7 @@ from flask import Flask, request
 app = Flask(__name__)
 
 image_path = os.path.join(os.path.dirname(__file__), "predict_image")
+pc_model : PersonalColorModel = joblib.load('./test_model.pkl')
 
 @app.route('/')
 def hello_world():
@@ -17,11 +18,16 @@ def hello_world():
 
 @app.route('/predict_color', methods = ['POST'])
 def predict_color():
+    # 이미지 저장
     f = request.files['image']
-    f_name = f.filename
-    print(f_name)
-    f.save(os.path.join(image_path, f_name))
+    f_path = os.path.join(image_path, f.filename)
+    f.save(f_path)
+
     return "Success"
+
+@app.route('/predict_test')
+def test():
+    return str(pc_model.test([[0] * 13]))
     
 
 if __name__ == '__main__':

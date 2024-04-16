@@ -46,13 +46,24 @@ class PersonalColorModel:
     
     def predict_probability(self, test_x):
         # self.ovr.predict_proba(test_x), self.ovo.predict_proba(test_x), 
-        return self.xgb.predict_proba(test_x), self.knn.predict_proba(test_x), self.lr.predict_proba(test_x), self.voting.predict_proba(test_x), self.rfc.predict_proba(test_x)
+        return self.xgb.predict_proba(test_x),\
+            self.knn.predict_proba(test_x),\
+                  self.lr.predict_proba(test_x),\
+                      self.voting.predict_proba(test_x),\
+                          self.rfc.predict_proba(test_x)
 
     def test(self, test_x):
-        return self.xgb.predict(test_x), self.ovr.predict(test_x), self.ovo.predict(test_x), self.knn.predict(test_x), self.lr.predict(test_x), self.voting.predict(test_x), self.rfc.predict(test_x)
+        return self.xgb.predict(test_x),\
+              self.ovr.predict(test_x),\
+                  self.ovo.predict(test_x),\
+                      self.knn.predict(test_x), \
+                        self.lr.predict(test_x),\
+                              self.voting.predict(test_x),\
+                                  self.rfc.predict(test_x)
     
     def save(self):
-        joblib.dump(value=self, filename=os.path.join(os.path.dirname(os.path.dirname(__file__)), "test_model.pkl"))
+        joblib.dump(value=self, \
+                    filename=os.path.join(os.path.dirname(os.path.dirname(__file__)), "test_model.pkl"))
     
 def save_model(model, path):
     try:
@@ -62,16 +73,16 @@ def save_model(model, path):
         print("model 저장에 실패하였습니다.")
         return False
 #%%
-def test():
+def model_train_save():
     train_df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/train/new_data.csv")
     test_df = pd.read_csv("../personal_color_dataset/test/new_data.csv")
 
-    # features = df.columns.drop(["filename", "label"])
+    features = train_df.columns.drop(["filename", "label"])
 
     # print(df.columns)
 
-    features = ['Hair_Red', 'Hue', 'Saturation', 'Cr', 'Cb', 'L',
-                'A', 'B', 'New Blue', 'Eye_Red', 'Eye_Blue', 'New Green', 'New Red']
+    # features = ['Hair_Red', 'Hue', 'Saturation', 'Cr', 'Cb', 'L',
+    #             'A', 'B', 'New Blue', 'Eye_Red', 'Eye_Blue', 'New Green', 'New Red']
 
     # features = ['Blue', 
     #             'Hair_Blue', 
@@ -101,8 +112,9 @@ def test():
     # m.train(X_train, y_train)
 
     m.train(processing_train_x, train_y)
-    save_model(scaler, os.path.join(os.path.dirname(os.path.dirname(__file__)), "scaler.pkl"))
-    save_model(m, os.path.join(os.path.dirname(os.path.dirname(__file__)), "test_model.pkl"))
+
+    save_model(scaler, os.path.join(os.path.dirname(os.path.dirname(__file__)), "scaler_all_features.pkl"))
+    save_model(m, os.path.join(os.path.dirname(os.path.dirname(__file__)), "test_model_all_features.pkl"))
 
 #     # res_xgb, res_ovr, res_ovo, res_knn, res_lr = m.test(X_test)
 #     res_xgb, res_knn, res_lr, res_voting, res_rfc = m.predict_probability(processing_test_x)
@@ -151,5 +163,5 @@ def test():
     # plot_importance(m.xgb)
 
 # %%
-# test()
+# model_train_save()
 # %%

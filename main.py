@@ -40,18 +40,17 @@ def predict_color():
 
     # 학습에 사용된 features들만 가져오기
     predict_data = df[features]
-    print(predict_data)
 
     # Scaler
     preprocssing_data = ss.transform(predict_data)
 
     # 예츨 결과
     raw_res = pc_model.test(preprocssing_data)
-    for i in pc_model.predict_probability(preprocssing_data):
-        print(i)
+    
+    # for i in pc_model.predict_probability(preprocssing_data):
+    #     print(i)
 
     predict_res = [""] * len(raw_res)
-    print(predict_res)
     for idx, predict in enumerate(raw_res):
         if predict[0] == 0:
             label = "spring"
@@ -62,7 +61,6 @@ def predict_color():
         else:
             label = "winter"
         predict_res[idx] = label
-    print(predict_res, end="\n")
     return predict_res
 
 @app.route('/predict_test')

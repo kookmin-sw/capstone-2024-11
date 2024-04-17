@@ -24,12 +24,17 @@ def upload():
         file.save(input_path)
 
         norm_distances, angles, rations = controller.get_vector(input_path)
-        
+
         if not norm_distances:
             os.unlink(input_path)
             return "얼굴인식 실패"
+
+        cls = classifier.classifier()
+        cls.set_vector(norm_distances + angles + rations)
+        shape_result = cls.get_shape()
         
-        return "upload"
+        os.unlink(input_path)
+        return shape_result
     
     return '사진이 없습니다.'
 

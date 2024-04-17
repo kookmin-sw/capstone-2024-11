@@ -1,6 +1,6 @@
 from shape_detect import classifier, controller
-from Color_extract.color import *
-from Skin_detect.skin_detect_v2 import *
+# from Color_extract.color import *
+# from Skin_detect.skin_detect_v2 import *
 import joblib
 from werkzeug.utils import secure_filename
 from flask import Flask, request, render_template, send_file
@@ -34,7 +34,8 @@ def upload():
         shape_result = cls.get_shape()
         
         os.unlink(input_path)
-        return shape_result
+        print(shape_result)
+        return "done"
     
     return '사진이 없습니다.'
 

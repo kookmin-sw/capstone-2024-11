@@ -4,6 +4,7 @@ from Skin_detect.skin_detect_v2 import *
 import joblib
 from werkzeug.utils import secure_filename
 from flask import Flask, request, render_template, send_file
+import os
 
 app = Flask(__name__)
 
@@ -17,10 +18,17 @@ def upload():
         return '사진이 전송되지 않았습니다.'
 
     file = request.files['file']
-    
+
     if file:
         input_path = "./static/"+secure_filename(file.filename)
         file.save(input_path)
+
+        norm_distances, angles, rations = controller.get_vector(input_path)
+        
+        if not norm_distances:
+            os.unlink(input_path)
+            return "얼굴인식 실패"
+        
         return "upload"
     
     return '사진이 없습니다.'

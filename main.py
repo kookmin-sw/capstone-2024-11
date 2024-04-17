@@ -17,11 +17,12 @@ def upload():
         return '사진이 전송되지 않았습니다.'
 
     file = request.files['file']
-
+    
     if file:
-        file.save("./static/"+secure_filename(file.filename))
+        input_path = "./static/"+secure_filename(file.filename)
+        file.save(input_path)
         return "upload"
-
+    
     return '사진이 없습니다.'
 
 if __name__ == '__main__':

@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import Webcam from "react-webcam";
 import CameraBtn from "../../assets/CameraButton.svg";
+import GoButton from "../../assets/GoButton.svg";
+import StopButton from "../../assets/StopButton.svg";
 import { useState } from "react";
 
 function Camera() {
@@ -8,7 +10,7 @@ function Camera() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const videoConstraints = {
-    width: 1280,
+    width: 1000,
     height: 720,
     facingMode: "user",
   };
@@ -33,16 +35,24 @@ function Camera() {
         width={1280}
         videoConstraints={videoConstraints}>
         {({ getScreenshot }) => (
-          <ImageButton src={CameraBtn} alt="Capture" onClick={() => CapturePhoto(getScreenshot)} />
+          <>
+            <ImageButton src={CameraBtn} alt="Capture" onClick={() => CapturePhoto(getScreenshot)} />
+            <FaceRectangle />
+          </>
         )}
       </Webcam>
       {isModalOpen && (
         <Modal>
           <ModalContent>
-            <img src={imageSrc} alt="Captured" />
+            {/* <img src={imageSrc} alt="Captured" /> */}
+            <CaptureImage src={imageSrc} alt="captured" />
             <ButtonContainer>
-              <button onClick={closeModal}>open</button>
-              <button>Send</button>
+              <Button onClick={closeModal}>
+                <img src={StopButton}></img>
+              </Button>
+              <Button>
+                <img src={GoButton}></img>
+              </Button>
             </ButtonContainer>
           </ModalContent>
         </Modal>
@@ -51,43 +61,60 @@ function Camera() {
   );
 }
 const MainContainer = styled.div`
-  height: auto;
+  height: 100vh;
   width: auto;
-  background-color: aquamarine;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fefae0;
 `;
 const Modal = styled.div`
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 const ModalContent = styled.div`
   background-color: white;
-  padding: 20px;
+  display: inline-block;
+  height: 80vh;
+  padding: 40px;
   border-radius: 8px;
 `;
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 10px;
-
-  button {
-    margin: 0 10px;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    background-color: #007bff;
-    color: white;
-    font-size: 16px;
-  }
+`;
+const Button = styled.button`
+  margin: 0 5px;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+`;
+const CaptureImage = styled.img`
+  width: auto;
+  height: 90%;
 `;
 const ImageButton = styled.img`
+  margin-top: 40px;
+  height: auto;
+  width: auto;
   cursor: pointer;
+`;
+const FaceRectangle = styled.div`
+  position: absolute;
+  top: 200px;
+  left: calc(50% - 200px); /* 화면 중앙에 위치하도록 설정 */
+  width: 400px;
+  height: 400px;
+  border: 2px solid #ff0000;
 `;
 export default Camera;

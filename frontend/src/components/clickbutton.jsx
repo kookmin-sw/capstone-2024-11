@@ -1,5 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import InformationModal from "./informationModal";
+
+// React 컴포넌트
+const ClickButton = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const handleModalOpen = () => {
+    setModalOpen(true);
+  };
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
+
+  return (
+    <div>
+      <Button onClick={handleModalOpen}>Click Me!</Button>
+      {modalOpen && <InformationModal onClose={handleModalClose} />}
+    </div>
+  );
+};
 
 // Styled Components 정의
 const Button = styled.button`
@@ -56,10 +75,5 @@ const Button = styled.button`
     }
   }
 `;
-
-// React 컴포넌트
-const ClickButton = () => {
-  return <Button>Click Me!</Button>;
-};
 
 export default ClickButton;

@@ -10,7 +10,6 @@ class classifier:
     
     def set_vector(self, vector):
         row = ["D1","D2","D3","D4","D5","D6","D7","R1","R2","R3","R4","R5","R6","R7","R8","R9","R10","A1","A2","A3"]
-
         df = pd.DataFrame([vector], columns=row)
         self.x_data = df
 

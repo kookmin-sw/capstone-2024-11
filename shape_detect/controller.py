@@ -2,7 +2,11 @@ from shape_detect.utils import landmark, line, norm, ratio, vector
 import pandas as pd
 from torchvision.datasets import ImageFolder
 from tqdm import tqdm
-from classifier import classifier
+from shape_detect.classifier import classifier
+
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 
 def get_vector(img_path):
 

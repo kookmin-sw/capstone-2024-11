@@ -4,7 +4,6 @@ import Xbutton from "../assets/StopButton.svg";
 import Gobutton from "../assets/GoButton.svg";
 import ClickButton2 from "./modalclickButton";
 const InformationModal = ({ onClose }) => {
-  //   console.log("open!");
   const [gender, setGender] = useState("male");
   const [createImageChecked, setCreateImageChecked] = useState(false);
   const [email, setEmail] = useState("");
@@ -28,7 +27,7 @@ const InformationModal = ({ onClose }) => {
         <CloseButton onClick={onClose} alt="close">
           <img src={Xbutton} />
         </CloseButton>
-        <h2>성별</h2>
+        <ModalH2>성별</ModalH2>
         <GenderRadioGroup>
           <GenderRadioInput
             type="radio"
@@ -54,11 +53,14 @@ const InformationModal = ({ onClose }) => {
           생성형 이미지
           <CreateImageButton checked={createImageChecked} onChange={handleCreateImageChange} />
         </CreateImageLabel>
-        <br />
-        <label>
-          Email:
+        {/* <br /> */}
+        <ModalH3>생성형 이미지를 받아보기 위해서는</ModalH3>
+        {/* <br /> */}
+        <ModalH3>8분 정도의 시간이 소요됩니다.</ModalH3>
+        <ModalH2>이메일 주소</ModalH2>
+        <EmailLabel>
           <EmailInput value={email} onChange={handleEmailChange} />
-        </label>
+        </EmailLabel>
         <br />
         <ClickButton2 onClick={handleSubmit}>체험하기!</ClickButton2>
       </ModalContent>
@@ -76,12 +78,19 @@ const ModalOverlay = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
+const ModalH2 = styled.h2`
+  /* background-color: blue; */
+  width: 100%;
+  padding-left: 4px;
+`;
+const ModalH3 = styled.h3`
+  margin: 0;
+`;
 const ModalContent = styled.div`
   height: 60vh;
   width: 40vh;
   background-color: white;
-  padding: 20px;
+  padding: 40px;
   border-radius: 40px;
   display: flex;
   flex-direction: column;
@@ -99,9 +108,10 @@ const CloseButton = styled.button`
   border: none;
 `;
 const CreateImageLabel = styled.label`
-  font-size: 1.2rem;
+  font-size: 24px;
+  font-weight: bold;
   display: flex;
-  align-items: center;
+  width: 100%;
   margin-bottom: 0.5rem;
 `;
 const GenderRadioGroup = styled.div`
@@ -143,9 +153,18 @@ const GenderRadioLabel = styled.label`
     color: #ccc;
   }
 `;
-
+const EmailLabel = styled.label`
+  width: 100%;
+  height: 2rem;
+  /* background-color: blue; */
+  display: flex;
+  justify-content: center;
+`;
 const EmailInput = styled.input.attrs({ type: "email" })`
-  /* Input 스타일링 */
+  width: 80%;
+  background-color: #d9d9d9;
+  border: none;
+  border-radius: 7px;
 `;
 
 const CreateImageButton = styled.input.attrs({ type: "checkbox" })`
@@ -154,6 +173,8 @@ const CreateImageButton = styled.input.attrs({ type: "checkbox" })`
   height: 1.5rem;
   border: 1.5px solid gainsboro;
   border-radius: 0.35rem;
+  margin-left: 10px;
+  margin-top: 10px;
   &:checked {
     border-color: transparent;
     background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");

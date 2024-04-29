@@ -1,43 +1,69 @@
-from shape_detect import classifier, controller
-# from Color_extract.color import *
-# from Skin_detect.skin_detect_v2 import *
+from Color_extract.color import *
+from Skin_detect.skin_detect_v2 import *
+from PC_model.pc_model import PersonalColorModel
+from image_processing.gamma_correction import gamma_correction
+
+from sklearn.preprocessing import StandardScaler
+
 import joblib
-from werkzeug.utils import secure_filename
-from flask import Flask, request, render_template, send_file
 import os
+import pandas as pd
+
+from flask import Flask, request
 
 app = Flask(__name__)
+
+image_path = os.path.join(os.path.dirname(__file__), "predict_image")
+pc_model : PersonalColorModel = joblib.load('./test_model.pkl')
+ss = joblib.load("./scaler.pkl")
+features = ['Hair_Red', 'Hue', 'Saturation', 'Cr', 'Cb', 'L',
+                'A', 'B', 'New Blue', 'Eye_Red', 'Eye_Blue', 'New Green', 'New Red']
 
 @app.route('/')
 def hello_world():
     return 'Hello World!'
 
-@app.route('/upload', methods=['POST'])
-def upload():
-    if 'file' not in request.files:
-        return '사진이 전송되지 않았습니다.'
-
-    file = request.files['file']
-
-    if file:
-        input_path = "./static/"+secure_filename(file.filename)
-        file.save(input_path)
-
-        norm_distances, angles, rations = controller.get_vector(input_path)
-
-        if not norm_distances:
-            os.unlink(input_path)
-            return "얼굴인식 실패"
-
-        cls = classifier.classifier()
-        cls.set_vector(norm_distances + angles + rations)
-        shape_result = cls.get_shape()
-        
-        os.unlink(input_path)
-        print(shape_result)
-        return "done"
+@app.route('/predict_color', methods = ['POST'])
+def predict_color():
+    global features, pc_model, ss
+    # 이미지 저장
+    f = request.files['image']
+    f_path = os.path.join(image_path, f.filename)
+    if not os.path.exists(f_path):
+        f.save(f_path)
     
-    return '사진이 없습니다.'
+    # 데이터 추출
+    data = total_data_extract(f_path)
+
+    # DataFrame으로 변환
+    df = pd.DataFrame(data, index = [0])
+
+    # 학습에 사용된 features들만 가져오기
+    predict_data = df[features]
+
+    # Scaler
+    preprocssing_data = ss.transform(predict_data)
+
+    # 예츨 결과
+    raw_res = pc_model.test(preprocssing_data)
+
+    predict_res = [""] * len(raw_res)
+    for idx, predict in enumerate(raw_res):
+        if predict[0] == 0:
+            label = "spring"
+        elif predict[0] == 1:
+            label = "summer"
+        elif predict[0] == 2:
+            label = "fall"
+        else:
+            label = "winter"
+        predict_res[idx] = label
+    return predict_res
+
+@app.route('/predict_test')
+def test():
+    return str(pc_model.test([[0] * 13]))
+    
 
 if __name__ == '__main__':
-    app.run(port="8080", debug=True)
+    app.run(port="5050", debug=True)

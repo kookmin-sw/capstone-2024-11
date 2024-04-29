@@ -1,8 +1,8 @@
 from shape_detect.utils import landmark, line, norm, ratio, vector
 import pandas as pd
-import os
 from torchvision.datasets import ImageFolder
 from tqdm import tqdm
+from classifier import classifier
 
 def get_vector(img_path):
 
@@ -20,14 +20,6 @@ def get_vector(img_path):
     angles = vector.get_angles(vectors) #각도 추출
 
     rations = ratio.get_ratio(distances) #길이 간 비율 정보
-
-
-    # print("norm: ", norm_distances, "\n\n")
-    # print("angle: ", angles, "\n\n")
-    # print("ratio: ", rations, "\n\n")
-
-    # cv2.imshow("Face Landmark", display_img)
-    # cv2.waitKey(0)
 
     return norm_distances, angles, rations
 
@@ -47,4 +39,8 @@ def labeling(root, output):
     df = pd.DataFrame(vectors, columns=row)
     df.to_csv(output)
 
-
+def get_shape(img_path):
+    cls = classifier()
+    norm, angles, rations = get_vector(img_path)
+    cls.set_vector(norm + angles + rations)
+    return cls.get_shape()

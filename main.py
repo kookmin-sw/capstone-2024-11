@@ -64,6 +64,10 @@ def predict_color():
 def test():
     return str(pc_model.test([[0] * 13]))
     
+@app.route('/predict_shape', method=['GET'])
+def predict():
+    global image_path
 
+    
 if __name__ == '__main__':
     app.run(port="5050", debug=True)

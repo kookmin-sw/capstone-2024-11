@@ -349,34 +349,3 @@ def total_data_extract(path):
     data['New Blue'] = new_rgb_average[2]
 
     return data
-
-#%%
-valid_path = "/Users/ohs/Desktop/capstone/personal_color_dataset/valid/"
-valid_df = pd.read_csv(valid_path + "data.csv")
-size = valid_df.shape[0]
-
-df = {'filename' : [0] * size, 'Red' : [0] * size, 'Green' : [0] * size, 'Blue' : [0] * size, 
-'Hue' : [0] * size, 'Saturation' : [0] * size, 'Value' : [0] * size, 
-'Y' : [0] * size, 'Cr' : [0] * size, 'Cb' : [0] * size, 
-'L' : [0] * size, 'A' : [0] * size, 'B' : [0] * size, 
-'Hair_Red' : [0] * size, 'Hair_Green' : [0] * size, 'Hair_Blue' : [0] * size,
-'Eye_Red' : [0] * size, 'Eye_Green' : [0] * size, 'Eye_Blue' : [0] * size, 
-'New Red' : [0] * size, 'New Green' : [0] * size, 'New Blue' : [0] * size, 'label' : [0] * size}
-
-columns = list(df.keys())[1 : -1]
-
-for idx, name in enumerate(valid_df['filename']):
-    data = total_data_extract(os.path.join(valid_path, name))
-    df['filename'][idx] = name
-    df['label'][idx] = valid_df['label'][idx]
-    print("진행률 : {} / {}\n".format(idx + 1, size))
-    for col in columns:
-        df[col][idx] = data[col]
-
-df = pd.DataFrame(df)
-print(df)
-# save_data_csv(df, os.path.join(folder_path, "data.csv"))
-
-# %%
-save_data_csv(df, valid_path + "data.csv")
-# %%

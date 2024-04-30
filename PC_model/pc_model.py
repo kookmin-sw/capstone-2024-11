@@ -95,8 +95,12 @@ def model_train_save():
     save_model(m, os.path.join(os.path.dirname(os.path.dirname(__file__)), "test_model_all_features.pkl"))
 # %%
 
-df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/valid/data.csv")
-print(df)
+df1 = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/train/data.csv")
+df2 = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/valid/data.csv")
+
+df = pd.concat([df1, df2], ignore_index=True)
+
+save_data_csv(df, "/Users/ohs/Desktop/capstone/personal_color_dataset/train/data.csv")
         
 
 # %%

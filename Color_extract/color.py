@@ -352,41 +352,41 @@ def total_data_extract(path):
 
 #%%
 
-train_path = "/Users/ohs/Desktop/capstone/personal_color_dataset/train"
+# train_path = "/Users/ohs/Desktop/capstone/personal_color_dataset/train"
 
-for file_name in os.listdir(train_path):
-    if os.path.isdir(os.path.join(train_path, file_name)):
-        folder_path = os.path.join(train_path, file_name)
-        size = len(os.listdir(folder_path))
+# for file_name in os.listdir(train_path):
+#     if os.path.isdir(os.path.join(train_path, file_name)):
+#         folder_path = os.path.join(train_path, file_name)
+#         size = len(os.listdir(folder_path))
 
-        if file_name == "spring":
-            label = 0
-        elif file_name == "summer":
-            label = 1
-        elif file_name == "fall":
-            label = 2
-        elif file_name == "winter":
-            label = 3
+#         if file_name == "spring":
+#             label = 0
+#         elif file_name == "summer":
+#             label = 1
+#         elif file_name == "fall":
+#             label = 2
+#         elif file_name == "winter":
+#             label = 3
 
-        df = {'filename' : [0] * size, 'Red' : [0] * size, 'Green' : [0] * size, 'Blue' : [0] * size, 
-        'Hue' : [0] * size, 'Saturation' : [0] * size, 'Value' : [0] * size, 
-        'Y' : [0] * size, 'Cr' : [0] * size, 'Cb' : [0] * size, 
-        'L' : [0] * size, 'A' : [0] * size, 'B' : [0] * size, 
-        'Hair_Red' : [0] * size, 'Hair_Green' : [0] * size, 'Hair_Blue' : [0] * size,
-       'Eye_Red' : [0] * size, 'Eye_Green' : [0] * size, 'Eye_Blue' : [0] * size, 
-       'New Red' : [0] * size, 'New Green' : [0] * size, 'New Blue' : [0] * size, "label" : [label] * size}
+#         df = {'filename' : [0] * size, 'Red' : [0] * size, 'Green' : [0] * size, 'Blue' : [0] * size, 
+#         'Hue' : [0] * size, 'Saturation' : [0] * size, 'Value' : [0] * size, 
+#         'Y' : [0] * size, 'Cr' : [0] * size, 'Cb' : [0] * size, 
+#         'L' : [0] * size, 'A' : [0] * size, 'B' : [0] * size, 
+#         'Hair_Red' : [0] * size, 'Hair_Green' : [0] * size, 'Hair_Blue' : [0] * size,
+#        'Eye_Red' : [0] * size, 'Eye_Green' : [0] * size, 'Eye_Blue' : [0] * size, 
+#        'New Red' : [0] * size, 'New Green' : [0] * size, 'New Blue' : [0] * size, "label" : [label] * size}
 
-        columns = list(df.keys())[1 : -1]
-        print("{} 시작".format(file_name))
-        for idx, name in enumerate(os.listdir(folder_path)):
-            data = total_data_extract(os.path.join(folder_path, name))
-            df['filename'][idx] = name
-            print("진행률 : {} / {}\n".format(idx + 1, size))
-            for col in columns:
-                df[col][idx] = data[col]
+#         columns = list(df.keys())[1 : -1]
+#         print("{} 시작".format(file_name))
+#         for idx, name in enumerate(os.listdir(folder_path)):
+#             data = total_data_extract(os.path.join(folder_path, name))
+#             df['filename'][idx] = name
+#             print("진행률 : {} / {}\n".format(idx + 1, size))
+#             for col in columns:
+#                 df[col][idx] = data[col]
         
-        df = pd.DataFrame(df)
-        save_data_csv(df, os.path.join(folder_path, "data.csv"))
+#         df = pd.DataFrame(df)
+#         save_data_csv(df, os.path.join(folder_path, "data.csv"))
         
 
 # %%

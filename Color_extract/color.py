@@ -353,15 +353,16 @@ def total_data_extract(path):
 #%%
 valid_path = "/Users/ohs/Desktop/capstone/personal_color_dataset/valid/"
 
-for name in os.listdir(valid_path):
-    if ".csv" in name:
-        continue
-    file_name = valid_path + name[ : -4] + "_flip_horizontal.jpg"
-    img = cv2.imread(valid_path + name)
-    cv2.imwrite(file_name, cv2.flip(img, 1))
-#%%
+valid_df = pd.read_csv(valid_path + 'data.csv')
 
-valid_df = pd.read_csv(valid_path + '/data.csv')
+df = valid_df.copy()
+df['filename'] = df['filename'].apply(lambda x : x[ : -4] + "_flip_horizontal.jpg")
+
+valid_df = pd.concat([valid_df, df], ignore_index=True)
+
+save_data_csv(valid_df, valid_path + "data.csv")
+
+#%%
 size = valid_df.shape[0]
 
 df = {'filename' : [0] * size, 'Red' : [0] * size, 'Green' : [0] * size, 'Blue' : [0] * size, 

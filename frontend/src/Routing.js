@@ -1,13 +1,13 @@
-// import Navbar from "./components/header/navbar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-// import MainPage from "./pages/mainPage";
 import App from "./App";
 import Camera from "./pages/Feature/camera";
+import Navbar from "./components/header/navbar";
 
 function Routing() {
   return (
     <div>
       <BrowserRouter>
+        <Navbar />
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/camera" element={<Camera />} />

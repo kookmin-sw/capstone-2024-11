@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Xbutton from "../assets/StopButton.svg";
-import Gobutton from "../assets/GoButton.svg";
 import ClickButton2 from "./modalclickButton";
+import { useNavigate } from "react-router-dom";
 const InformationModal = ({ onClose }) => {
+  //라우팅
+  const navigate = useNavigate();
   const [gender, setGender] = useState("male");
   const [createImageChecked, setCreateImageChecked] = useState(false);
   const [email, setEmail] = useState("");
@@ -16,6 +18,7 @@ const InformationModal = ({ onClose }) => {
   };
   const handleSubmit = () => {
     console.log("submit!");
+    navigate("/camera", { state: { email: email, gender: gender } });
   };
 
   const handleGenderChange = (event) => {
@@ -53,9 +56,8 @@ const InformationModal = ({ onClose }) => {
           생성형 이미지
           <CreateImageButton checked={createImageChecked} onChange={handleCreateImageChange} />
         </CreateImageLabel>
-        {/* <br /> */}
         <ModalH3>생성형 이미지를 받아보기 위해서는</ModalH3>
-        {/* <br /> */}
+
         <ModalH3>8분 정도의 시간이 소요됩니다.</ModalH3>
         <ModalH2>이메일 주소</ModalH2>
         <EmailLabel>

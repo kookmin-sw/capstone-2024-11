@@ -6,4 +6,9 @@ personal_color_dataset/train/*.jpg
 personal_color_dataset/train/img*.jpg
 personal_color_dataset/valid/img*.jpg
 
+personal_color_dataset/train/fall
+personal_color_dataset/train/spring
+personal_color_dataset/train/summer
+personal_color_dataset/train/winter
+
 predict_image/*.jpg

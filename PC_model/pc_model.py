@@ -75,27 +75,11 @@ def save_model(model, path):
 #%%
 def model_train_save():
     train_df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/train/new_data.csv")
-    test_df = pd.read_csv("../personal_color_dataset/test/new_data.csv")
-
     features = train_df.columns.drop(["filename", "label"])
-
-    # print(df.columns)
-
-    # features = ['Hair_Red', 'Hue', 'Saturation', 'Cr', 'Cb', 'L',
-    #             'A', 'B', 'New Blue', 'Eye_Red', 'Eye_Blue', 'New Green', 'New Red']
-
-    # features = ['Blue', 
-    #             'Hair_Blue', 
-    #             'Hue', 'Saturation', 'Value',
-    #             'A', 'B', 
-    #             'Eye_Blue',
-    #             'New Blue']
 
     train_x = train_df[features]
     train_y = train_df['label']
 
-    test_x = test_df[features]
-    y_test = test_df['label']
 
     m = PersonalColorModel()
     # mm = MinMaxScaler()
@@ -104,18 +88,45 @@ def model_train_save():
     scaler.fit(train_x)
 
     processing_train_x = scaler.transform(train_x)
-    processing_test_x = scaler.transform(test_x)
-
-    # processing_test_x = mm.transform(test_x)
-    # X_train, X_test, y_train, y_test = train_test_split(train_x, train_y, test_size=0.2,random_state=2024)
-
-    # m.train(X_train, y_train)
 
     m.train(processing_train_x, train_y)
 
     save_model(scaler, os.path.join(os.path.dirname(os.path.dirname(__file__)), "scaler_all_features.pkl"))
     save_model(m, os.path.join(os.path.dirname(os.path.dirname(__file__)), "test_model_all_features.pkl"))
+# %%
+train_path = "/Users/ohs/Desktop/capstone/personal_color_dataset/train/"
+# train_df = pd.read_csv(os.path.join(train_path, "new_data.csv"))
 
+for file_name in os.listdir(train_path):
+    if os.path.isdir(os.path.join(train_path, file_name)):
+        folder_path = os.path.join(train_path, file_name)
+        for name in os.listdir(folder_path):
+            new_name = os.path.join(folder_path, name[ : -4] + "_flip_horizontal.png")
+            print(new_name)
+            cv2.imwrite(new_name, cv2.flip(cv2.imread(os.path.join(folder_path, name)), 1))
+
+
+
+# test_df = pd.read_csv("../personal_color_dataset/test/new_data.csv")
+
+# features = ['Hair_Red', 'Hue', 'Saturation', 'Cr', 'Cb', 'L',
+#             'A', 'B', 'New Blue', 'Eye_Red', 'Eye_Blue', 'New Green', 'New Red']
+
+# features = ['Blue', 
+#             'Hair_Blue', 
+#             'Hue', 'Saturation', 'Value',
+#             'A', 'B', 
+#             'Eye_Blue',
+#             'New Blue']
+
+# test_x = test_df[features]
+# y_test = test_df['label']
+# processing_test_x = scaler.transform(test_x)
+
+# processing_test_x = mm.transform(test_x)
+# X_train, X_test, y_train, y_test = train_test_split(train_x, train_y, test_size=0.2,random_state=2024)
+
+# m.train(X_train, y_train)
 #     # res_xgb, res_ovr, res_ovo, res_knn, res_lr = m.test(X_test)
 #     res_xgb, res_knn, res_lr, res_voting, res_rfc = m.predict_probability(processing_test_x)
 # # res_ovr, res_ovo,
@@ -153,15 +164,14 @@ def model_train_save():
 #     print(res_rfc)
 #     # get_evaluation(y_test, res_rfc)
 #     print()
-    #%%
-    # feature_plot(train_df, "label")
+#%%
+# feature_plot(train_df, "label")
 
-    #%%
-    # feature_corr = train_x.corr()   
-    # heatmap_plot(feature_corr)
-    # %%
-    # plot_importance(m.xgb)
+#%%
+# feature_corr = train_x.corr()   
+# heatmap_plot(feature_corr)
+# %%
+# plot_importance(m.xgb)
 
 # %%
 # model_train_save()
-# %%

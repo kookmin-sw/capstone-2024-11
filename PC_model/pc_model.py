@@ -138,14 +138,13 @@ for train_index, test_index in S_kfold.split(train_x, train_y):
 
 
 
-
-
-
 # m.train(processing_train_x, train_y)
 
-# processing_test_x = scaler.transform(test_x)
 
-# res_xgb, res_ovr, res_ovo, res_knn, res_lr, res_voting, res_rfc = m.test(processing_test_x)
+
+processing_test_x = scaler.transform(test_x)
+
+res_xgb, res_ovr, res_ovo, res_knn, res_lr, res_voting, res_rfc = m.test(processing_test_x)
 #     # res_xgb, res_knn, res_lr, res_voting, res_rfc = m.predict_probability(processing_test_x)
 
 # print("xgb 평가지표")

@@ -94,17 +94,86 @@ def model_train_save():
     save_model(scaler, os.path.join(os.path.dirname(os.path.dirname(__file__)), "scaler_all_features.pkl"))
     save_model(m, os.path.join(os.path.dirname(os.path.dirname(__file__)), "test_model_all_features.pkl"))
 # %%
-train_path = "/Users/ohs/Desktop/capstone/personal_color_dataset/train/"
-# train_df = pd.read_csv(os.path.join(train_path, "new_data.csv"))
+
+train_path = "/Users/ohs/Desktop/capstone/personal_color_dataset/train"
 
 for file_name in os.listdir(train_path):
     if os.path.isdir(os.path.join(train_path, file_name)):
         folder_path = os.path.join(train_path, file_name)
-        for name in os.listdir(folder_path):
-            new_name = os.path.join(folder_path, name[ : -4] + "_flip_horizontal.png")
-            print(new_name)
-            cv2.imwrite(new_name, cv2.flip(cv2.imread(os.path.join(folder_path, name)), 1))
+        size = len(os.listdir(folder_path))
 
+        data = {'filename' : [0] * size, 'Red' : [0] * size, 'Green' : [0] * size, 'Blue' : [0] * size, 
+        'Hue' : [0] * size, 'Saturation' : [0] * size, 'Value' : [0] * size, 
+        'Y' : [0] * size, 'Cr' : [0] * size, 'Cb' : [0] * size, 
+        'L' : [0] * size, 'A' : [0] * size, 'B' : [0] * size, 
+        'Hair_Red' : [0] * size, 'Hair_Green' : [0] * size, 'Hair_Blue' : [0] * size,
+       'Eye_Red' : [0] * size, 'Eye_Green' : [0] * size, 'Eye_Blue' : [0] * size, 
+       'New Red' : [0] * size, 'New Green' : [0] * size, 'New Blue' : [0] * size}
+
+
+        for i, name in enumerate(df['filename']):
+    path = os.path.join(os.getcwd(), "personal_color_dataset", "train", name)
+    # file 이름 넣기
+    data['filename'][i] = name
+
+    # 전체 마스크
+    total_feat_mask = get_mask(path)
+
+    # 얼굴과 코 마스크
+    face_mask = get_feature_mask(total_feat_mask, FaceFeature.FACE)
+    nose_mask = get_feature_mask(total_feat_mask, FaceFeature.NOSE)
+
+    # 마스크 합치기
+    face_nose_mask = combine_feature(face_mask, nose_mask)
+
+    # 이진 마스크로 변환
+    binary_mask = (face_nose_mask >= 0.5).astype(int)
+
+    # image load
+    image = cv2.imread(path)
+    image = gamma_correction(image, 0.8)
+    rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    hsv_image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+    ycrcb_image = cv2.cvtColor(image, cv2.COLOR_BGR2YCrCb)
+    lab_image = cv2.cvtColor(image, cv2.COLOR_BGR2LAB)
+
+    #RGB
+    rgb = extract_points(binary_mask, rgb_image)
+    rgb_average = rgb.mean(axis=0).round()
+    data['Red'][i] = rgb_average[0]
+    data['Green'][i] = rgb_average[1]
+    data['Blue'][i] = rgb_average[2]
+
+    #HSV
+    hsv = extract_points(binary_mask, hsv_image)
+    hsv_average = hsv.mean(axis=0).round()
+    data['Hue'][i] = hsv_average[0]
+    data['Saturation'][i] = hsv_average[1]
+    data['Value'][i] = hsv_average[2]
+
+    #YCrCb
+    Ycrcb = extract_points(binary_mask, ycrcb_image)
+    Ycrcb_average = Ycrcb.mean(axis=0).round()
+    data['Y'][i] = Ycrcb_average[0]
+    data['Cr'][i] = Ycrcb_average[1]
+    data['Cb'][i] = Ycrcb_average[2]
+
+    #LAB
+    lab = extract_points(binary_mask, lab_image)
+    lab_average = lab.mean(axis=0).round()
+    data['L'][i] = lab_average[0]
+    data['A'][i] = lab_average[1]
+    data['B'][i] = lab_average[2]
+
+    # Hair Color
+    hair_mask = get_feature_mask(total_feat_mask, FaceFeature.HAIR)
+    binary_mask = (hair_mask >= 0.5).astype(int)
+
+    hair_rgb = extract_points(binary_mask, rgb_image)
+    hair_rgb_average = hair_rgb.mean(axis=0).round()
+    data['Hair_Red'][i] = hair_rgb_average[0]
+    data['Hair_Green'][i] = hair_rgb_average[1]
+    data['Hair_Blue'][i] = hair_rgb_average[2]
 
 
 # test_df = pd.read_csv("../personal_color_dataset/test/new_data.csv")

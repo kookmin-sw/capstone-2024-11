@@ -86,7 +86,7 @@ def model_train_save():
     # mm = MinMaxScaler()
     scaler = StandardScaler()
 
-
+    S_kfold = StratifiedKFold(n_splits= 5)
     for train_index, test_index in S_kfold.split(train_x, train_y):  
         x_train, x_test = train_x.iloc[train_index], train_x.iloc[test_index]
         y_train, y_test = train_y.iloc[train_index], train_y.iloc[test_index]
@@ -107,101 +107,101 @@ def model_train_save():
 
 # %%
 
-train_df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/train/data.csv")
-test_df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/test/data.csv")
-# features = ['Hair_Red', 'Hue', 'Saturation', 'Cr', 'Cb', 'L',
-#             'A', 'B', 'New Blue', 'Eye_Red', 'Eye_Blue', 'New Green', 'New Red']
+# train_df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/train/data.csv")
+# test_df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/test/data.csv")
+# # features = ['Hair_Red', 'Hue', 'Saturation', 'Cr', 'Cb', 'L',
+# #             'A', 'B', 'New Blue', 'Eye_Red', 'Eye_Blue', 'New Green', 'New Red']
 
-# features = ['Blue', 
-#             'Hair_Blue', 
-#             'Hue', 'Saturation', 'Value',
-#             'A', 'B', 
-#             'Eye_Blue',
-#             'New Blue']
+# # features = ['Blue', 
+# #             'Hair_Blue', 
+# #             'Hue', 'Saturation', 'Value',
+# #             'A', 'B', 
+# #             'Eye_Blue',
+# #             'New Blue']
 
-features = train_df.columns.drop(["filename", "label"])
+# features = train_df.columns.drop(["filename", "label"])
 
-S_kfold = StratifiedKFold(n_splits= 5)
+# S_kfold = StratifiedKFold(n_splits= 5)
 
-train_x = train_df[features]
-train_y = train_df['label']
+# train_x = train_df[features]
+# train_y = train_df['label']
 
-cv_accuracy = [[] for _ in range(7)]
-n_iter = 1
+# cv_accuracy = [[] for _ in range(7)]
+# n_iter = 1
 
-m = PersonalColorModel()
-scaler = StandardScaler()
+# m = PersonalColorModel()
+# scaler = StandardScaler()
 
-for train_index, test_index in S_kfold.split(train_x, train_y):  
-    x_train, x_test = train_x.iloc[train_index], train_x.iloc[test_index]
-    y_train, y_test = train_y.iloc[train_index], train_y.iloc[test_index]
-
-
-    processing_train_x = scaler.fit_transform(x_train)
-    m.train(processing_train_x, y_train)
+# for train_index, test_index in S_kfold.split(train_x, train_y):  
+#     x_train, x_test = train_x.iloc[train_index], train_x.iloc[test_index]
+#     y_train, y_test = train_y.iloc[train_index], train_y.iloc[test_index]
 
 
-    processing_test_x = scaler.transform(x_test)
-
-    for i, res in zip(range(7), m.test(processing_test_x)):
-        cv_accuracy[i].append(np.round(get_accuracy(y_test, res), 4))
-    print(cv_accuracy)
+#     processing_train_x = scaler.fit_transform(x_train)
+#     m.train(processing_train_x, y_train)
 
 
+#     processing_test_x = scaler.transform(x_test)
 
-# m.train(processing_train_x, train_y)
+#     for i, res in zip(range(7), m.test(processing_test_x)):
+#         cv_accuracy[i].append(np.round(get_accuracy(y_test, res), 4))
+#     print(cv_accuracy)
 
-test_x = test_df[features]
-test_y = test_df['label']
 
-processing_test_x = scaler.transform(test_x)
 
-res_xgb, res_ovr, res_ovo, res_knn, res_lr, res_voting, res_rfc = m.test(processing_test_x)
-#     # res_xgb, res_knn, res_lr, res_voting, res_rfc = m.predict_probability(processing_test_x)
+# # m.train(processing_train_x, train_y)
 
-print("xgb 평가지표")
-# print(res_xgb)
-get_evaluation(test_y, res_xgb)
-print()
+# test_x = test_df[features]
+# test_y = test_df['label']
 
-print("ovr 평가지표")
-# print(res_ovr)
-get_evaluation(test_y, res_ovr)
-print()
+# processing_test_x = scaler.transform(test_x)
 
-print("ovo 평가지표")
-# print(res_ovo)
-get_evaluation(test_y, res_ovo)
-print()
+# res_xgb, res_ovr, res_ovo, res_knn, res_lr, res_voting, res_rfc = m.test(processing_test_x)
+# #     # res_xgb, res_knn, res_lr, res_voting, res_rfc = m.predict_probability(processing_test_x)
 
-print("knn 평가지표")
-# print(res_knn)
-get_evaluation(test_y, res_knn)
-print()
+# print("xgb 평가지표")
+# # print(res_xgb)
+# get_evaluation(test_y, res_xgb)
+# print()
 
-print("lr 평가지표")
-# print(res_lr)
-get_evaluation(test_y, res_lr)
-print()
+# print("ovr 평가지표")
+# # print(res_ovr)
+# get_evaluation(test_y, res_ovr)
+# print()
 
-print("voting 평가지표")
-# print(res_voting)
-get_evaluation(test_y, res_voting)
-print()
+# print("ovo 평가지표")
+# # print(res_ovo)
+# get_evaluation(test_y, res_ovo)
+# print()
 
-print("rfc 평가지표")
-# print(res_rfc)
-get_evaluation(test_y, res_rfc)
-print()
-# #%%
-# feature_plot(train_df, "label")
+# print("knn 평가지표")
+# # print(res_knn)
+# get_evaluation(test_y, res_knn)
+# print()
 
-# #%%
-# feature_corr = train_x.corr()   
-# heatmap_plot(feature_corr)
+# print("lr 평가지표")
+# # print(res_lr)
+# get_evaluation(test_y, res_lr)
+# print()
+
+# print("voting 평가지표")
+# # print(res_voting)
+# get_evaluation(test_y, res_voting)
+# print()
+
+# print("rfc 평가지표")
+# # print(res_rfc)
+# get_evaluation(test_y, res_rfc)
+# print()
+# # #%%
+# # feature_plot(train_df, "label")
+
+# # #%%
+# # feature_corr = train_x.corr()   
+# # heatmap_plot(feature_corr)
+# # # %%
+# # plot_importance(m.xgb)
+
 # # %%
-# plot_importance(m.xgb)
-
-# %%
-model_train_save()
+# model_train_save()
 # %%

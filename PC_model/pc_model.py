@@ -110,7 +110,7 @@ features = ['Blue',
             'Eye_Blue',
             'New Blue']
 
-S_kfold = StratifiedKFold(n_splits= 10)
+S_kfold = StratifiedKFold(n_splits= 5)
 
 train_x = train_df[features]
 train_y = train_df['label']
@@ -126,13 +126,13 @@ for train_index, test_index in S_kfold.split(train_x, train_y):
     y_train, y_test = train_y.iloc[train_index], train_y.iloc[test_index]
 
 
-    processing_train_x = scaler.fit_transform(x_train)
-    m.train(processing_train_x, y_train)
+    # processing_train_x = scaler.fit_transform(x_train)
+    m.train(x_train, y_train)
 
 
-    processing_test_x = scaler.transform(x_test)
+    # processing_test_x = scaler.transform(x_test)
 
-    for i, res in zip(range(7), m.test(processing_test_x)):
+    for i, res in zip(range(7), m.test(x_test)):
         cv_accuracy[i].append(np.round(get_accuracy(y_test, res), 4))
     print(cv_accuracy)
 
@@ -140,47 +140,48 @@ for train_index, test_index in S_kfold.split(train_x, train_y):
 
 # m.train(processing_train_x, train_y)
 
+test_x = test_df[features]
+test_y = test_df['label']
 
+# processing_test_x = scaler.transform(test_x)
 
-processing_test_x = scaler.transform(test_x)
-
-res_xgb, res_ovr, res_ovo, res_knn, res_lr, res_voting, res_rfc = m.test(processing_test_x)
+res_xgb, res_ovr, res_ovo, res_knn, res_lr, res_voting, res_rfc = m.test(test_x)
 #     # res_xgb, res_knn, res_lr, res_voting, res_rfc = m.predict_probability(processing_test_x)
 
-# print("xgb 평가지표")
-# # print(res_xgb)
-# get_evaluation(y_test, res_xgb)
-# print()
+print("xgb 평가지표")
+# print(res_xgb)
+get_evaluation(test_y, res_xgb)
+print()
 
-# print("ovr 평가지표")
-# # print(res_ovr)
-# get_evaluation(y_test, res_ovr)
-# print()
+print("ovr 평가지표")
+# print(res_ovr)
+get_evaluation(test_y, res_ovr)
+print()
 
-# print("ovo 평가지표")
-# # print(res_ovo)
-# get_evaluation(y_test, res_ovo)
-# print()
+print("ovo 평가지표")
+# print(res_ovo)
+get_evaluation(test_y, res_ovo)
+print()
 
-# print("knn 평가지표")
-# # print(res_knn)
-# get_evaluation(y_test, res_knn)
-# print()
+print("knn 평가지표")
+# print(res_knn)
+get_evaluation(test_y, res_knn)
+print()
 
-# print("lr 평가지표")
-# # print(res_lr)
-# get_evaluation(y_test, res_lr)
-# print()
+print("lr 평가지표")
+# print(res_lr)
+get_evaluation(test_y, res_lr)
+print()
 
-# print("voting 평가지표")
-# # print(res_voting)
-# get_evaluation(y_test, res_voting)
-# print()
+print("voting 평가지표")
+# print(res_voting)
+get_evaluation(test_y, res_voting)
+print()
 
-# print("rfc 평가지표")
-# # print(res_rfc)
-# get_evaluation(y_test, res_rfc)
-# print()
+print("rfc 평가지표")
+# print(res_rfc)
+get_evaluation(test_y, res_rfc)
+print()
 # #%%
 # feature_plot(train_df, "label")
 

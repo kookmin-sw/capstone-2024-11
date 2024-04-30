@@ -12,7 +12,7 @@ from Color_extract.color import extract_high_rank, save_data_csv
 
 
 from sklearn.model_selection import train_test_split
-from PC_model.utils import get_evaluation, feature_plot, heatmap_plot
+from PC_model.utils import get_accuracy, get_evaluation, heatmap_plot, feature_plot
 from sklearn.preprocessing import MinMaxScaler, StandardScaler, RobustScaler
 
 from xgboost import XGBClassifier, plot_importance
@@ -21,6 +21,7 @@ from sklearn.linear_model import LinearRegression, LogisticRegression
 from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import VotingClassifier, RandomForestClassifier
+from sklearn.model_selection import StratifiedKFold
 
 
 class PersonalColorModel:
@@ -29,7 +30,7 @@ class PersonalColorModel:
         self.ovr = OneVsRestClassifier(LinearRegression())
         self.ovo = OneVsOneClassifier(SVC())
         self.knn = KNeighborsClassifier(n_neighbors=5, n_jobs=-1,)
-        self.lr = LogisticRegression()
+        self.lr = LogisticRegression(max_iter=1000)
         self.voting = VotingClassifier(estimators=[("xgb", self.xgb), ("knn", self.knn),
                                                    ("lr", self.lr)], voting='soft')
         self.rfc = RandomForestClassifier()
@@ -93,44 +94,52 @@ def model_train_save():
 
     save_model(scaler, os.path.join(os.path.dirname(os.path.dirname(__file__)), "scaler_all_features.pkl"))
     save_model(m, os.path.join(os.path.dirname(os.path.dirname(__file__)), "test_model_all_features.pkl"))
-# %%
-
-df1 = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/train/data.csv")
-df2 = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/valid/data.csv")
-
-df = pd.concat([df1, df2], ignore_index=True)
-
-save_data_csv(df, "/Users/ohs/Desktop/capstone/personal_color_dataset/train/data.csv")
         
 
 # %%
 
-# train_df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/train/data.csv")
-# test_df = pd.read_csv("../personal_color_dataset/test/new_data.csv")
-
+train_df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/train/data.csv")
+test_df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/test/data.csv")
 # features = ['Hair_Red', 'Hue', 'Saturation', 'Cr', 'Cb', 'L',
 #             'A', 'B', 'New Blue', 'Eye_Red', 'Eye_Blue', 'New Green', 'New Red']
 
-# features = ['Blue', 
-#             'Hair_Blue', 
-#             'Hue', 'Saturation', 'Value',
-#             'A', 'B', 
-#             'Eye_Blue',
-#             'New Blue']
+features = ['Blue', 
+            'Hair_Blue', 
+            'Hue', 'Saturation', 'Value',
+            'A', 'B', 
+            'Eye_Blue',
+            'New Blue']
+
+S_kfold = StratifiedKFold(n_splits= 10)
+
+train_x = train_df[features]
+train_y = train_df['label']
+
+cv_accuracy = [[] for _ in range(7)]
+n_iter = 1
+
+m = PersonalColorModel()
+scaler = MinMaxScaler()
+
+for train_index, test_index in S_kfold.split(train_x, train_y):  
+    x_train, x_test = train_x.iloc[train_index], train_x.iloc[test_index]
+    y_train, y_test = train_y.iloc[train_index], train_y.iloc[test_index]
 
 
-# train_x = train_df[features]
-# train_y = train_df['label']
+    processing_train_x = scaler.fit_transform(x_train)
+    m.train(processing_train_x, y_train)
 
-# test_x = test_df[features]
-# y_test = test_df['label']
 
-# m = PersonalColorModel()
-# scaler = MinMaxScaler()
+    processing_test_x = scaler.transform(x_test)
 
-# scaler.fit(train_x)
+    for i, res in zip(range(7), m.test(processing_test_x)):
+        cv_accuracy[i].append(np.round(get_accuracy(y_test, res), 4))
+    print(cv_accuracy)
 
-# processing_train_x = scaler.transform(train_x)
+
+
+
+
 
 # m.train(processing_train_x, train_y)
 

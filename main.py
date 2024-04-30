@@ -70,9 +70,12 @@ def test():
 
 from shape_detect.controller import get_shape
 @app.route('/predict_shape', methods =['GET'])
-def predict():
+def predict_shape():
     global image_path
-    result = get_shape(image_path+"/854700_WvIq.jpg")
+    result = get_shape(image_path)
+
+    if result == -1:
+        return "경로에 사진을 찾을 수 없음"
 
     if result == 0:
         shape = "긴형"

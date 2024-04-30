@@ -46,5 +46,8 @@ def labeling(root, output):
 def get_shape(img_path):
     cls = classifier()
     norm, angles, rations = get_vector(img_path)
+    if not norm:
+        return -1
+    
     cls.set_vector(norm + angles + rations)
     return cls.get_shape()

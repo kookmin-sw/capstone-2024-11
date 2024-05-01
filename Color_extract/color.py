@@ -349,18 +349,3 @@ def total_data_extract(path):
     data['New Blue'] = new_rgb_average[2]
 
     return data
-
-# #%%
-# new_df = pd.DataFrame(data)
-# #%%
-# new_df
-# #%%
-
-# new_df['label'] = label
-# save_data_csv(new_df, "../personal_color_dataset/test/new_data.csv")
-
-# #%% 
-# df = pd.read_csv("../personal_color_dataset/test/data.csv")
-# df
-
-# # %%

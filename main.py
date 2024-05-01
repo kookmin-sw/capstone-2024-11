@@ -19,18 +19,22 @@ ss = joblib.load("./scaler.pkl")
 features = ['Hair_Red', 'Hue', 'Saturation', 'Cr', 'Cb', 'L',
                 'A', 'B', 'New Blue', 'Eye_Red', 'Eye_Blue', 'New Green', 'New Red']
 
+current_image_path = ""
+
 @app.route('/')
 def hello_world():
     return 'Hello World!'
 
 @app.route('/predict_color', methods = ['POST'])
 def predict_color():
-    global features, pc_model, ss
+    global features, pc_model, ss, current_image_path
     # 이미지 저장
     f = request.files['image']
     f_path = os.path.join(image_path, f.filename)
     if not os.path.exists(f_path):
         f.save(f_path)
+
+    current_image_path = f_path[:]
     
     # 데이터 추출
     data = total_data_extract(f_path)
@@ -64,6 +68,6 @@ def predict_color():
 def test():
     return str(pc_model.test([[0] * 13]))
     
-
+    
 if __name__ == '__main__':
     app.run(port="5050", debug=True)

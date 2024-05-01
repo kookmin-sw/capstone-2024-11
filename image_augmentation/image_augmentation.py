@@ -12,7 +12,7 @@ def image_rotation(img, angle):
 
 path = os.path.dirname(os.path.dirname(__file__)) + "/personal_color_dataset/train/"
 
-df = pd.read_csv(path + "data.csv")
+df = pd.read_csv(path + "new_data.csv")
 
 files = df['filename']
 labels = df['label']

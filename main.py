@@ -3,8 +3,6 @@ from Skin_detect.skin_detect_v2 import *
 from PC_model.pc_model import PersonalColorModel
 from image_processing.gamma_correction import gamma_correction
 
-from sklearn.preprocessing import StandardScaler
-
 import joblib
 import os
 import pandas as pd
@@ -43,7 +41,6 @@ def predict_color():
         f.save(f_path)
 
     current_image_path = f_path[:]
-    print(current_image_path)
     
     # 데이터 추출
     data = total_data_extract(f_path, True)
@@ -59,6 +56,7 @@ def predict_color():
 
     # 예츨 결과
     raw_res = pc_model.test(preprocssing_data)
+    
 
     predict_res = [""] * len(raw_res)
     for idx, predict in enumerate(raw_res):

@@ -18,6 +18,9 @@ def get_evaluation(y_test, y_pred):
     print('F1: {:.4f}'.format(F1))
     # print('AUC: {:.4f}'.format(AUC))
 
+def get_accuracy(y_test, y_pred):
+    return accuracy_score(y_test, y_pred)
+
 def feature_plot(data, label_name):
     markers = ["o", "s", "d", "v"]
     sns.pairplot(data, hue=label_name, markers=markers)

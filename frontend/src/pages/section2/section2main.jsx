@@ -15,7 +15,7 @@ const Section2Main = () => {
   return (
     <Section2Container>
       <PersonalColorMain />
-      <HairStyleMain />
+      {/* <HairStyleMain /> */}
     </Section2Container>
   );
 };

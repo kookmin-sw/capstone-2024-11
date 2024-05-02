@@ -34,4 +34,12 @@ public class FlaskController {
         return obj.toString();
     }
 
+//    @RequestMapping(value = "/gan_image", method = RequestMethod.GET)
+//    public String gan_image(){
+        // Boolean res = flaskService.gan_image_flask();
+//        JsonObject obj = new JsonObject();
+//        obj.addProperty("success", res);
+//        return obj.toString();
+//    }
+
 }

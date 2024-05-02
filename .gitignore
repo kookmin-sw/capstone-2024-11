@@ -7,4 +7,4 @@ personal_color_dataset/train/*.png
 personal_color_dataset/train/img*.jpg
 personal_color_dataset/valid/img*.jpg
 
-predict_image/*.jpg
+predict_image/*

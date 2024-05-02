@@ -30,4 +30,12 @@ public class FlaskService {
         HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
         return restTemplate.postForObject(url, requestEntity, String.class);
     }
+
+    @Transactional
+    public String predict_shape_flask(){
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://127.0.0.1:5050/predict_shape";
+
+        return restTemplate.getForObject(url, String.class);
+    }
 }

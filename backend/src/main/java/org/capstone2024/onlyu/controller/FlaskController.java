@@ -1,5 +1,6 @@
 package org.capstone2024.onlyu.controller;
 
+import com.google.gson.JsonObject;
 import lombok.extern.slf4j.Slf4j;
 import org.capstone2024.onlyu.service.FlaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,13 @@ public class FlaskController {
     @RequestMapping(value = "/start", method = RequestMethod.POST)
     public String start(@RequestParam("email") String email, @RequestParam("gender") String gender,
                                 @RequestParam("image") MultipartFile multipartFile){
-        log.error("{}", flaskService.predict_color_flask(multipartFile));
-        return "Success";
+        String predict_color_res = flaskService.predict_color_flask(multipartFile);
+        String predict_shape_res = flaskService.predict_shape_flask();
+
+        JsonObject obj = new JsonObject();
+        obj.addProperty("predictColorRes", predict_color_res);
+        obj.addProperty("predictShapeRes", predict_shape_res);
+        return obj.toString();
     }
 
 }

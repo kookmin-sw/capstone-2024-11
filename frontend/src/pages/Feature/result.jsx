@@ -17,7 +17,7 @@ const Result = () => {
     <MainContainer>
       <ResultContainer className="slider-container">
         <StyledSlider {...Slidersettings}>
-          <ResultDiv1>12341234</ResultDiv1>
+          <ResultDiv1></ResultDiv1>
           <div>
             <h3>2</h3>
           </div>

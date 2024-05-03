@@ -35,7 +35,7 @@ const Button = styled.button`
   color: #382b22;
   text-transform: uppercase;
   padding: 1.25em 2em;
-  background: #fff0f0;
+  background: white;
   border: 2px solid #000000;
   border-radius: 0.75em;
   transform-style: preserve-3d;
@@ -52,7 +52,7 @@ const Button = styled.button`
     bottom: 0;
     background: #000000;
     border-radius: inherit;
-    box-shadow: 0 0 0 2px #000000, 0 0.625em 0 0 #ffe3e2;
+    box-shadow: 0 0 0 2px #000000, 0 0.625em 0 0 white;
     transform: translate3d(0, 0.75em, -1em);
     transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
   }
@@ -61,7 +61,7 @@ const Button = styled.button`
     background: #ffd166;
     transform: translate(0, 0.25em);
     &::before {
-      box-shadow: 0 0 0 2px #000000, 0 0.5em 0 0 #ffe3e2;
+      box-shadow: 0 0 0 2px #000000, 0 0.5em 0 0 white;
       transform: translate3d(0, 0.5em, -1em);
     }
   }

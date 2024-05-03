@@ -9,7 +9,6 @@ const Navbar = () => {
       <NavLink to="/">
         <Logo src={logoimg} />
       </NavLink>
-
       <CircleButtonComponent />
     </NavbarContainer>
   );

@@ -1,7 +1,10 @@
 from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score
 from sklearn.metrics import confusion_matrix, f1_score
 import seaborn as sns
+import matplotlib
+matplotlib.use("agg")
 import matplotlib.pyplot as plt
+import os
 
 
 def get_evaluation(y_test, y_pred):
@@ -28,3 +31,18 @@ def feature_plot(data, label_name):
 
 def heatmap_plot(data, number = True):
     sns.heatmap(data, annot=number, fmt=".2f")
+
+# 3d plot을 이용하여 데이터 분포 확인
+def draw_3d_rgb(rgb_codes, colors, path = None):
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    ax.scatter(rgb_codes[:, 0], rgb_codes[:, 1], rgb_codes[:, 2], c=colors, marker='o')
+    ax.set_xlabel('Red')
+    ax.set_ylabel('Green')
+    ax.set_zlabel('Blue')
+    if path is None:
+        plt.show()
+    else:
+        if not os.path.exists(path + "/rgb_3d_plot.jpg"):
+            plt.savefig(path + "/rgb_3d_plot.jpg", format='jpeg')
+

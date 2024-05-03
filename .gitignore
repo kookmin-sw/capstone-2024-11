@@ -6,5 +6,6 @@ personal_color_dataset/train/*.jpg
 personal_color_dataset/train/*.png
 personal_color_dataset/train/img*.jpg
 personal_color_dataset/valid/img*.jpg
-
+gan/pretrained_models
+gan/output
 predict_image/*.jpg

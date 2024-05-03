@@ -76,7 +76,7 @@ from shape_detect.controller import get_shape
 @app.route('/predict_shape', methods =['GET'])
 def predict_shape():
     global image_path
-    result = get_shape(image_path)
+    result = get_shape(current_image_path)
 
     if result == -1:
         return "경로에 사진을 찾을 수 없음"

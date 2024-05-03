@@ -4,10 +4,13 @@ import CameraBtn from "../../assets/CameraButton.svg";
 import GoButton from "../../assets/GoButton.svg";
 import StopButton from "../../assets/StopButton.svg";
 import { useState } from "react";
+import axios from "axios";
+import LoadingOverlay from "./loding";
 
 function Camera() {
   const [imageSrc, setimageSrc] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const videoConstraints = {
     width: 1000,
@@ -24,6 +27,21 @@ function Camera() {
     const imageSrc = getScreenshot();
     setimageSrc(imageSrc);
     openModal();
+  };
+  const sendDataToServer = () => {
+    setIsLoading(true);
+    axios
+      .post("your_server_endpoint", {
+        image: imageSrc,
+      })
+      .then((response) => {
+        setIsLoading(false);
+        // Handle response
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        // Handle error
+      });
   };
   return (
     <MainContainer>
@@ -50,13 +68,14 @@ function Camera() {
               <Button onClick={closeModal}>
                 <img src={StopButton}></img>
               </Button>
-              <Button>
+              <Button onClick={sendDataToServer}>
                 <img src={GoButton}></img>
               </Button>
             </ButtonContainer>
           </ModalContent>
         </Modal>
       )}
+      {isLoading && <LoadingOverlay />}
     </MainContainer>
   );
 }

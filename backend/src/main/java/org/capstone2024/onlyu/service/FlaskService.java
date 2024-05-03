@@ -12,6 +12,9 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+import java.util.Map;
+
 
 @Service
 @RequiredArgsConstructor
@@ -19,7 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class FlaskService {
 
     @Transactional
-    public String predict_color_flask(MultipartFile image){
+    public Map<String, Object> predict_color_flask(MultipartFile image){
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
@@ -28,7 +31,7 @@ public class FlaskService {
         MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
         body.add("image", image.getResource());
         HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
-        return restTemplate.postForObject(url, requestEntity, String.class);
+        return restTemplate.postForObject(url, requestEntity, Map.class);
     }
 
     @Transactional

@@ -59,8 +59,13 @@ def predict_color():
 
     # 예츨 결과
     raw_res = pc_model.test(preprocssing_data)
-    
+    probability_res = pc_model.predict_probability(predict_data)
 
+    predict_probability = {}
+    key_list = ["xgb", "knn", "lr", "voting", "rfc"]
+    for probability_list, key in zip(probability_res, key_list):
+        predict_probability[key] = list(map(lambda x : "{:.2f}%".format(x * 100), probability_list[0]))
+    
     predict_res = [""] * len(raw_res)
     for idx, predict in enumerate(raw_res):
         if predict[0] == 0:
@@ -72,7 +77,9 @@ def predict_color():
         else:
             label = "winter"
         predict_res[idx] = label
-    return predict_res
+    
+    res = {"label_res" : predict_res, "probability_res" : predict_probability}
+    return res
 
 @app.route('/predict_test')
 def test():

@@ -114,9 +114,9 @@ if __name__ == "__main__":
     parser.add_argument('--embedding_dir', type=str, default='./gan/output/', help='embedding vector directory')
 
     # I/O arguments
-    parser.add_argument('--input_dir', type=str, default='./image/',
+    parser.add_argument('--input_dir', type=str, default='./predict_image/',
                         help='The directory of the images to be inverted')
-    parser.add_argument('--output_dir', type=str, default='./output/',
+    parser.add_argument('--output_dir', type=str, default='./gan/output/',
                         help='The directory to save the output images')
     parser.add_argument('--im_path1', type=str, default='16.png', help='Identity image')
     parser.add_argument('--im_path2', type=str, default='15.png', help='Structure image')

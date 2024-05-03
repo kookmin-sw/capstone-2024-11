@@ -9,9 +9,12 @@ import pandas as pd
 
 from flask import Flask, request
 
+import shape_detect.controller
+
 app = Flask(__name__)
 
 image_path = os.path.join(os.path.dirname(__file__), "predict_image")
+filename = ""
 pc_model : PersonalColorModel = joblib.load('./test_model.pkl')
 ss = joblib.load("./scaler.pkl")
 features = ['Hair_Red', 'Hue', 'Saturation', 'Cr', 'Cb', 'L',
@@ -74,7 +77,24 @@ def predict_color():
 @app.route('/predict_test')
 def test():
     return str(pc_model.test([[0] * 13]))
-    
-    
+
+from shape_detect.controller import get_shape
+@app.route('/predict_shape', methods =['GET'])
+def predict_shape():
+    global current_image_path
+    result = get_shape(current_image_path)
+
+    if result == -1:
+        return "경로에 사진을 찾을 수 없음"
+
+    if result == 0:
+        shape = "긴형"
+    elif result == 1:
+        shape = "둥근형"
+    else:
+        shape = "각진형"
+
+    return shape
+
 if __name__ == '__main__':
     app.run(port="5050", debug=True)

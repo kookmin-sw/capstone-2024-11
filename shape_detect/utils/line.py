@@ -1,5 +1,5 @@
 import cv2
-from utils.distance import get_distance
+from shape_detect.utils.distance import get_distance
 
 def get_line(display_image, pos):
     D_LIST = [(2,14),(76,79),(71,8),(8, 12),(4,12),(6,10),(7,9)] #선분을 만들 주요 점 관계

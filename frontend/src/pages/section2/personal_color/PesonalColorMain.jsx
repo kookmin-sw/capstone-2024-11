@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import ClickButton from "../../../components/clickbutton";
 
 const TopContainer = styled.div`
   width: 100%;
@@ -73,7 +74,9 @@ const PersonalColorMain = () => {
             <PinkText>Personal Color & Hair Style</PinkText>
           </TopTextContainer>
         </TopContainer>
-        <BottomContainer></BottomContainer>
+        <BottomContainer>
+          <ClickButton />
+        </BottomContainer>
       </NormalBox>
     </Container>
   );

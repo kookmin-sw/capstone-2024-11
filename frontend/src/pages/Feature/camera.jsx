@@ -10,7 +10,7 @@ import LoadingOverlay from "./loding";
 function Camera() {
   const [imageSrc, setimageSrc] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const videoConstraints = {
     width: 1000,
@@ -33,6 +33,8 @@ function Camera() {
     axios
       .post("your_server_endpoint", {
         image: imageSrc,
+        gender: "",
+        email: "",
       })
       .then((response) => {
         setIsLoading(false);

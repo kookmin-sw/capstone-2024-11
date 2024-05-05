@@ -9,7 +9,7 @@ import joblib
 import os
 import pandas as pd
 
-from flask import Flask, request
+from flask import Flask, request, jsonify
 
 import shape_detect.controller
 
@@ -76,19 +76,20 @@ from shape_detect.controller import get_shape
 @app.route('/predict_shape', methods =['GET'])
 def predict_shape():
     global image_path
-    result = get_shape(current_image_path)
 
+    result = get_shape(current_image_path)
+    
     if result == -1:
         return "경로에 사진을 찾을 수 없음"
 
-    if result == 0:
-        shape = "긴형"
-    elif result == 1:
-        shape = "둥근형"
-    else:
-        shape = "각진형"
+    idx = result.index(max(result))
+    total = sum(result)
+    res = {
+        'shape': idx,
+        'probability': [ round(i/total*100, 1) for i in result],
+    }
 
-    return shape
+    return jsonify(res)
 
 if __name__ == '__main__':
     app.run(port="5050", debug=True)

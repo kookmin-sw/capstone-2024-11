@@ -3,8 +3,6 @@ from Skin_detect.skin_detect_v2 import *
 from PC_model.pc_model import PersonalColorModel
 from image_processing.gamma_correction import gamma_correction
 
-from sklearn.preprocessing import StandardScaler
-
 import joblib
 import os
 import pandas as pd
@@ -33,15 +31,22 @@ def predict_color():
     global features, pc_model, ss, current_image_path
     # 이미지 저장
     f = request.files['image']
-    f_path = os.path.join(image_path, f.filename)
-    filename = f.filename
+
+    type = f.filename[f.filename.rfind("."):]
+
+    folder_path = os.path.join(image_path, f.filename.replace(".", "_"))
+    f_path = os.path.join(folder_path, "origin_img" + type)
+
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
+
     if not os.path.exists(f_path):
         f.save(f_path)
 
     current_image_path = f_path[:]
     
     # 데이터 추출
-    data = total_data_extract(f_path)
+    data = total_data_extract(f_path, True)
 
     # DataFrame으로 변환
     df = pd.DataFrame(data, index = [0])
@@ -54,6 +59,7 @@ def predict_color():
 
     # 예츨 결과
     raw_res = pc_model.test(preprocssing_data)
+    
 
     predict_res = [""] * len(raw_res)
     for idx, predict in enumerate(raw_res):
@@ -75,7 +81,7 @@ def test():
 from shape_detect.controller import get_shape
 @app.route('/predict_shape', methods =['GET'])
 def predict_shape():
-    global image_path
+    global image_path, current_image_path
 
     result = get_shape(current_image_path)
     

@@ -7,6 +7,7 @@ import pandas as pd
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 from Skin_detect.skin_detect_v2 import *
 from image_processing.gamma_correction import *
+from PC_model.utils import draw_3d_rgb
 
 def extract_points(mask, img):
     points = np.argwhere(mask)
@@ -256,7 +257,9 @@ def extract_high_rank(rgb_codes, color_area, percent):
 #     # file 이름 넣기
 #     data['filename'][i] = name
 
-def total_data_extract(path):
+def total_data_extract(path, save_image):
+    folder_path = os.path.dirname(path)
+
     data = {'Red' : 0, 'Green' : 0, 'Blue' : 0, 
         'Hue' : 0, 'Saturation' : 0, 'Value' : 0, 
         'Y' : 0, 'Cr' : 0, 'Cb' : 0, 
@@ -278,6 +281,10 @@ def total_data_extract(path):
     # 이진 마스크로 변환
     binary_mask = (face_nose_mask >= 0.5).astype(int)
 
+    if save_image:
+        if not os.path.exists(os.path.join(folder_path, "binary_mask.jpg")):
+            cv2.imwrite(os.path.join(folder_path, "binary_mask.jpg"), binary_mask * 255)
+
     # image load
     image = cv2.imread(path)
     image = gamma_correction(image, 0.8)
@@ -285,6 +292,12 @@ def total_data_extract(path):
     hsv_image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
     ycrcb_image = cv2.cvtColor(image, cv2.COLOR_BGR2YCrCb)
     lab_image = cv2.cvtColor(image, cv2.COLOR_BGR2LAB)
+
+    if save_image:
+        if not os.path.exists(os.path.join(folder_path, "face_nose_img.jpg")):
+            face_nose_img = np.zeros_like(image)
+            face_nose_img[binary_mask == 1] = image[binary_mask == 1]
+            cv2.imwrite(os.path.join(folder_path, "face_nose_img.jpg"), face_nose_img)
 
     #RGB
     rgb = extract_points(binary_mask, rgb_image)
@@ -348,4 +361,8 @@ def total_data_extract(path):
     data['New Green'] = new_rgb_average[1]
     data['New Blue'] = new_rgb_average[2]
 
+    if save_image:
+        draw_3d_rgb(new_rgb_codes, new_rgb_codes/255.0, folder_path)
+
     return data
+

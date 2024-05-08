@@ -9,3 +9,4 @@ personal_color_dataset/valid/img*.jpg
 gan/pretrained_models
 gan/output
 predict_image/*
+

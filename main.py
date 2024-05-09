@@ -6,6 +6,7 @@ from image_processing.gamma_correction import gamma_correction
 import joblib
 import os
 import pandas as pd
+import shutil
 
 from flask import Flask, request
 
@@ -37,13 +38,15 @@ def predict_color():
     folder_path = os.path.join(image_path, f.filename.replace(".", "_"))
     f_path = os.path.join(folder_path, "origin_img" + type)
 
-    if not os.path.exists(folder_path):
-        os.makedirs(folder_path)
+    if os.path.exists(folder_path):
+        shutil.rmtree(folder_path)
+    
+    os.makedirs(folder_path)
 
-    if not os.path.exists(f_path):
-        f.save(f_path)
+    f.save(f_path)
 
     current_image_path = f_path[:]
+    print(current_image_path)
     
     # 데이터 추출
     data = total_data_extract(f_path, True)
@@ -89,6 +92,7 @@ from shape_detect.controller import get_shape
 @app.route('/predict_shape', methods =['GET'])
 def predict_shape():
     global current_image_path
+    print(current_image_path)
     result = get_shape(current_image_path)
 
     if result == -1:

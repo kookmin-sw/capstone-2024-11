@@ -12,7 +12,7 @@ from Color_extract.color import extract_high_rank, save_data_csv
 
 
 from sklearn.model_selection import train_test_split
-from PC_model.utils import get_accuracy, get_evaluation, heatmap_plot, feature_plot
+from PC_model.utils import *
 from sklearn.preprocessing import MinMaxScaler, StandardScaler, RobustScaler
 
 from xgboost import XGBClassifier, plot_importance
@@ -22,7 +22,6 @@ from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import VotingClassifier, RandomForestClassifier
 from sklearn.model_selection import StratifiedKFold
-
 
 class PersonalColorModel:
     def __init__(self) -> None:
@@ -40,7 +39,7 @@ class PersonalColorModel:
         self.xgb.fit(train_x, train_y)
         self.ovr.fit(train_x, train_y)
         self.ovo.fit(train_x, train_y)
-        self.knn.fit(train_x, train_y)
+        self.knn.fit(train_x, train_y,)
         self.lr.fit(train_x, train_y)
         self.voting.fit(train_x, train_y)
         self.rfc.fit(train_x, train_y)
@@ -108,26 +107,26 @@ def model_train_save():
 # %%
 
 # train_df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/train/data.csv")
-# test_df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/test/data.csv")
-# # features = ['Hair_Red', 'Hue', 'Saturation', 'Cr', 'Cb', 'L',
-# #             'A', 'B', 'New Blue', 'Eye_Red', 'Eye_Blue', 'New Green', 'New Red']
+# # test_df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/test/data.csv")
+# features = ['Hair_Red', 'Hue', 'Saturation', 'Cr', 'Cb', 'L',
+#             'A', 'B', 'New Blue', 'Eye_Red', 'Eye_Blue', 'New Green', 'New Red']
 
-# # features = ['Blue', 
-# #             'Hair_Blue', 
-# #             'Hue', 'Saturation', 'Value',
-# #             'A', 'B', 
-# #             'Eye_Blue',
-# #             'New Blue']
+# # # features = ['Blue', 
+# # #             'Hair_Blue', 
+# # #             'Hue', 'Saturation', 'Value',
+# # #             'A', 'B', 
+# # #             'Eye_Blue',
+# # #             'New Blue']
 
-# features = train_df.columns.drop(["filename", "label"])
+# # features = train_df.columns.drop(["filename", "label"])
 
-# S_kfold = StratifiedKFold(n_splits= 5)
+# S_kfold = StratifiedKFold(n_splits= 5, shuffle=True)
 
 # train_x = train_df[features]
 # train_y = train_df['label']
 
 # cv_accuracy = [[] for _ in range(7)]
-# n_iter = 1
+# # n_iter = 1
 
 # m = PersonalColorModel()
 # scaler = StandardScaler()
@@ -137,17 +136,37 @@ def model_train_save():
 #     y_train, y_test = train_y.iloc[train_index], train_y.iloc[test_index]
 
 
-#     processing_train_x = scaler.fit_transform(x_train)
-#     m.train(processing_train_x, y_train)
+#     # processing_train_x = scaler.fit_transform(x_train)
+#     # m.train(processing_train_x, y_train)
+
+#     m.train(x_train, y_train)
 
 
-#     processing_test_x = scaler.transform(x_test)
+#     # processing_test_x = scaler.transform(x_test)
 
-#     for i, res in zip(range(7), m.test(processing_test_x)):
+#     # for i, res in zip(range(7), m.test(processing_test_x)):
+#     for i, res in zip(range(7), m.test(x_test)):
 #         cv_accuracy[i].append(np.round(get_accuracy(y_test, res), 4))
 #     print(cv_accuracy)
 
 
+#%%
+# colors = plt.cm.get_cmap('tab10', 7)
+# matplotlib.use('module://matplotlib_inline.backend_inline')
+# model_names = ["xgb", "ovr", "ovo", "knn", "lr", "voting", "rfc"]
+# plt.figure()
+# for idx, accuracy_list in enumerate(cv_accuracy):
+#     plt.plot(range(1, len(accuracy_list) + 1), accuracy_list, marker='o', linestyle='-', label=model_names[idx])
+
+# plt.title('Accuracy for Each Fold by Model')
+# plt.xlabel('Fold')
+# plt.ylabel('Accuracy')
+# plt.xticks(range(1, 6))
+# plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+# plt.grid(True)
+# plt.show()
+
+#%%
 
 # # m.train(processing_train_x, train_y)
 

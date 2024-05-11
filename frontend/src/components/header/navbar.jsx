@@ -21,6 +21,7 @@ const NavbarContainer = styled.nav`
   align-items: center;
   /* padding: 10px 30px; */
   background-color: transparent;
+  z-index: 100;
 `;
 
 const Logo = styled.img`

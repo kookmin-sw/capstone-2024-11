@@ -2,15 +2,21 @@ import styled from "styled-components";
 import Webcam from "react-webcam";
 import CameraBtn from "../../assets/CameraButton.svg";
 import GoButton from "../../assets/GoButton.svg";
+
+import alskdjfla from "../../assets/springGirl.png";
+
 import StopButton from "../../assets/StopButton.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import LoadingOverlay from "./loding";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function Camera() {
   const [imageSrc, setimageSrc] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const videoConstraints = {
     width: 1000,
@@ -24,25 +30,45 @@ function Camera() {
     setIsModalOpen(false);
   };
   const CapturePhoto = (getScreenshot) => {
-    const imageSrc = getScreenshot();
-    setimageSrc(imageSrc);
+    const capturedImageSrc = getScreenshot();
+    setimageSrc(capturedImageSrc);
     openModal();
   };
-  const sendDataToServer = () => {
+
+  function base64ToFile(base_data, filename) {
+    let arr = base_data.split(",");
+    let mime = arr[0].match(/:(.*?);/)[1];
+    let bstr = atob(arr[1]);
+    let n = bstr.length;
+    let u8arr = new Uint8Array(n);
+
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new File([u8arr], filename, { type: mime });
+  }
+
+  const sendDataToServer = async () => {
     setIsLoading(true);
-    axios
-      .post("your_server_endpoint", {
-        image: imageSrc,
-        gender: "",
-        email: "",
-      })
+    const formdata = new FormData();
+    const data = {
+      email: "test@naver.com",
+      gender: "man",
+    };
+
+    formdata.append("data", new Blob([JSON.stringify(data)], { type: "application/json" }));
+    formdata.append("file", base64ToFile(imageSrc, "test.jpg"));
+
+    await axios
+      .post("https://onyou.loca.lt/start", formdata)
       .then((response) => {
         setIsLoading(false);
-        // Handle response
+        console.log(response.data);
+        navigate("/result");
       })
       .catch((error) => {
         setIsLoading(false);
-        // Handle error
+        console.log(error);
       });
   };
   return (
@@ -64,7 +90,6 @@ function Camera() {
       {isModalOpen && (
         <Modal>
           <ModalContent>
-            {/* <img src={imageSrc} alt="Captured" /> */}
             <CaptureImage src={imageSrc} alt="captured" />
             <ButtonContainer>
               <Button onClick={closeModal}>

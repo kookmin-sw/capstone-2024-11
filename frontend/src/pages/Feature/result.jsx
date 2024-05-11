@@ -4,6 +4,8 @@ import styled from "styled-components";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ResultDiv1 from "./result/resultDiv1";
+import ResultDiv2 from "./result/resultDiv2";
+import ResultDiv3 from "./result/resultDiv3";
 
 const Result = () => {
   const Slidersettings = {
@@ -18,12 +20,8 @@ const Result = () => {
       <ResultContainer className="slider-container">
         <StyledSlider {...Slidersettings}>
           <ResultDiv1></ResultDiv1>
-          <div>
-            <h3>2</h3>
-          </div>
-          <div>
-            <h3>3</h3>
-          </div>
+          <ResultDiv2 />
+          <ResultDiv3 />
         </StyledSlider>
       </ResultContainer>
     </MainContainer>
@@ -34,7 +32,7 @@ const MainContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #f2d750;
+  background-color: #fedcf5;
   height: 100vh; /* 높이를 내용에 따라 자동으로 조절 */
   /* overflow-y: scroll; */
   width: auto;

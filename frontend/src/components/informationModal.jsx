@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Xbutton from "../assets/StopButton.svg";
+import AniXbutton from "./xbutton";
 import ClickButton2 from "./modalclickButton";
 import { useNavigate } from "react-router-dom";
 const InformationModal = ({ onClose }) => {
@@ -28,7 +29,7 @@ const InformationModal = ({ onClose }) => {
     <ModalOverlay>
       <ModalContent>
         <CloseButton onClick={onClose} alt="close">
-          <img src={Xbutton} />
+          <AniXbutton onClick />
         </CloseButton>
         <ModalH2>성별</ModalH2>
         <GenderRadioGroup>
@@ -93,7 +94,7 @@ const ModalContent = styled.div`
   width: 40vh;
   background-color: white;
   padding: 40px;
-  border-radius: 40px;
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -104,6 +105,7 @@ const ModalContent = styled.div`
 const CloseButton = styled.button`
   position: absolute;
   top: 20px;
+  background-color: white;
   right: 20px;
   width: auto;
   height: auto;

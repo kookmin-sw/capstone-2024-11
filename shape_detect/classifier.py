@@ -32,7 +32,7 @@ class classifier:
         result = []
         for i,j,k in zip(a,b,c):
             result.append((i+j+k)/3)
-        return result.index(max(result))
+        return result
     
     def get_shape(self):
         knn = self.get_knn()

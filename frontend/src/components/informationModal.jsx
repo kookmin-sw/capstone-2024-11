@@ -72,14 +72,15 @@ const InformationModal = ({ onClose }) => {
 };
 const ModalOverlay = styled.div`
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: -7%;
+  left: -13%;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 999;
 `;
 const ModalH2 = styled.h2`
   /* background-color: blue; */

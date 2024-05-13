@@ -1,9 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import SpringGirl from "../../../assets/springGirl.png";
 import Girl from "../../../assets/GirlRound.png";
 import BestMatch from "../../../assets/BestColor.png";
-// import WorstMatch from "../../../assets/WorstColor.png";
 
 const Winter = () => {
   return (

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ClickButton from "../../../components/clickbutton";
+import SpeechBubble from "../../../components/speechbubble";
 
 const TopContainer = styled.div`
   width: 100%;
@@ -9,11 +10,7 @@ const TopContainer = styled.div`
   flex-direction: row;
   /* background-color: green; */
 `;
-const BottomContainer = styled.div`
-  width: 100%;
-  height: 75%;
-  /* background-color: beige; */
-`;
+
 const TopTextContainer = styled.div`
   width: auto;
   margin-left: 2rem;
@@ -23,8 +20,9 @@ const TopTextContainer = styled.div`
 
 const PinkText = styled.p`
   color: #e547ff;
-  font-size: 4.5rem;
+  font-size: 4rem;
   font-weight: 700;
+  margin: 0 0 0 2rem;
 `;
 const Container = styled.div`
   position: relative;
@@ -42,13 +40,13 @@ const RotatedBox = styled.div`
 `;
 
 const FirstBox = styled(RotatedBox)`
-  transform: rotate(3deg);
+  transform: rotate(-5.52deg);
 
   background-color: black;
 `;
 
 const SecondBox = styled(RotatedBox)`
-  transform: rotate(5.5deg);
+  transform: rotate(0deg);
 
   background-color: #ffcbcb;
 `;
@@ -58,10 +56,25 @@ const NormalBox = styled.div`
   height: 90vh;
   background-color: white;
   position: absolute;
+  display: flex;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) rotate(5.5deg);
   z-index: 1;
+`;
+const MainContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  transform: rotate(-5.5deg);
+  /* background-color: blue; */
+  display: flex;
+  flex-direction: column;
+`;
+const BottomContainer = styled.div`
+  width: 100%;
+  height: 75%;
+  display: flex;
+  /* background-color: beige; */
 `;
 const PersonalColorMain = () => {
   return (
@@ -69,14 +82,17 @@ const PersonalColorMain = () => {
       <FirstBox />
       <SecondBox />
       <NormalBox>
-        <TopContainer>
-          <TopTextContainer>
-            <PinkText>Personal Color & Hair Style</PinkText>
-          </TopTextContainer>
-        </TopContainer>
-        <BottomContainer>
-          <ClickButton />
-        </BottomContainer>
+        <MainContainer>
+          <TopContainer>
+            <TopTextContainer>
+              <SpeechBubble />
+              <PinkText>Function</PinkText>
+            </TopTextContainer>
+          </TopContainer>
+          <BottomContainer>
+            <ClickButton />
+          </BottomContainer>
+        </MainContainer>
       </NormalBox>
     </Container>
   );

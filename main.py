@@ -7,6 +7,7 @@ import joblib
 import os
 import pandas as pd
 import shutil
+import base64
 
 from flask import Flask, request
 
@@ -62,7 +63,7 @@ def predict_color():
 
     # 예츨 결과
     raw_res = pc_model.select_test("xgb", preprocssing_data)
-    probability_res = pc_model.select_predict_probability("xgb", predict_data)
+    probability_res = pc_model.select_predict_probability("xgb", preprocssing_data)
 
     predict_probability = {}
     # key_list = ["xgb", "knn", "lr", "voting", "rfc"]
@@ -83,6 +84,11 @@ def predict_color():
         predict_res[key] = label
     
     res = {"label_res" : predict_res, "probability_res" : predict_probability}
+    img_dict = {}
+    for i in os.listdir(folder_path):
+        with open(os.path.join(folder_path, i), "rb") as img:
+            img_dict[i[: i.index(".")]] = base64.b64encode(img.read()).decode('utf-8')
+    res["images"] = img_dict
     return res
 
 @app.route('/predict_test')

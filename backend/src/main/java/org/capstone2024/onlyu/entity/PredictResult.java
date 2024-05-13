@@ -7,16 +7,10 @@ import java.util.List;
 import java.util.Map;
 
 @Getter
+@Setter
 public class PredictResult {
     Map<String, String> predictColorRes;
     Map<String, List<String>> predictProbability;
+    Map<String, String> images;
     String predictShapeRes;
-
-    public PredictResult(Map<String, String> predictColorRes, Map<String, List<String>> predictProbability, String predictShapeRes) {
-        this.predictColorRes = predictColorRes;
-        this.predictProbability = predictProbability;
-        this.predictShapeRes = predictShapeRes;
-    }
-
-
 }

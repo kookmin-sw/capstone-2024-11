@@ -16,10 +16,10 @@ app = Flask(__name__)
 
 image_path = os.path.join(os.path.dirname(__file__), "predict_image")
 filename = ""
-pc_model : PersonalColorModel = joblib.load('./test_model.pkl')
-ss = joblib.load("./scaler.pkl")
+pc_model : PersonalColorModel = joblib.load('./model_v2.pkl')
+ss = joblib.load("./scaler_v2.pkl")
 features = ['Hair_Red', 'Hue', 'Saturation', 'Cr', 'Cb', 'L',
-                'A', 'B', 'New Blue', 'Eye_Red', 'Eye_Blue', 'New Green', 'New Red']
+            'A', 'B', 'New Blue', 'Eye_Red', 'Eye_Blue', 'New Green', 'New Red']
 
 current_image_path = ""
 
@@ -61,25 +61,26 @@ def predict_color():
     preprocssing_data = ss.transform(predict_data)
 
     # 예츨 결과
-    raw_res = pc_model.test(preprocssing_data)
-    probability_res = pc_model.predict_probability(predict_data)
+    raw_res = pc_model.select_test("xgb", preprocssing_data)
+    probability_res = pc_model.select_predict_probability("xgb", predict_data)
 
     predict_probability = {}
-    key_list = ["xgb", "knn", "lr", "voting", "rfc"]
+    # key_list = ["xgb", "knn", "lr", "voting", "rfc"]
+    key_list = ["xgb"]
     for probability_list, key in zip(probability_res, key_list):
-        predict_probability[key] = list(map(lambda x : "{:.2f}%".format(x * 100), probability_list[0]))
+        predict_probability[key] = list(map(lambda x : "{:.2f}%".format(x * 100), probability_list))
     
-    predict_res = [""] * len(raw_res)
-    for idx, predict in enumerate(raw_res):
-        if predict[0] == 0:
+    predict_res = {}
+    for predict, key in zip(raw_res, key_list):
+        if predict == 0:
             label = "spring"
-        elif predict[0] == 1:
+        elif predict == 1:
             label = "summer"
-        elif predict[0] == 2:
+        elif predict == 2:
             label = "fall"
         else:
             label = "winter"
-        predict_res[idx] = label
+        predict_res[key] = label
     
     res = {"label_res" : predict_res, "probability_res" : predict_probability}
     return res

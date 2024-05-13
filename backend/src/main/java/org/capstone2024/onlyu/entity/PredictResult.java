@@ -8,11 +8,11 @@ import java.util.Map;
 
 @Getter
 public class PredictResult {
-    List<String> predictColorRes;
+    Map<String, String> predictColorRes;
     Map<String, List<String>> predictProbability;
     String predictShapeRes;
 
-    public PredictResult(List<String> predictColorRes, Map<String, List<String>> predictProbability, String predictShapeRes) {
+    public PredictResult(Map<String, String> predictColorRes, Map<String, List<String>> predictProbability, String predictShapeRes) {
         this.predictColorRes = predictColorRes;
         this.predictProbability = predictProbability;
         this.predictShapeRes = predictShapeRes;

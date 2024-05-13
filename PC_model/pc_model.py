@@ -43,9 +43,56 @@ class PersonalColorModel:
         self.lr.fit(train_x, train_y)
         self.voting.fit(train_x, train_y)
         self.rfc.fit(train_x, train_y)
+
+    def select_train(self, model, train_x, train_y):
+        if model == "xgb":
+            self.xgb.fit(train_x, train_y)
+        elif model == "ovr":
+            self.ovr.fit(train_x, train_y)
+        elif model == "ovo":
+            self.ovo.fit(train_x, train_y)
+        elif model == "knn":
+            self.knn.fit(train_x, train_y)
+        elif model == "lr":
+            self.lr.fit(train_x, train_y)
+        elif model == "voting":
+            self.voting.fit(train_x, train_y)
+        elif model == "rfc":
+            self.rfc.fit(train_x, train_y)
+        else:
+            print("선언되지 않은 모델입니다.")
+
+    def select_test(self, model, test_x):
+        if model == "xgb":
+            return self.xgb.predict(test_x)
+        elif model == "ovr":
+            return self.ovr.predict(test_x)
+        elif model == "ovo":
+            return self.ovo.predict(test_x)
+        elif model == "knn":
+            return self.knn.predict(test_x)
+        elif model == "lr":
+            return self.lr.predict(test_x)
+        elif model == "voting":
+            return self.voting.predict(test_x)
+        elif model == "rfc":
+            return self.rfc.predict(test_x)
+        return False
     
+    def select_predict_probability(self, model, test_x):
+        if model == "xgb":
+            return self.xgb.predict_proba(test_x)
+        elif model == "knn":
+            return self.knn.predict_proba(test_x)
+        elif model == "lr":
+            return self.lr.predict_proba(test_x)
+        elif model == "voting":
+            return self.voting.predict_proba(test_x)
+        elif model == "rfc":
+            return self.rfc.predict_proba(test_x)
+        return False
+
     def predict_probability(self, test_x):
-        # self.ovr.predict_proba(test_x), self.ovo.predict_proba(test_x), 
         return self.xgb.predict_proba(test_x),\
             self.knn.predict_proba(test_x),\
                   self.lr.predict_proba(test_x),\
@@ -75,17 +122,17 @@ def save_model(model, path):
 #%%
 def model_train_save():
     train_df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/train/data.csv")
-    features = train_df.columns.drop(["filename", "label"])
+    features = ['Hair_Red', 'Hue', 'Saturation', 'Cr', 'Cb', 'L',
+            'A', 'B', 'New Blue', 'Eye_Red', 'Eye_Blue', 'New Green', 'New Red']
 
     train_x = train_df[features]
     train_y = train_df['label']
 
 
     m = PersonalColorModel()
-    # mm = MinMaxScaler()
     scaler = StandardScaler()
 
-    S_kfold = StratifiedKFold(n_splits= 5)
+    S_kfold = StratifiedKFold(n_splits= 5, shuffle=True)
     for train_index, test_index in S_kfold.split(train_x, train_y):  
         x_train, x_test = train_x.iloc[train_index], train_x.iloc[test_index]
         y_train, y_test = train_y.iloc[train_index], train_y.iloc[test_index]
@@ -93,40 +140,19 @@ def model_train_save():
         processing_train_x = scaler.fit_transform(x_train)
         
         m.train(processing_train_x, y_train)
-        processing_test_x = scaler.transform(x_test)
 
+        processing_test_x = scaler.transform(x_test)
         cv_accuracy = []
-        for i, res in zip(range(7), m.test(processing_test_x)):
+        for res in m.test(processing_test_x):
             cv_accuracy.append(np.round(get_accuracy(y_test, res), 4))
         print(cv_accuracy)
 
-    save_model(scaler, os.path.join(os.path.dirname(os.path.dirname(__file__)), "scaler_all_features.pkl"))
-    save_model(m, os.path.join(os.path.dirname(os.path.dirname(__file__)), "test_model_all_features.pkl"))
+    save_model(scaler, os.path.join(os.path.dirname(os.path.dirname(__file__)), "scaler_v2.pkl"))
+    save_model(m, os.path.join(os.path.dirname(os.path.dirname(__file__)), "model_v2.pkl"))
         
 
 # %%
 
-# train_df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/train/data.csv")
-# # test_df = pd.read_csv("/Users/ohs/Desktop/capstone/personal_color_dataset/test/data.csv")
-# features = ['Hair_Red', 'Hue', 'Saturation', 'Cr', 'Cb', 'L',
-#             'A', 'B', 'New Blue', 'Eye_Red', 'Eye_Blue', 'New Green', 'New Red']
-
-# # # features = ['Blue', 
-# # #             'Hair_Blue', 
-# # #             'Hue', 'Saturation', 'Value',
-# # #             'A', 'B', 
-# # #             'Eye_Blue',
-# # #             'New Blue']
-
-# # features = train_df.columns.drop(["filename", "label"])
-
-# S_kfold = StratifiedKFold(n_splits= 5, shuffle=True)
-
-# train_x = train_df[features]
-# train_y = train_df['label']
-
-# cv_accuracy = [[] for _ in range(7)]
-# # n_iter = 1
 
 # m = PersonalColorModel()
 # scaler = StandardScaler()
@@ -136,16 +162,16 @@ def model_train_save():
 #     y_train, y_test = train_y.iloc[train_index], train_y.iloc[test_index]
 
 
-#     # processing_train_x = scaler.fit_transform(x_train)
-#     # m.train(processing_train_x, y_train)
+#     processing_train_x = scaler.fit_transform(x_train)
+#     m.train(processing_train_x, y_train)
 
-#     m.train(x_train, y_train)
+#     # m.train(x_train, y_train)
 
 
-#     # processing_test_x = scaler.transform(x_test)
+#     processing_test_x = scaler.transform(x_test)
 
-#     # for i, res in zip(range(7), m.test(processing_test_x)):
-#     for i, res in zip(range(7), m.test(x_test)):
+#     for i, res in zip(range(7), m.test(processing_test_x)):
+#     # for i, res in zip(range(7), m.test(x_test)):
 #         cv_accuracy[i].append(np.round(get_accuracy(y_test, res), 4))
 #     print(cv_accuracy)
 

@@ -32,7 +32,7 @@ public class FlaskController {
             @RequestPart("file") MultipartFile image){
         Map<String, Object> predict_color_res = flaskService.predict_color_flask(image);
         String predict_shape_res = flaskService.predict_shape_flask();
-        return new PredictResult((List<String>) predict_color_res.get("label_res"), (Map<String, List<String>>) predict_color_res.get("probability_res"), predict_shape_res);
+        return new PredictResult((Map<String, String>) predict_color_res.get("label_res"), (Map<String, List<String>>) predict_color_res.get("probability_res"), predict_shape_res);
     }
 
 //    @RequestMapping(value = "/gan_image", method = RequestMethod.GET)

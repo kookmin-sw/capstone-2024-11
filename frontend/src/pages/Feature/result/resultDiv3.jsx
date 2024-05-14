@@ -5,7 +5,9 @@ import binarymask from "../../../assets/binary_mask.jpg";
 import facenose from "../../../assets/face_nose_img.jpg";
 import rgb from "../../../assets/rgb_3d_plot.jpg";
 import train from "../../../assets/train_accuracy_by_model.png";
-const ResultDiv3 = () => {
+const ResultDiv3 = ({ images }) => {
+  console.log(images);
+  const prefix = "data:image/jpeg;base64,";
   return (
     <MainContainer>
       <TopContainer>
@@ -14,7 +16,7 @@ const ResultDiv3 = () => {
             <H3>binary mask</H3>
           </InnerTopConatiner>
           <InnerBottomContainer>
-            <IMG src={binarymask} />
+            <IMG src={prefix + images.origin_img} />
           </InnerBottomContainer>
         </InnerContainer>
         <InnerContainer>
@@ -22,7 +24,7 @@ const ResultDiv3 = () => {
             <H3>facenose</H3>
           </InnerTopConatiner>
           <InnerBottomContainer>
-            <IMG src={facenose} />
+            <IMG src={prefix + images.binary_mask} />
           </InnerBottomContainer>
         </InnerContainer>
       </TopContainer>
@@ -33,7 +35,7 @@ const ResultDiv3 = () => {
             <H3>RGB</H3>
           </InnerTopConatiner>
           <InnerBottomContainer>
-            <IMG src={rgb} />
+            <IMG src={prefix + images.rgb_3d_plot} />
           </InnerBottomContainer>
         </InnerContainer>
         <InnerContainer>
@@ -41,7 +43,7 @@ const ResultDiv3 = () => {
             <H3>훈련 모델 성과</H3>
           </InnerTopConatiner>
           <InnerBottomContainer>
-            <IMG src={train} />
+            <IMG src={prefix + images.probability} />
           </InnerBottomContainer>
         </InnerContainer>
       </BottomContainer>

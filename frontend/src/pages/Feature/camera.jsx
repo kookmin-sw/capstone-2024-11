@@ -64,7 +64,7 @@ function Camera() {
       .then((response) => {
         setIsLoading(false);
         console.log(response.data);
-        navigate("/result");
+        navigate("/result", { state: { data: response.data } });
       })
       .catch((error) => {
         setIsLoading(false);

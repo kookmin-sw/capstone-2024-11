@@ -9,11 +9,17 @@ const MainPage = () => {
     <MainContainer>
       {/* <Navbar/> */}
       <Section1Main />
+      <Connection />
       <Section2Main />
       <Section3Main />
     </MainContainer>
   );
 };
+const Connection = styled.nav`
+  height: 20rem;
+  width: 100%;
+  background: linear-gradient(to bottom, #ffd166, #33b0ff);
+`;
 const MainContainer = styled.nav`
   display: flex;
   flex-direction: column;

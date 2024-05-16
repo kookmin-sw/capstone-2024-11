@@ -1,10 +1,11 @@
 import joblib
 import pandas as pd
 import argparse
+from sklearn.decomposition import PCA
 
 class classifier:
     def __init__(self):
-        self.df = pd.read_csv("./test.csv")
+        self.df = pd.read_csv("./train.csv")
         self.x_data = self.df.loc[:, "D1":"A3"]
         self.y_data = self.df.loc[:, "shape"]
     
@@ -12,8 +13,14 @@ class classifier:
         row = ["D1","D2","D3","D4","D5","D6","D7","R1","R2","R3","R4","R5","R6","R7","R8","R9","R10","A1","A2","A3"]
         df = pd.DataFrame([vector], columns=row)
         self.x_data = df
+        # concaten = pd.concat([df, self.x_data], ignore_index=True)
+        # print(concaten)
+        # self.pca = PCA(n_components=3)
+        # self.x_data = self.pca.fit_transform(concaten)
+        # print(self.x_data)
 
     def get_knn(self):
+        print("knn", self.x_data)
         knn = joblib.load('./shape_detect/models/knn_model.pkl') 
         probabilities = knn.predict_proba(self.x_data)
         return probabilities
@@ -21,23 +28,27 @@ class classifier:
     def get_dt(self):
         dt = joblib.load('./shape_detect/models/dt_model.pkl')
         probabilities = dt.predict_proba(self.x_data)
-        return probabilities * 0.5
+        return probabilities
 
     def get_svm(self):
         clf = joblib.load('./shape_detect/models/svm_model.pkl')
         probabilities = clf.predict_proba(self.x_data)
-        return probabilities * 2
+        return probabilities
     
-    def softvote(d,a,b,c):
+    def softvote(self,a,b,c):
         result = []
         for i,j,k in zip(a,b,c):
             result.append((i+j+k)/3)
         return result
     
     def get_shape(self):
+        print(self.x_data)
         knn = self.get_knn()
         dt = self.get_dt()
         svm = self.get_svm()
+        print("knn", knn[0])
+        print("dt", dt[0])
+        print("svm", svm[0])
         return self.softvote(knn[0], dt[0], svm[0])
     
 def main(args):

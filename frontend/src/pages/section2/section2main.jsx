@@ -5,7 +5,7 @@ import HairStyleMain from "./hair_style/hairstylemain";
 import Introduce from "./introduce/introduce";
 const Section2Container = styled.div`
   width: 100%;
-  height: 400vh;
+  height: 800vh;
   display: flex;
   flex-direction: column;
   align-content: center;

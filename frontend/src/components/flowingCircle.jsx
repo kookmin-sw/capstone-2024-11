@@ -22,7 +22,6 @@ const BlackCircleContainer = styled.div`
   right: 10%;
   top: 0;
   z-index: 3;
-  /* background-color: black; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -73,7 +72,6 @@ const Slider = () => {
           <ImageWrapper>
             <Image src={v6} alt="v6" />
           </ImageWrapper>
-
           <ImageWrapper>
             <Image src={v2} alt="v2" />
           </ImageWrapper>

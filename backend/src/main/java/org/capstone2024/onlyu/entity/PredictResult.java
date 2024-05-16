@@ -10,7 +10,8 @@ import java.util.Map;
 @Setter
 public class PredictResult {
     Map<String, String> predictColorRes;
-    Map<String, List<String>> predictProbability;
+    Map<String, List<String>> predictColorProbability;
     Map<String, String> images;
     String predictShapeRes;
+    Map<String, String> predictShapeProbability;
 }

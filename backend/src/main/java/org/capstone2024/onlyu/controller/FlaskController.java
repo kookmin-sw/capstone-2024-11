@@ -31,13 +31,14 @@ public class FlaskController {
     public PredictResult start(@RequestPart("data") StartDto startDto,
             @RequestPart("file") MultipartFile image){
         Map<String, Object> predict_color_res = flaskService.predict_color_flask(image);
-        String predict_shape_res = flaskService.predict_shape_flask();
+        Map<String, Object> predict_shape_res = flaskService.predict_shape_flask();
 
         PredictResult predict_result = new PredictResult();
         predict_result.setImages((Map<String, String>) predict_color_res.get("images"));
         predict_result.setPredictColorRes((Map<String, String>) predict_color_res.get("label_res"));
-        predict_result.setPredictProbability((Map<String, List<String>>) predict_color_res.get("probability_res"));
-        predict_result.setPredictShapeRes(predict_shape_res);
+        predict_result.setPredictColorProbability((Map<String, List<String>>) predict_color_res.get("probability_res"));
+        predict_result.setPredictShapeRes((String) predict_shape_res.get("shape"));
+        predict_result.setPredictShapeProbability((Map<String, String>) predict_shape_res.get("probability"));
 
         return predict_result;
     }

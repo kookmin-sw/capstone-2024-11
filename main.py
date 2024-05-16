@@ -77,13 +77,13 @@ def predict_color():
     predict_res = {}
     for predict, key in zip(raw_res, key_list):
         if predict == 0:
-            label = "spring"
+            label = "봄"
         elif predict == 1:
-            label = "summer"
+            label = "여름"
         elif predict == 2:
-            label = "fall"
+            label = "가을"
         else:
-            label = "winter"
+            label = "겨울"
         predict_res[key] = label
     
     res = {"label_res" : predict_res, "probability_res" : predict_probability}
@@ -108,14 +108,22 @@ def predict_shape():
     if result == -1:
         return "경로에 사진을 찾을 수 없음"
 
+    shape_list = ["긴 형", "둥근형", "각진형"]
+    
     idx = result.index(max(result))
-    total = sum(result)
-    res = {
-        'shape': idx,
-        'probability': [ round(i/total*100, 1) for i in result],
-    }
+    res = {}
+    res['shape'] = shape_list[idx]
 
-    return jsonify(res)
+    total = sum(result)
+
+    probability = {}
+    for type, proba in zip(shape_list, result):
+        probability[type] = "{:.2f}%".format(proba * 100)
+    
+    res['probability'] = probability
+    print(res)
+    
+    return res
 
 if __name__ == '__main__':
     app.run(port="5050", debug=True)

@@ -35,10 +35,10 @@ public class FlaskService {
     }
 
     @Transactional
-    public String predict_shape_flask(){
+    public Map<String, Object> predict_shape_flask(){
         RestTemplate restTemplate = new RestTemplate();
         String url = "http://127.0.0.1:5050/predict_shape";
 
-        return restTemplate.getForObject(url, String.class);
+        return restTemplate.getForObject(url, Map.class);
     }
 }

@@ -58,11 +58,15 @@ function Camera() {
       gender: gender,
     };
 
-    formdata.append("data", new Blob([JSON.stringify(data)], { type: "application/json" }));
+    formdata.append(
+      "data",
+      new Blob([JSON.stringify(data)], { type: "application/json" })
+    );
     formdata.append("file", base64ToFile(imageSrc, "test.jpg"));
 
+    // .post("https://onyou.loca.lt/start", formdata)
     await axios
-      .post("https://onyou.loca.lt/start", formdata)
+      .post("http://localhost:8080/start", formdata)
       .then((response) => {
         setIsLoading(false);
         console.log(response.data);
@@ -81,10 +85,15 @@ function Camera() {
         height={720}
         screenshotFormat="image/jpeg"
         width={1280}
-        videoConstraints={videoConstraints}>
+        videoConstraints={videoConstraints}
+      >
         {({ getScreenshot }) => (
           <>
-            <ImageButton src={CameraBtn} alt="Capture" onClick={() => CapturePhoto(getScreenshot)} />
+            <ImageButton
+              src={CameraBtn}
+              alt="Capture"
+              onClick={() => CapturePhoto(getScreenshot)}
+            />
             <FaceRectangle />
           </>
         )}

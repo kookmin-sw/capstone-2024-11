@@ -13,7 +13,7 @@ const ResultDiv3 = ({ images }) => {
       <TopContainer>
         <InnerContainer>
           <InnerTopConatiner>
-            <H3>binary mask</H3>
+            <H3>원본 이미지</H3>
           </InnerTopConatiner>
           <InnerBottomContainer>
             <IMG src={prefix + images.origin_img} />
@@ -21,7 +21,7 @@ const ResultDiv3 = ({ images }) => {
         </InnerContainer>
         <InnerContainer>
           <InnerTopConatiner>
-            <H3>facenose</H3>
+            <H3>Binary Mask</H3>
           </InnerTopConatiner>
           <InnerBottomContainer>
             <IMG src={prefix + images.binary_mask} />
@@ -77,9 +77,10 @@ const H3 = styled.h3``;
 const IMG = styled.img`
   width: 100%;
   height: 90%;
+  object-fit: scale-down;
 `;
 const InnerBottomContainer = styled.div`
-  height: auto;
+  height: 90%;
   width: 100%;
   display: flex;
   align-items: center;

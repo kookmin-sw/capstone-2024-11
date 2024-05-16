@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import ClickButton from "../../../components/clickbutton";
 const HairStyleContainer = styled.div`
   width: 90%;
   height: 80vh;
@@ -49,7 +50,9 @@ const HairStyleMain = () => {
           <PinkText>Personal Color</PinkText>
         </TopTextContainer>
       </TopContainer>
-      <BottomContainer></BottomContainer>
+      <BottomContainer>
+        <ClickButton />
+      </BottomContainer>
     </HairStyleContainer>
   );
 };

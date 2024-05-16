@@ -1,6 +1,7 @@
 from Color_extract.color import *
 from Skin_detect.skin_detect_v2 import *
 from PC_model.pc_model import PersonalColorModel
+from PC_model.utils import draw_probability_bar_chart
 from image_processing.gamma_correction import gamma_correction
 
 import joblib
@@ -70,6 +71,8 @@ def predict_color():
     key_list = ["xgb"]
     for probability_list, key in zip(probability_res, key_list):
         predict_probability[key] = list(map(lambda x : "{:.2f}%".format(x * 100), probability_list))
+
+    draw_probability_bar_chart(list(map(lambda x : round(x * 100), probability_res[0])), folder_path)
     
     predict_res = {}
     for predict, key in zip(raw_res, key_list):

@@ -4,6 +4,7 @@ import seaborn as sns
 import matplotlib
 matplotlib.use("agg")
 import matplotlib.pyplot as plt
+import numpy as np
 import os
 
 
@@ -45,4 +46,25 @@ def draw_3d_rgb(rgb_codes, colors, path = None):
     else:
         if not os.path.exists(path + "/rgb_3d_plot.jpg"):
             plt.savefig(path + "/rgb_3d_plot.jpg", format='jpeg')
+
+def draw_probability_bar_chart(probability_list, path=None):
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    seasons = ["Spring", "Summer", "Fall", "Winter"]
+    y_pos = np.arange(4)
+    print(probability_list)
+    ax.barh(y_pos, probability_list, color="skyblue", align="center")
+    ax.set_title("Probability of Seasonal Classification")
+    ax.invert_yaxis()
+    ax.set_ylabel("Season")
+    ax.set_xlabel("Probability")
+    ax.set_yticks(y_pos, labels=seasons)
+    plt.tight_layout()
+
+    if path is None:
+        plt.show()
+    else:
+        if not os.path.exists(path + "/probability.jpg"):
+            plt.savefig(path + "/probability.jpg", format='jpeg')
+    
 

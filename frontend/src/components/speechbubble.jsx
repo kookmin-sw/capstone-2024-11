@@ -11,12 +11,12 @@ const moveUpDown = keyframes`
 `;
 
 const MovingImage = styled.div`
-  height: 100px;
-  width: 430px;
-  margin-left: 30px;
+  height: 53px;
+  width: 260px;
+
   background-size: auto;
-  background-image: url(${IMGSRC}); /* 이미지 경로 */
-  background-size: cover; /* 이미지를 커버하는 크기로 조절 */
+  background-image: url(${IMGSRC});
+  background-size: cover;
   animation: ${moveUpDown} 2s ease-in-out infinite; /* 애니메이션 적용 */
 `;
 

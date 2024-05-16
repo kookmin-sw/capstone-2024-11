@@ -13,13 +13,18 @@ const ClickButton = () => {
   };
 
   return (
-    <div>
+    <Container>
       <Button onClick={handleModalOpen}>Click Me!</Button>
       {modalOpen && <InformationModal onClose={handleModalClose} />}
-    </div>
+    </Container>
   );
 };
-
+const Container = styled.div`
+  z-index: 80;
+  left: 45%;
+  top: 80%;
+  position: absolute;
+`;
 // Styled Components 정의
 const Button = styled.button`
   position: relative;

@@ -19,7 +19,7 @@ const InformationModal = ({ onClose }) => {
   };
   const handleSubmit = () => {
     console.log("submit!");
-    navigate("/camera", { state: { email: email, gender: gender } });
+    navigate("/camera", { state: { email: email, gender: gender, createImageChecked: createImageChecked } });
   };
 
   const handleGenderChange = (event) => {
@@ -72,8 +72,8 @@ const InformationModal = ({ onClose }) => {
 };
 const ModalOverlay = styled.div`
   position: fixed;
-  top: -7%;
-  left: -13%;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);

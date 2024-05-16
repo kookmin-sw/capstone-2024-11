@@ -3,13 +3,11 @@ import Webcam from "react-webcam";
 import CameraBtn from "../../assets/CameraButton.svg";
 import GoButton from "../../assets/GoButton.svg";
 
-import alskdjfla from "../../assets/springGirl.png";
-
 import StopButton from "../../assets/StopButton.svg";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import LoadingOverlay from "./loding";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 function Camera() {
   const [imageSrc, setimageSrc] = useState(null);
@@ -17,7 +15,11 @@ function Camera() {
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
-
+  const location = useLocation();
+  const { email, gender, createImageChecked } = location.state;
+  console.log(email);
+  console.log(gender);
+  console.log(createImageChecked);
   const videoConstraints = {
     width: 1000,
     height: 720,
@@ -52,8 +54,8 @@ function Camera() {
     setIsLoading(true);
     const formdata = new FormData();
     const data = {
-      email: "test@naver.com",
-      gender: "man",
+      email: email,
+      gender: gender,
     };
 
     formdata.append("data", new Blob([JSON.stringify(data)], { type: "application/json" }));

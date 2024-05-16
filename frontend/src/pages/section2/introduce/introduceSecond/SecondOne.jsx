@@ -54,7 +54,6 @@ const SecondOneContainer = styled.div`
   width: 100%;
   position: relative;
   display: flex;
-  background-color: blue;
 `;
 const ThirdContainer = styled.div`
   height: 520px;
@@ -69,12 +68,11 @@ const FirstImage = styled.img`
   width: 400px;
   position: absolute;
   top: 0;
-  left: 10%;
+  left: 15%;
 `;
 const SecondImage = styled.img`
   height: 510px;
   width: 400px;
-
   position: absolute;
   top: 0;
   left: 50%; /* 이미지의 좌측 모서리를 가운데로 이동 */
@@ -83,10 +81,9 @@ const SecondImage = styled.img`
 const ThirdImage = styled.img`
   height: 510px;
   width: 400px;
-
   position: absolute;
   top: 0;
-  right: 10%;
+  right: 15%;
 `;
 const FirstContainer = styled.div`
   height: 90vh;

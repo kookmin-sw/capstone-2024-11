@@ -66,7 +66,7 @@ function Camera() {
       .then((response) => {
         setIsLoading(false);
         console.log(response.data);
-        navigate("/result", { state: { data: response.data } });
+        navigate("/result", { state: { data: response.data, gender: gender } });
       })
       .catch((error) => {
         setIsLoading(false);

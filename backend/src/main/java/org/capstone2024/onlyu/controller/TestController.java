@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class TestController {
-    @PostMapping("/")
+    @GetMapping("/")
     @ResponseBody
     public String test(Model model){
         // 이미지, 성별, 생성형 이미지 유무, 이메일

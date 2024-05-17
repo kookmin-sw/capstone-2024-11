@@ -3,25 +3,34 @@ import styled from "styled-components";
 import First from "../../../../assets/plus1.png";
 import Second from "../../../../assets/plus2.png";
 import Third from "../../../../assets/result.png";
-
+import MainPersonal from "../../../../assets/MainPersonal.png";
+import MainShape from "../../../../assets/MainShape.png";
 const SecondOne = () => {
   return (
     <SecondOneContainer>
       <BlackCircle />
       <FirstContainer>
         <First1Container>
+          <LeftIMG src={MainPersonal} />
           <RightContainer>
             <TitleText>퍼스널 컬러</TitleText>
             <Text>
               퍼스널 컬러는 봄, 여름, 가을, 겨울로 분류됩니다. 이는 사용자의 타고난 피부톤에 기반하여 결정됩니다. 이를
               바탕으로 사용자의 퍼스널 컬러를 한 가지로 분류하고, 해당하는 카테고리에 어울리는 색상 팔레트를 제공합니다.
-              이를 통해 사용자에게 어떤 화장품, 의류 및 머리 색상이 가장 잘 어울릴지 추천해 줍니다.
+              이를 통해 사용자에게 어떤 화장품, 의류 및 머리 색상이 가장 잘 어울릴지 추천해 줍니다. 저는 퍼스널 컬러를
+              예측하는 모델을 개발하기 위해 앙상블 기법을 적용했습니다. 앙상블 기법은 여러 모델을 결합하여 더 나은
+              성능을 얻는 방법으로, 저는 XGBoost와 Random Forest Classification을 사용했습니다. 또한, Voting 기법을
+              활용하여 여러 모델의 예측 결과를 종합하여 최종 예측을 도출했습니다. 데이터셋은 퍼스널 컬러가 알려진 한국
+              연예인들로 구성되어 있었지만, 크기가 작아 모델 학습에 충분하지 않았습니다. 이를 해결하기 위해 Image
+              Augmentation 기법을 사용하여 데이터를 증가시켰습니다. 이 기법은 기존 이미지를 변형하여 새로운 데이터를
+              생성하는 방법입니다.
             </Text>
           </RightContainer>
         </First1Container>
       </FirstContainer>
       <SecondContainer>
         <Second1Container>
+          {/* <RightIMG src={MainShape} /> */}
           <LeftContainer>
             <TitleText>얼굴형 검출</TitleText>
             <Text>
@@ -48,7 +57,18 @@ const SecondOne = () => {
     </SecondOneContainer>
   );
 };
-
+const LeftIMG = styled.img`
+  position: absolute;
+  top: 30%;
+  left: 5%;
+  z-index: 5;
+`;
+const RightIMG = styled.img`
+  position: absolute;
+  top: 30%;
+  right: 5%;
+  z-index: 10;
+`;
 const SecondOneContainer = styled.div`
   height: 260vh;
   width: 100%;
@@ -75,7 +95,7 @@ const SecondImage = styled.img`
   width: 400px;
   position: absolute;
   top: 0;
-  left: 50%; /* 이미지의 좌측 모서리를 가운데로 이동 */
+  left: 50%; /* 이미지의 좌;측 모서리를 가운데로 이동 */
   transform: translateX(-50%); /* 이미지를 가운데로 정렬 */
 `;
 const ThirdImage = styled.img`
@@ -144,6 +164,7 @@ const TitleText = styled.p`
 const Text = styled.p`
   color: black;
   font-size: 1.2rem;
+  line-height: 2;
   text-align: center;
   padding: 1rem 16rem 1rem 16rem;
 `;

@@ -76,10 +76,10 @@ const BottomContainer = styled.div`
 `;
 const Text = styled.p`
   color: black;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   text-align: center;
   padding: 1rem 16rem 1rem 16rem;
-  line-height: 1.8;
+  line-height: 1.9;
 `;
 const PersonalColorMain = () => {
   return (

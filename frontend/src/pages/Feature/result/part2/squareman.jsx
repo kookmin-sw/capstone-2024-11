@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-import GirlRound from "../../../assets/roundman.png";
-import squareTalent1 from "../../../assets/square1.png";
-import squareTalent2 from "../../../assets/square2.png";
-import squareTalent3 from "../../../assets/square3.png";
+import GirlRound from "../../../../assets/roundman.png";
+import squareTalent1 from "../../../../assets/square1.png";
+import squareTalent2 from "../../../../assets/square2.png";
+import squareTalent3 from "../../../../assets/square3.png";
 
 const Squareman = () => {
   return (
@@ -20,11 +20,15 @@ const Squareman = () => {
           <GirlImg src={GirlRound} alt="각진 남자" />
         </ImgContainer>
         <MiddleRightContainer>
-          <H4> - 구렛나루를 기장을 주어서 시선을 아래로 끌어당겨주는게 좋아요</H4>
+          <H4>
+            {" "}
+            - 구렛나루를 기장을 주어서 시선을 아래로 끌어당겨주는게 좋아요
+          </H4>
           <H4> - 웨이브가 효과적인 방법일 수 있어요</H4>
           <H4>
             {" "}
-            - 머리를 길러 어느정도 얼굴형을 감싸는 것도 방법입니다. 요즘 유행하는 스타일과 다른것이 문제긴 하지만요
+            - 머리를 길러 어느정도 얼굴형을 감싸는 것도 방법입니다. 요즘
+            유행하는 스타일과 다른것이 문제긴 하지만요
           </H4>
           <H4> - 내린머리보다는 올린머리를 추천해요</H4>
         </MiddleRightContainer>
@@ -89,6 +93,9 @@ const BottomContainer = styled.div`
 `;
 const ImgContainer = styled.div`
   width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 const ImgContainer2 = styled.div`
   width: 100%;

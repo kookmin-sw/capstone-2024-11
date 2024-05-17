@@ -7,11 +7,90 @@ import ResultDiv1 from "./result/resultDiv1";
 import ResultDiv2 from "./result/resultDiv2";
 import ResultDiv3 from "./result/resultDiv3";
 import { useLocation } from "react-router-dom";
+import Springman from "./result/part1/springman";
+import Summerman from "./result/part1/summerman";
+import Fallman from "./result/part1/fallman";
+import Winterman from "./result/part1/winterman";
+import Spring from "./result/part1/spring";
+import Summer from "./result/part1/summer";
+import Fall from "./result/part1/fall";
+import Winter from "./result/part1/winter";
+import Longman from "./result/part2/longman";
+import Roundman from "./result/part2/roundman";
+import Squareman from "./result/part2/squareman";
 
 const Result = () => {
   const { state } = useLocation();
   const data = state.data;
-  console.log(data);
+  const personal_color = data.predictColorRes.xgb;
+  const shape = data.predictShapeRes;
+  const gender = state.gender;
+
+  const renderFirstSlide = () => {
+    if (gender === "male") {
+      switch (personal_color) {
+        case "봄":
+          return <Springman />;
+
+        case "여름":
+          return <Summerman />;
+        case "가을":
+          return <Fallman />;
+
+        case "겨울":
+          return <Winterman />;
+
+        default:
+          break;
+      }
+    } else if (gender === "female") {
+      switch (personal_color) {
+        case "봄":
+          return <Spring />;
+
+        case "여름":
+          return <Summer />;
+        case "가을":
+          return <Fall />;
+
+        case "겨울":
+          return <Winter />;
+
+        default:
+          break;
+      }
+    }
+  };
+
+  const renderSecondSlide = () => {
+    if (gender === "male") {
+      switch (shape) {
+        case "긴 형":
+          return <Longman />;
+
+        case "둥근형":
+          return <Roundman />;
+        case "각진형":
+          return <Squareman />;
+
+        default:
+          break;
+      }
+    } else if (gender === "female") {
+      switch (shape) {
+        case "긴 형":
+          return <ResultDiv2 />;
+
+        case "둥근형":
+          return <ResultDiv2 />;
+        case "각진형":
+          return <ResultDiv2 />;
+
+        default:
+          break;
+      }
+    }
+  };
 
   const Slidersettings = {
     dots: true,
@@ -24,8 +103,8 @@ const Result = () => {
     <MainContainer>
       <ResultContainer className="slider-container">
         <StyledSlider {...Slidersettings}>
-          <ResultDiv1></ResultDiv1>
-          <ResultDiv2 />
+          {renderFirstSlide()}
+          {renderSecondSlide()}
           <ResultDiv3 images={data.images} />
         </StyledSlider>
       </ResultContainer>

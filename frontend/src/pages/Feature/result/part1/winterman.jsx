@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import Girl from "../../../assets/GirlRound.png";
-import BestMatch from "../../../assets/BestColor.png";
+import Girl from "../../../../assets/GirlRound.png";
+import BestMatch from "../../../../assets/BestColor.png";
+import WinterMan from "../../../../assets/WinterMan.png";
 
 const Winterman = () => {
   return (
@@ -10,9 +11,10 @@ const Winterman = () => {
         <Title>Personal Color</Title>
         <LeftBottomContainer>
           <PersonalResult>
-            퍼스널 컬러는 <StrongPersonalResult>겨울</StrongPersonalResult>입니다
+            퍼스널 컬러는 <StrongPersonalResult>겨울</StrongPersonalResult>
+            입니다
           </PersonalResult>
-          <GirlImg src={Girl}></GirlImg>
+          <GirlImg src={WinterMan}></GirlImg>
           <HashTagContainer>
             <HashTag>#세련됨</HashTag>
             <HashTag>#도시적인</HashTag>
@@ -28,12 +30,17 @@ const Winterman = () => {
           <Detail>
             <Detailtitle>1. 깔끔하고 직선적인 헤어스타일</Detailtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp; 왁스와 같은 스타일링 제품을 사용해서 반듯한 느낌으로 고정해주세요
+              • &nbsp;&nbsp; 왁스와 같은 스타일링 제품을 사용해서 반듯한
+              느낌으로 고정해주세요
             </Detailsubtitle>
             <Detailtitle>2. 염색 선택 시 주의사항</Detailtitle>
-            <Detailsubtitle>• &nbsp;&nbsp;노란기가 도는 따뜻한 브라운 컬러는 피하시는게 좋아요.</Detailsubtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;검정색이 가장 잘 어울리니 헤어컬러도 최대한 어둡게 유지하는 걸 추천해요.
+              • &nbsp;&nbsp;노란기가 도는 따뜻한 브라운 컬러는 피하시는게
+              좋아요.
+            </Detailsubtitle>
+            <Detailsubtitle>
+              • &nbsp;&nbsp;검정색이 가장 잘 어울리니 헤어컬러도 최대한 어둡게
+              유지하는 걸 추천해요.
             </Detailsubtitle>
           </Detail>
         </HairStyleContainer>
@@ -41,10 +48,12 @@ const Winterman = () => {
           <Subtitle>#패션</Subtitle>
           <Detail>
             <Detailtitle>1. 겨울 타입에 어울리는 옷 스타일</Detailtitle>
-            <Detailsubtitle>• &nbsp;&nbsp;최대한 어두운 색이 많이 보이게 스타일링하세요.</Detailsubtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;올블랙을 멋지게 소화할 것 같아요. 상하의 전부다 어두운 색이 많이 보이도록 코디를 하는게
-              좋아요
+              • &nbsp;&nbsp;최대한 어두운 색이 많이 보이게 스타일링하세요.
+            </Detailsubtitle>
+            <Detailsubtitle>
+              • &nbsp;&nbsp;올블랙을 멋지게 소화할 것 같아요. 상하의 전부다
+              어두운 색이 많이 보이도록 코디를 하는게 좋아요
             </Detailsubtitle>
           </Detail>
         </FashonContainer>
@@ -54,10 +63,12 @@ const Winterman = () => {
             <Detailtitle>1. 시크한 이미지의 스타일</Detailtitle>
             <Detailsubtitle>• &nbsp;&nbsp;크기가 큰 패턴</Detailsubtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;화사한 색으로 포인트를 주고 싶다면 이너를 쨍한 컬러로 선택하는 것도 좋은 방법이에요.
+              • &nbsp;&nbsp;화사한 색으로 포인트를 주고 싶다면 이너를 쨍한
+              컬러로 선택하는 것도 좋은 방법이에요.
             </Detailsubtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;밝응ㄴ 컬러를 입고 싶다면 밝은 그레이 컬러를 활용하는 것도 좋은 방법이에요
+              • &nbsp;&nbsp;밝응ㄴ 컬러를 입고 싶다면 밝은 그레이 컬러를
+              활용하는 것도 좋은 방법이에요
             </Detailsubtitle>
           </Detail>
         </MakeupContainer>

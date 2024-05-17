@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import SpringGirl from "../../../assets/springGirl.png";
-import Girl from "../../../assets/GirlRound.png";
-import BestMatch from "../../../assets/BestColor.png";
+import SpringGirl from "../../../../assets/springGirl.png";
+import Girl from "../../../../assets/GirlRound.png";
+import BestMatch from "../../../../assets/BestColor.png";
 // import WorstMatch from "../../../assets/WorstColor.png";
 
 const Spring = () => {
@@ -31,17 +31,21 @@ const Spring = () => {
           <Detail>
             <Detailtitle>1. 부드러운 웨이브가 가미된 헤어스타일</Detailtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;반듯하고 딱딱한 느낌보다는 부드러운 느낌의 웨이브가 어울립니다.
+              • &nbsp;&nbsp;반듯하고 딱딱한 느낌보다는 부드러운 느낌의 웨이브가
+              어울립니다.
             </Detailsubtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;중간정도의 S컬이나 C 컬 정도가 봄 타입의 여성스러움과 귀여움을 잘 나타냅니다.
+              • &nbsp;&nbsp;중간정도의 S컬이나 C 컬 정도가 봄 타입의
+              여성스러움과 귀여움을 잘 나타냅니다.
             </Detailsubtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;앞머리나 애교머리도 웨이브 느낌으로 빠져나오게 해줘도 좋습니다.
+              • &nbsp;&nbsp;앞머리나 애교머리도 웨이브 느낌으로 빠져나오게
+              해줘도 좋습니다.
             </Detailsubtitle>
             <Detailtitle>2. 염색 선택 시 주의사항</Detailtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;반듯하고 딱딱한 느낌보다는 부드러운 느낌의 웨이브가 어울립니다.
+              • &nbsp;&nbsp;반듯하고 딱딱한 느낌보다는 부드러운 느낌의 웨이브가
+              어울립니다.
             </Detailsubtitle>
           </Detail>
         </HairStyleContainer>
@@ -50,13 +54,17 @@ const Spring = () => {
           <Detail>
             <Detailtitle>1. 봄 타입에 어울리는 옷 스타일</Detailtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;봄 특유의 화사하면서도 샤랄라한 느낌이 잘 표현되는 옷이 잘 어울립니다.
+              • &nbsp;&nbsp;봄 특유의 화사하면서도 샤랄라한 느낌이 잘 표현되는
+              옷이 잘 어울립니다.
             </Detailsubtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;선이 딱 떨어지는 정장보다는 셔링, 퍼프 디테일이 가미된 스타일이 봄 타입의 매력을 더 돋보이게
-              해줍니다.
+              • &nbsp;&nbsp;선이 딱 떨어지는 정장보다는 셔링, 퍼프 디테일이
+              가미된 스타일이 봄 타입의 매력을 더 돋보이게 해줍니다.
             </Detailsubtitle>
-            <Detailsubtitle>• &nbsp;&nbsp;빳빳한 소재보다는 니트, 쉬폰 같은 부드러운 소재들이 좋습니다.</Detailsubtitle>
+            <Detailsubtitle>
+              • &nbsp;&nbsp;빳빳한 소재보다는 니트, 쉬폰 같은 부드러운 소재들이
+              좋습니다.
+            </Detailsubtitle>
           </Detail>
         </FashonContainer>
         <MakeupContainer>
@@ -64,14 +72,16 @@ const Spring = () => {
           <Detail>
             <Detailtitle>1. 은은한 광택이 있는 메이크업 스타일</Detailtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;피부표현은 쿠션이나 파운데이션을 사용하여 광택감을 살려줍니다.
+              • &nbsp;&nbsp;피부표현은 쿠션이나 파운데이션을 사용하여 광택감을
+              살려줍니다.
             </Detailsubtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;아이섀도우는 샤이니한 질감의 펄을 사용하여 은은한 광택을 연출해줍니다.
+              • &nbsp;&nbsp;아이섀도우는 샤이니한 질감의 펄을 사용하여 은은한
+              광택을 연출해줍니다.
             </Detailsubtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;립은 너무 매트한 립보다는 살짝 글로시한 립 제품을 선택하여 봄 특유의 맑고 깨끗한 느낌을
-              강조합니다.
+              • &nbsp;&nbsp;립은 너무 매트한 립보다는 살짝 글로시한 립 제품을
+              선택하여 봄 특유의 맑고 깨끗한 느낌을 강조합니다.
             </Detailsubtitle>
           </Detail>
         </MakeupContainer>

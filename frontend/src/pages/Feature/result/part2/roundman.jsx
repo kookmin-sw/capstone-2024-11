@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-import GirlRound from "../../../assets/roundman.png";
-import RoundTalent1 from "../../../assets/round1.png";
-import RoundTalent2 from "../../../assets/round2.png";
-import RoundTalent3 from "../../../assets/round3.png";
+import GirlRound from "../../../../assets/roundman.png";
+import RoundTalent1 from "../../../../assets/round1.png";
+import RoundTalent2 from "../../../../assets/round2.png";
+import RoundTalent3 from "../../../../assets/round3.png";
 
 const Roundman = () => {
   return (
@@ -20,8 +20,14 @@ const Roundman = () => {
           <GirlImg src={GirlRound} alt="둥근 남자" />
         </ImgContainer>
         <MiddleRightContainer>
-          <H4> - 둥근얼굴형의 둥근 형태를 계란형으로 만드는 것이 기본입니다.</H4>
-          <H4> - 투블럭이 잘 어울려요. 가로폭을 축소시켜주어서 계란형으로 만듭니다.</H4>
+          <H4>
+            {" "}
+            - 둥근얼굴형의 둥근 형태를 계란형으로 만드는 것이 기본입니다.
+          </H4>
+          <H4>
+            {" "}
+            - 투블럭이 잘 어울려요. 가로폭을 축소시켜주어서 계란형으로 만듭니다.
+          </H4>
           <H4> - 리젠트펌 같이 앞머리를 세우면 세로길이를 확보할 수 있어요</H4>
           <H4> - 5대5 가르마가 잘 어울려요</H4>
           <H4> - 포마드 머리도 잘 어울려요</H4>
@@ -87,6 +93,9 @@ const BottomContainer = styled.div`
 `;
 const ImgContainer = styled.div`
   width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 const ImgContainer2 = styled.div`
   width: 100%;

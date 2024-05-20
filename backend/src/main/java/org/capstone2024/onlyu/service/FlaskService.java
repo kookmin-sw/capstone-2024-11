@@ -1,7 +1,10 @@
 package org.capstone2024.onlyu.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.capstone2024.onlyu.dto.StartDto;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -22,7 +25,7 @@ import java.util.Map;
 public class FlaskService {
 
     @Transactional
-    public Map<String, Object> predict_color_flask(MultipartFile image){
+    public Map<String, Object> predict_color_flask(MultipartFile image, StartDto startDto){
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
@@ -30,6 +33,15 @@ public class FlaskService {
 
         MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
         body.add("image", image.getResource());
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String startDtoJson;
+        try {
+            startDtoJson = objectMapper.writeValueAsString(startDto);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+        body.add("data", startDtoJson);
         HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
         return restTemplate.postForObject(url, requestEntity, Map.class);
     }

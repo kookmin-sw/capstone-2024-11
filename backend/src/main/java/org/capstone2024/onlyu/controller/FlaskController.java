@@ -30,7 +30,7 @@ public class FlaskController {
     @RequestMapping(value = "/start", method = RequestMethod.POST)
     public PredictResult start(@RequestPart("data") StartDto startDto,
             @RequestPart("file") MultipartFile image){
-        Map<String, Object> predict_color_res = flaskService.predict_color_flask(image);
+        Map<String, Object> predict_color_res = flaskService.predict_color_flask(image, startDto);
         Map<String, Object> predict_shape_res = flaskService.predict_shape_flask();
 
         PredictResult predict_result = new PredictResult();

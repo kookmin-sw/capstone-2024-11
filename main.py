@@ -10,13 +10,15 @@ import pandas as pd
 import shutil
 import base64
 
-from flask import Flask, request, jsonify
+from flask import Flask, request
+import json
 
 import shape_detect.controller
 
 app = Flask(__name__)
 
 image_path = os.path.join(os.path.dirname(__file__), "predict_image")
+info_path = os.path.join(os.path.dirname(__file__), "info.csv")
 filename = ""
 pc_model : PersonalColorModel = joblib.load('./model_v2.pkl')
 ss = joblib.load("./scaler_v2.pkl")
@@ -33,11 +35,13 @@ def hello_world():
 def predict_color():
     global features, pc_model, ss, current_image_path
     # 이미지 저장
+
     f = request.files['image']
+    data = json.loads(request.form.get("data"))
 
     type = f.filename[f.filename.rfind("."):]
 
-    folder_path = os.path.join(image_path, f.filename.replace(".", "_"))
+    folder_path = os.path.join(image_path, data["email"])
     f_path = os.path.join(folder_path, "origin_img" + type)
 
     if os.path.exists(folder_path):
@@ -46,6 +50,11 @@ def predict_color():
     os.makedirs(folder_path)
 
     f.save(f_path)
+
+    # 생성형 이미지를 위한 정보 저장
+    df = pd.read_csv(info_path)
+    df.loc[len(df)] = [data["email"], data["gender"], data["gan_permission"], f_path]
+    df.to_csv(info_path, mode = 'w', index=False)
 
     current_image_path = f_path[:]
     print(current_image_path)

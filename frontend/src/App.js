@@ -1,9 +1,10 @@
-// import Navbar from "./components/header/navbar";
 import MainPage from "./pages/mainPage";
+import GlobalStyle from "./styles/GlobalStyle";
 
 function App() {
   return (
     <div className="App">
+      <GlobalStyle />
       <MainPage />
     </div>
   );

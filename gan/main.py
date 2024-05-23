@@ -13,6 +13,8 @@ from models.Alignment import Alignment
 from models.Embedding import Embedding
 
 import os
+from dotenv import load_dotenv
+from smtp import sendEmail
 
 current_directory = os.getcwd()
 print("현재 작업 디렉토리:", current_directory)
@@ -47,7 +49,10 @@ def get_im_paths_not_embedded(im_paths: Set[str]) -> List[str]:
 
 
 def main(args):
-
+    if not len(args.email):
+        print("E-mail address required")
+        return 
+    
     set_seed(42)
 
     ii2s = Embedding(args)
@@ -76,12 +81,22 @@ def main(args):
     align = Alignment(args)
     align.align_images(im_path1, im_path2, sign=args.sign, align_more_region=False, smooth=args.smooth)
 
+    # Step 3 : Send result image to client!
+    load_dotenv()
+
+    sender = os.environ.get("sender")
+    sender_pw = os.environ.get("sender_pw")
+
+    sendEmail(args.email, "style_your_hair_output/wo_round_wo_square.png", sender, sender_pw)
+
+
 
 
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='Style Your Hair')
-
+    #client email
+    parser.add_argument('--email', type=str, default="", help='client email')
     # flip
     parser.add_argument('--flip_check', action='store_true', help='image2 might be flipped')
 

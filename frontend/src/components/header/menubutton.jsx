@@ -45,7 +45,8 @@ const Span = styled.span`
 
 const TopSpan = styled(Span)`
   top: ${(props) => (props.isChecked ? "50%" : "0")};
-  transform: translateY(-50%) ${(props) => (props.isChecked ? "rotate(45deg)" : "none")};
+  transform: translateY(-50%)
+    ${(props) => (props.isChecked ? "rotate(45deg)" : "none")};
 `;
 
 const MiddleSpan = styled(Span)`
@@ -55,7 +56,8 @@ const MiddleSpan = styled(Span)`
 
 const BottomSpan = styled(Span)`
   bottom: ${(props) => (props.isChecked ? "50%" : "0")};
-  transform: translateY(50%) ${(props) => (props.isChecked ? "rotate(-45deg)" : "none")};
+  transform: translateY(50%)
+    ${(props) => (props.isChecked ? "rotate(-45deg)" : "none")};
 `;
 
 const StyledCheckbox = () => {
@@ -67,7 +69,7 @@ const StyledCheckbox = () => {
 
   return (
     <>
-      <Sidebar isChecked={isChecked}>ㅁㄴㅇㄹ</Sidebar>
+      <Sidebar isChecked={isChecked}>추가 예정</Sidebar>
       <Input checked={isChecked} onChange={handleCheckboxChange} />
       <LabelContainer>
         <Label>

@@ -108,6 +108,7 @@ def test():
     return str(pc_model.test([[0] * 13]))
 
 from shape_detect.controller import get_shape
+from shape_detect.resize import resize_img
 @app.route('/predict_shape', methods =['GET'])
 def predict_shape():
     global current_image_path
@@ -131,6 +132,8 @@ def predict_shape():
     
     res['probability'] = probability
     print(res)
+
+    resize_img(current_image_path)
     
     return res
 

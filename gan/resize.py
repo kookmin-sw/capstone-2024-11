@@ -26,6 +26,6 @@ def resize_img(path):
         elif orientation == 8:
             resized_image = resized_image.transpose(Image.ROTATE_90)
 
-    resized_image.save(f"./input/{file_name}")
+    resized_image.save(f"./gan/input/{file_name}")
     print("조정된 이미지 경로:", f"./gan/input/{file_name}" )
     print("조정된 이미지 크기:", resized_image.size)

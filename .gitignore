@@ -13,3 +13,4 @@ predict_image/*
 __pycache__
 .vscode
 *.idea
+.env

@@ -1,9 +1,10 @@
 from PIL import Image
-
+import os
 
 def resize_img(path):
     image_path = path
     image = Image.open(image_path)
+    file_name = os.path.basename(path)
 
     # 이미지 회전 상태 확인
     orientation = 1  # 기본적으로 회전되지 않은 상태
@@ -25,6 +26,6 @@ def resize_img(path):
         elif orientation == 8:
             resized_image = resized_image.transpose(Image.ROTATE_90)
 
-    resized_image.save(image_path)
-    print("조정된 이미지 경로:", image_path)
+    resized_image.save(f"./input/{file_name}")
+    print("조정된 이미지 경로:", f"./gan/input/{file_name}" )
     print("조정된 이미지 크기:", resized_image.size)

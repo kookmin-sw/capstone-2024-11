@@ -49,9 +49,6 @@ def get_im_paths_not_embedded(im_paths: Set[str]) -> List[str]:
 
 
 def main(args):
-    if not len(args.email):
-        print("E-mail address required")
-        return 
     
     set_seed(42)
 
@@ -80,14 +77,15 @@ def main(args):
     # Step 2 : Hairstyle transfer using the above embedded vector or tensor
     align = Alignment(args)
     align.align_images(im_path1, im_path2, sign=args.sign, align_more_region=False, smooth=args.smooth)
+    
+    if len(args.email):
+        load_dotenv()
+        im_name_1 = os.path.splitext(os.path.basename(im_path1))[0]
+        im_name_2 = os.path.splitext(os.path.basename(im_path2))[0]
+        sender = os.environ.get("sender")
+        sender_pw = os.environ.get("sender_pw")
 
-    load_dotenv()
-    im_name_1 = os.path.splitext(os.path.basename(im_path1))[0]
-    im_name_2 = os.path.splitext(os.path.basename(im_path2))[0]
-    sender = os.environ.get("sender")
-    sender_pw = os.environ.get("sender_pw")
-
-    sendEmail(args.email, f"style_your_hair_output/{im_name_1}_{im_name_2}.png", sender, sender_pw)
+        sendEmail(args.email, f"style_your_hair_output/{im_name_1}_{im_name_2}.png", sender, sender_pw)
 
 
 

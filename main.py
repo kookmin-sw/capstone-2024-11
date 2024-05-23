@@ -20,12 +20,14 @@ app = Flask(__name__)
 image_path = os.path.join(os.path.dirname(__file__), "predict_image")
 info_path = os.path.join(os.path.dirname(__file__), "info.csv")
 filename = ""
+num = 1
 pc_model : PersonalColorModel = joblib.load('./model_v2.pkl')
 ss = joblib.load("./scaler_v2.pkl")
 features = ['Hair_Red', 'Hue', 'Saturation', 'Cr', 'Cb', 'L',
             'A', 'B', 'New Blue', 'Eye_Red', 'Eye_Blue', 'New Green', 'New Red']
 
 current_image_path = ""
+current_image_name = ""
 
 @app.route('/')
 def hello_world():
@@ -33,7 +35,7 @@ def hello_world():
 
 @app.route('/predict_color', methods = ['POST'])
 def predict_color():
-    global features, pc_model, ss, current_image_path
+    global features, pc_model, ss, current_image_path, current_image_name, num
     # 이미지 저장
 
     f = request.files['image']
@@ -41,7 +43,12 @@ def predict_color():
 
     type = f.filename[f.filename.rfind("."):]
 
+    if data["email"] == "":
+        data["email"] = "image{}".format(num)
+        num += 1
+    
     folder_path = os.path.join(image_path, data["email"])
+
     f_path = os.path.join(folder_path, "origin_img" + type)
 
     if os.path.exists(folder_path):
@@ -57,7 +64,8 @@ def predict_color():
     df.to_csv(info_path, mode = 'w', index=False)
 
     current_image_path = f_path[:]
-    print(current_image_path)
+    current_image_name = data["email"][:]
+
     
     # 데이터 추출
     data = total_data_extract(f_path, True)
@@ -133,7 +141,7 @@ def predict_shape():
     res['probability'] = probability
     print(res)
 
-    resize_img(current_image_path)
+    resize_img(current_image_path, current_image_name)
     
     return res
 

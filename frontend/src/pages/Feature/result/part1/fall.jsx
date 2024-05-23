@@ -112,19 +112,20 @@ const Subtitle = styled.div`
 `;
 const Detail = styled.div`
   padding: 0px 2rem 0px 2rem;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 `;
 const Detailtitle = styled.div`
-  padding: 0px 0rem 0px 0rem;
+  padding: 1rem 1rem 0.5rem 1rem;
   font-size: 1.2rem;
   font-weight: 500;
   /* margin-top: 1rem; */
 `;
 const Detailsubtitle = styled.div`
   padding: 0px 2rem 0px 2rem;
-  margin: 3px 0 3px 0;
+  margin: 0.5rem 0 3px 0;
   font-size: 1.1rem;
   font-weight: 400;
+  line-height: 1.5;
 `;
 const HashTagContainer = styled.div`
   width: auto;
@@ -148,14 +149,7 @@ const MainContainer = styled.div`
   display: flex;
   height: 90vh;
   flex-direction: row;
-  /* justify-content: center; */
   align-items: center;
-  /* width: 100%;
-  background: linear-gradient(
-    180deg,
-    rgba(176, 216, 245, 1) 2.318840579710145%,
-    rgba(255, 255, 255, 1) 95.07246376811594%
-  ); */
 `;
 const LeftContainer = styled.div`
   width: 40%;
@@ -191,7 +185,7 @@ const PersonalResult = styled.div`
   display: flex;
   align-items: center;
   margin-top: 5rem;
-  /* margin-bottom: rem; */
+  margin-bottom: 1rem;
   font-size: 1.3rem;
   font-weight: 600;
 `;

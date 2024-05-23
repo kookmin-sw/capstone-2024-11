@@ -98,18 +98,20 @@ const Subtitle = styled.div`
 `;
 const Detail = styled.div`
   padding: 0px 2rem 0px 2rem;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 `;
 const Detailtitle = styled.div`
-  padding: 0px 0rem 0px 0rem;
+  padding: 1rem 1rem 0.5rem 1rem;
   font-size: 1.2rem;
   font-weight: 500;
+  /* margin-top: 1rem; */
 `;
 const Detailsubtitle = styled.div`
   padding: 0px 2rem 0px 2rem;
-  margin: 3px 0 3px 0;
+  margin: 0.5rem 0 3px 0;
   font-size: 1.1rem;
   font-weight: 400;
+  line-height: 1.5;
 `;
 const HashTagContainer = styled.div`
   width: auto;
@@ -146,6 +148,7 @@ const LeftContainer = styled.div`
     rgba(176, 216, 245, 1) 2.318840579710145%,
     rgba(255, 255, 255, 1) 95.07246376811594%
   );
+  /* background-color: #467359; */
 `;
 const Title = styled.h2`
   margin: 2rem 0rem 0rem 2rem;
@@ -154,8 +157,10 @@ const Title = styled.h2`
 `;
 const LeftBottomContainer = styled.div`
   align-items: center;
+  /* justify-content: center; */
   display: flex;
   flex-direction: column;
+  /* background-color: saddlebrown; */
   width: 100%;
   height: 100%;
 `;
@@ -166,6 +171,7 @@ const PersonalResult = styled.div`
   display: flex;
   align-items: center;
   margin-top: 5rem;
+  margin-bottom: 1rem;
   font-size: 1.3rem;
   font-weight: 600;
 `;
@@ -178,5 +184,6 @@ const RightContainer = styled.div`
   height: 100%;
   padding-left: 3rem;
   padding-right: 3rem;
+  /* background-color: blue; */
 `;
 export default Winterman;

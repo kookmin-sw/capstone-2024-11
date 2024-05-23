@@ -80,7 +80,7 @@ Therefore, we aim to provide a service that reduces these costs and time, enabli
 
 <br>
 
-# [🔗 소개 영상 🔗](www.youtube.com)
+# [🔗 소개 영상 🔗](https://youtu.be/UQUVMSHfx0k)
 
 <br>
 

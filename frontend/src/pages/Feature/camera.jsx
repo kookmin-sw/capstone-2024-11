@@ -21,7 +21,7 @@ function Camera() {
   // console.log(gender);
   // console.log(createImageChecked);
   const videoConstraints = {
-    width: 1000,
+    width: 720,
     height: 720,
     facingMode: "user",
   };
@@ -59,7 +59,10 @@ function Camera() {
       gan_permission: createImageChecked,
     };
 
-    formdata.append("data", new Blob([JSON.stringify(data)], { type: "application/json" }));
+    formdata.append(
+      "data",
+      new Blob([JSON.stringify(data)], { type: "application/json" })
+    );
     formdata.append("file", base64ToFile(imageSrc, "test.jpg"));
 
     // .post("https://onyou.loca.lt/start", formdata)
@@ -82,11 +85,16 @@ function Camera() {
         audio={false}
         height={720}
         screenshotFormat="image/jpeg"
-        width={1280}
-        videoConstraints={videoConstraints}>
+        width={720}
+        videoConstraints={videoConstraints}
+      >
         {({ getScreenshot }) => (
           <>
-            <ImageButton src={CameraBtn} alt="Capture" onClick={() => CapturePhoto(getScreenshot)} />
+            <ImageButton
+              src={CameraBtn}
+              alt="Capture"
+              onClick={() => CapturePhoto(getScreenshot)}
+            />
             <FaceRectangle />
           </>
         )}
@@ -161,10 +169,10 @@ const ImageButton = styled.img`
 `;
 const FaceRectangle = styled.div`
   position: absolute;
-  top: 200px;
-  left: calc(50% - 200px); /* 화면 중앙에 위치하도록 설정 */
-  width: 400px;
-  height: 400px;
+  top: 150px;
+  left: calc(50% - 250px); /* 화면 중앙에 위치하도록 설정 */
+  width: 500px;
+  height: 500px;
   border: 2px solid #ff0000;
 `;
 export default Camera;

@@ -81,13 +81,13 @@ def main(args):
     align = Alignment(args)
     align.align_images(im_path1, im_path2, sign=args.sign, align_more_region=False, smooth=args.smooth)
 
-    # Step 3 : Send result image to client!
     load_dotenv()
-
+    im_name_1 = os.path.splitext(os.path.basename(im_path1))[0]
+    im_name_2 = os.path.splitext(os.path.basename(im_path2))[0]
     sender = os.environ.get("sender")
     sender_pw = os.environ.get("sender_pw")
 
-    sendEmail(args.email, "style_your_hair_output/wo_round_wo_square.png", sender, sender_pw)
+    sendEmail(args.email, f"style_your_hair_output/{im_name_1}_{im_name_2}.png", sender, sender_pw)
 
 
 
@@ -126,7 +126,7 @@ if __name__ == "__main__":
     # utils
     parser.add_argument('--version', type=str, default='v1', help='version name')
     parser.add_argument('--save_all', action='store_true',help='save all output from whole process')
-    parser.add_argument('--embedding_dir', type=str, default='./gan/output/', help='embedding vector directory')
+    parser.add_argument('--embedding_dir', type=str, default='./style_your_hair_output/', help='embedding vector directory')
 
     # I/O arguments
     parser.add_argument('--input_dir', type=str, default='./predict_image/',

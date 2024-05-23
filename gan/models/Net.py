@@ -19,10 +19,10 @@ class Net(nn.Module):
     def load_weights(self):
         if not os.path.exists(self.opts.ckpt):
             print('Downloading StyleGAN2 checkpoint: {}'.format(self.opts.ckpt))
-            download_weight(self.opts.ckpt)
+            download_weight(os.path.join("C:\\Users\\USER\\Desktop\\capstone-2024-11", self.opts.ckpt))
 
         print('Loading StyleGAN2 from checkpoint: {}'.format(self.opts.ckpt))
-        checkpoint = torch.load(self.opts.ckpt, map_location=self.opts.device)
+        checkpoint = torch.load(os.path.join("C:\\Users\\USER\\Desktop\\capstone-2024-11", self.opts.ckpt), map_location=self.opts.device)
         device = self.opts.device
         self.generator.load_state_dict(checkpoint['g_ema'])
         #import pdb; pdb.set_trace()
@@ -62,7 +62,7 @@ class Net(nn.Module):
     def load_PCA_model(self):
         device = self.opts.device
 
-        PCA_path = self.opts.ckpt[:-3] + '_PCA.npz'
+        PCA_path = os.path.join("C:\\Users\\USER\\Desktop\\capstone-2024-11", self.opts.ckpt)[:-3] + '_PCA.npz'
 
         if not os.path.isfile(PCA_path):
             self.build_PCA_model(PCA_path)

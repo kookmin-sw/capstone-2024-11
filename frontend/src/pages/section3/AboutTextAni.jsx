@@ -81,6 +81,9 @@ const Container = styled.div`
   height: 100%;
   justify-content: center;
 `;
+const Span = styled.span`
+  margin: 1rem 0 1rem 0;
+`;
 
 const Trail = ({ open, children }) => {
   const items = React.Children.toArray(children);
@@ -131,10 +134,10 @@ const AboutTextAni = () => {
   return (
     <Container ref={ref}>
       <Trail open={open}>
-        <span>소프트웨어학부 20191660 전병우</span>
-        <span>소프트웨어학부 20191660 전병우</span>
-        <span>소프트웨어학부 20191660 전병우</span>
-        <span>소프트웨어학부 20191660 전병우</span>
+        <Span>소프트웨어학부 20191660 전병우</Span>
+        <Span>소프트웨어학부 20191660 전병우</Span>
+        <Span>소프트웨어학부 20191660 전병우</Span>
+        <Span>소프트웨어학부 20191660 전병우</Span>
       </Trail>
     </Container>
   );

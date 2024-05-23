@@ -4,6 +4,7 @@ import PersonalColorMain from "./personal_color/PesonalColorMain";
 import HairStyleMain from "./hair_style/hairstylemain";
 import Introduce from "./introduce/introduce";
 import FlowingLogo from "../../components/flowingLogo";
+import WaveAnimation from "../../components/waveAnimation";
 const Section2Container = styled.div`
   width: 100%;
   height: 800vh;
@@ -16,9 +17,13 @@ const Section2Container = styled.div`
 const Section2Main = () => {
   return (
     <Section2Container>
-      <Introduce />
-      <PersonalColorMain />
       <FlowingLogo />
+      <div>
+        <WaveAnimation />
+      </div>
+      <Introduce />
+      <FlowingLogo />
+      <PersonalColorMain />
     </Section2Container>
   );
 };

@@ -67,5 +67,7 @@ const Text = styled.p`
   color: white;
   font-size: 1.3rem;
   text-align: center;
+  line-height: 160%;
+  margin: 0 2rem 0 2rem;
 `;
 export default IntroduceFirst;

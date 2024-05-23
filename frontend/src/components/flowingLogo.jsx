@@ -14,13 +14,17 @@ const slideAnimation = keyframes`
 const LogosContainer = styled.div`
   margin-top: 5rem;
   width: 100%;
-  height: 100px;
+  height: 130px;
+  background-color: black;
+  display: flex;
+  align-items: center;
   position: relative;
   overflow: hidden;
 `;
 
 const ImageBox = styled.div`
   display: flex;
+  background-color: #33b0ff;
   width: calc(277px * 20); /* Adjust according to the number of images times 2 */
   animation: ${slideAnimation} 20s linear infinite; /* Double the animation duration */
 `;

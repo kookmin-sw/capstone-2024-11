@@ -157,9 +157,10 @@ const LeftContainer = styled.div`
 `;
 const TitleText = styled.p`
   color: black;
-  font-size: 3rem;
-  font-weight: 700;
+  font-size: 4rem;
+  font-weight: 500;
   text-align: center;
+  margin: 5rem 0 2rem 0;
 `;
 const Text = styled.p`
   color: black;

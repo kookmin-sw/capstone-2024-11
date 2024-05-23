@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Girl from "../../../../assets/Fall.png";
 import BestMatch from "../../../../assets/BestColor.png";
 import FallMan from "../../../../assets/FallMan.png";
 
@@ -31,21 +30,16 @@ const Fallman = () => {
           <Detail>
             <Detailtitle>1. 부드러운 웨이브가 가미된 헤어스타일</Detailtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;반듯하고 딱딱한 느낌보다는 부드러운 느낌의 웨이브가
-              어울립니다.
+              • &nbsp;&nbsp;반듯하고 딱딱한 느낌보다는 부드러운 느낌의 웨이브가 어울립니다.
             </Detailsubtitle>
-            <Detailsubtitle>
-              • &nbsp;&nbsp;컬이 풀어진듯 자연스러운 컬이 어울려요
-            </Detailsubtitle>
+            <Detailsubtitle>• &nbsp;&nbsp;컬이 풀어진듯 자연스러운 컬이 어울려요</Detailsubtitle>
             <Detailtitle>2. 염색 선택 시 주의사항</Detailtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp; 노란기가 들어간 탁한 브라운 컬러들로 선택을
-              해주시는게 좋아요.
+              • &nbsp;&nbsp; 노란기가 들어간 탁한 브라운 컬러들로 선택을 해주시는게 좋아요.
             </Detailsubtitle>
 
             <Detailsubtitle>
-              • &nbsp;&nbsp; 어울리는 색으로는 다크브라운, 초코브라운, 너무 밝지
-              않은 레드 브라운도 괜찮은 컬러입니다.
+              • &nbsp;&nbsp; 어울리는 색으로는 다크브라운, 초코브라운, 너무 밝지 않은 레드 브라운도 괜찮은 컬러입니다.
             </Detailsubtitle>
           </Detail>
         </HairStyleContainer>
@@ -53,20 +47,16 @@ const Fallman = () => {
           <Subtitle>#패션</Subtitle>
           <Detail>
             <Detailtitle>1. 가을 타입에 어울리는 옷 스타일</Detailtitle>
+            <Detailsubtitle>• &nbsp;&nbsp;탁한 컬러들이 어울려요</Detailsubtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;탁한 컬러들이 어울려요
+              • &nbsp;&nbsp;와인, 브라운, 카키컬러처럼 좀 칙칙하다 싶은 컬러들이 가을 웜톤이 가진 매력을 더 살려줍니다.
             </Detailsubtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;와인, 브라운, 카키컬러처럼 좀 칙칙하다 싶은 컬러들이
-              가을 웜톤이 가진 매력을 더 살려줍니다.
+              • &nbsp;&nbsp;상하의의 대비감이 느껴지지 않도록 부드럽게 그라데이션 되는 느낌의 컬러로 매치해주시는 것이
+              좋아요.
             </Detailsubtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;상하의의 대비감이 느껴지지 않도록 부드럽게
-              그라데이션 되는 느낌의 컬러로 매치해주시는 것이 좋아요.
-            </Detailsubtitle>
-            <Detailsubtitle>
-              • &nbsp;&nbsp; 깔끔하게 직선으로 딱떨어지는 수트보다는 약간
-              부드러운 곡선이 가미된 자켓이 더 잘 어울려요.
+              • &nbsp;&nbsp; 깔끔하게 직선으로 딱떨어지는 수트보다는 약간 부드러운 곡선이 가미된 자켓이 더 잘 어울려요.
             </Detailsubtitle>
           </Detail>
         </FashonContainer>
@@ -75,9 +65,7 @@ const Fallman = () => {
           <Detail>
             <Detailtitle>전체적으로 부드러운 스타일</Detailtitle>
             <Detailsubtitle>• &nbsp;&nbsp;탁한컬러를 사용할 것</Detailsubtitle>
-            <Detailsubtitle>
-              • &nbsp;&nbsp;소재는 니트, 마, 린넨처럼 매트한 소재
-            </Detailsubtitle>
+            <Detailsubtitle>• &nbsp;&nbsp;소재는 니트, 마, 린넨처럼 매트한 소재</Detailsubtitle>
             <Detailsubtitle>• &nbsp;&nbsp;부드러운 곡선 아이템</Detailsubtitle>
           </Detail>
         </MakeupContainer>

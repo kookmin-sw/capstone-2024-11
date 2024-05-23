@@ -19,11 +19,11 @@
 
 본인에게 맞는 헤어스타일과 퍼스널 컬러를 찾기 위해서는 다양한 헤어스타일을 시도해보고 전문가의 도움을 구하여 퍼스널 컬러를 진단받아야 했습니다. 이러한 과정은 많은 비용과 시간을 요구하기 때문에 접근하기에 어려움이 존재하였습니다. 그렇기 때문에 저희는 이러한 비용과 시간을 줄이고 나에게 맞는 색상과 스타일을 빠르게 알 수 있는 서비스를 제공하는 것을 목표로 하고 있습니다.
 
-**캡스톤 11조 OnYou 팀이 개발한 프로젝트는 개인 맞춤형 뷰티 솔루션을 제공합니다.** 본 프로젝트는 다음과 같은 세 가지 주요 기능을 중심으로 설계되었습니다.
+**캡스톤 11조 Only You 팀이 개발한 프로젝트는 개인 맞춤형 뷰티 솔루션을 제공합니다.** 본 프로젝트는 다음과 같은 세 가지 주요 기능을 중심으로 설계되었습니다.
 
 <br>
 
-## 1.퍼스널 컬러 검출
+## 1. 퍼스널 컬러 검출
 ### 퍼스널 컬러란?
 퍼스널 컬러는 개인의 피부 톤, 눈동자 색, 머리카락 색 등을 종합적으로 고려하여 가장 잘 어울리는 색상을 찾아주는 개념입니다.<br> 이는 사람이 특정 색상과 조화를 이룰 때 얼굴이 더 밝고 생기 있어 보이게 하는 색상들을 의미합니다.<br> 퍼스널 컬러는 크게 봄, 여름, 가을, 겨울 네 가지 타입으로 분류됩니다.
 <br><br>
@@ -31,12 +31,12 @@
 
 <br>
 
-## 2.얼굴형 분석 및 헤어스타일 추천
+## 2. 얼굴형 분석 및 헤어스타일 추천
 각 개인의 얼굴형에 어울리는 헤어스타일을 찾는 것은 쉽지 않은 일입니다. <br>저희 프로젝트는 얼굴형을 분석하여 가장 잘 어울리는 헤어스타일을 추천해줍니다. <br>얼굴의 윤곽과 비율을 AI가 정밀하게 분석하여 둥근형, 각진형, 타원형 등 다양한 얼굴형에 최적화된 헤어스타일을 제안합니다. <br>이를 통해 사용자는 자신의 얼굴형에 맞는 스타일을 쉽게 찾을 수 있습니다.
 
 <br>
 
-## 3.생성형 이미지를 통한 헤어스타일 합성
+## 3. 생성형 이미지를 통한 헤어스타일 합성
 저희의 생성형 이미지 생성 기술은 앞서 검출된 퍼스널 컬러와 얼굴형 분석 결과를 종합하여 사용자에게 맞춤형 헤어스타일을 합성해줍니다. 생성형 이미지를 통해 자신의 얼굴형에 어울리는 헤어스타일이 무엇인지 알려주며 미용실에 가기 전 자신에게 어울리는 스타일을 미리 시도해볼 수 있는 기회를 제공합니다.
 
 저희 프로젝트는 사용자가 시간과 비용을 절약하면서도 자신의 퍼스널 컬러와 얼굴형에 맞는 최적의 헤어스타일을 찾을 수 있도록 돕습니다. AI와 이미지 생성 기술을 결합하여 누구나 쉽게 접근할 수 있는 맞춤형 뷰티 솔루션을 제공하며, 뷰티 선택에 어려움을 겪는 사람들에게 실질적인 도움을 주고자 합니다. 저희의 목표는 더 많은 사람들이 자신에게 어울리는 스타일을 쉽게 발견하고, 이를 통해 더욱 자신감 있는 일상을 보낼 수 있도록 지원하는 것입니다.
@@ -80,13 +80,32 @@ Therefore, we aim to provide a service that reduces these costs and time, enabli
 <br>
 
 # 😄 팀 소개
-
-| <img src="https://avatars.githubusercontent.com/u/49757982?v=4" width="200"> | <img src="https://avatars.githubusercontent.com/u/54920381?v=4" width="200"> | <img src="https://avatars.githubusercontent.com/u/54920308?v=4" width="200"> | <img src="https://avatars.githubusercontent.com/u/55116923?v=4" width="200"> |
-|:--:|:--:|:--:|:--:|
-| [**정태성**](https://github.com/Topadonijah) <br> Leader, AI | [**전병우**](https://github.com/wjsquddn) <br> Frontend | [**전기정**](https://github.com/Jeon3625) <br> AI | [**오홍석**](https://github.com/lkl4502) <br> AI, Backend |
-
----
-
+<table>
+    <tr align="center">
+        <td><img src="https://avatars.githubusercontent.com/u/49757982?v=4" width="250"></td>
+        <td><img src="https://avatars.githubusercontent.com/u/54920381?v=4" width="250"></td>
+        <td><img src="https://avatars.githubusercontent.com/u/54920308?v=4" width="250"></td>
+        <td><img src="https://avatars.githubusercontent.com/u/55116923?v=4" width="250"></td>
+    </tr>
+    <tr align="center">
+        <td><a href="https://github.com/Topadonijah" target="_blank">정태성</a></td>
+        <td><a href="https://github.com/wjsquddn" target="_blank">전병우</a></td>
+        <td><a href="https://github.com/Jeon3625" target="_blank">전기정</a></td>
+        <td><a href="https://github.com/lkl4502" target="_blank">오홍석</a></td>
+    </tr>
+    <tr align="center">
+        <td>****1668</td>
+        <td>****1660</td>
+        <td>****1659</td>
+        <td>****1627</td>
+    </tr>
+    <tr align="center">
+        <td>Leader, AI</td>
+        <td>FrontEnd</td>
+        <td>AI</td>
+        <td>AI, BackEnd</td>
+    </tr>
+</table>
 
 <br>
 <br>

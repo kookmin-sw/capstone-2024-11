@@ -81,12 +81,12 @@ Therefore, we aim to provide a service that reduces these costs and time, enabli
 
 # 😄 팀 소개
 
-| [![정태성](https://avatars.githubusercontent.com/u/49757982?v=4)](https://github.com/Topadonijah) | [![전병우](https://avatars.githubusercontent.com/u/54920381?v=4)](https://github.com/wjsquddn) | [![전기정](https://avatars.githubusercontent.com/u/54920308?v=4)](https://github.com/Jeon3625) | [![오홍석](https://avatars.githubusercontent.com/u/55116923?v=4)](https://github.com/lkl4502) |
-| ------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| 정태성                                                                                          | 전병우                                                                                        | 전기정                                                                                         | 오홍석                                                                                          |
-| Leader,  AI                                                                                  | Frontend                                                                                      | AI                                                                                            | AI, Backend                                                                                              |
+| <img src="https://avatars.githubusercontent.com/u/49757982?v=4" width="200"> | <img src="https://avatars.githubusercontent.com/u/54920381?v=4" width="200"> | <img src="https://avatars.githubusercontent.com/u/54920308?v=4" width="200"> | <img src="https://avatars.githubusercontent.com/u/55116923?v=4" width="200"> |
+|:--:|:--:|:--:|:--:|
+| [**정태성**](https://github.com/Topadonijah) <br> Leader, AI | [**전병우**](https://github.com/wjsquddn) <br> Frontend | [**전기정**](https://github.com/Jeon3625) <br> AI | [**오홍석**](https://github.com/lkl4502) <br> AI, Backend |
 
 ---
+
 
 <br>
 <br>

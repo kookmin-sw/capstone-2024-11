@@ -78,6 +78,8 @@ const Text = styled.p`
   color: black;
   font-size: 1.2rem;
   text-align: center;
+  word-break: keep-all;
+  margin-top: 5rem;
   padding: 1rem 16rem 1rem 16rem;
   line-height: 1.9;
 `;

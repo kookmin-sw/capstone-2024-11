@@ -166,6 +166,7 @@ const Text = styled.p`
   color: black;
   font-size: 1.2rem;
   line-height: 2;
+  word-break: keep-all;
   text-align: center;
   padding: 1rem 16rem 1rem 16rem;
 `;

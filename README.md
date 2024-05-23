@@ -6,6 +6,7 @@
 
 <br>
 
+## 📑 [Github Page](https://kookmin-sw.github.io/capstone-2024-11/)
 ## 📑 [Only You 최종발표 자료](https://docs.google.com/presentation/d/10ENYBYkp01L_Mxr9GB4tnNUHDi7lPJRU-2o6YY7Hyec/edit?usp=sharing)
 ## 📑 [Only You 수행결과보고서](https://docs.google.com/document/d/13P-n2nMCTuakEP3Y4CHbPPXEEi7O-WRJ/edit?usp=sharing&ouid=106255935468855848908&rtpof=true&sd=true)
 ## 📑 [Only You 포스터 자료](only_you_poster.pdf)

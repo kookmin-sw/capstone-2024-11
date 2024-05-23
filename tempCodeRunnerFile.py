@@ -55,10 +55,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Train Command')
 
     # dataset, train option
-    parser.add_argument('--dataset', type=str, default="./shape_detect/dataset/train")
+    parser.add_argument('--dataset', type=str, default="./shape_detect/dataset/test")
     parser.add_argument('--train', type=int, default=0)
     parser.add_argument('--label', type=int, default=1)
-    parser.add_argument('--output', type=str, default="./train.csv")
+    parser.add_argument('--output', type=str, default="./test.csv")
     args = parser.parse_args()
     main(args)
     

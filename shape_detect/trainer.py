@@ -27,11 +27,10 @@ class trainer:
     def train_dt(self):
         dt = DecisionTreeClassifier(max_depth=5, min_samples_split=10)
         dt.fit(self.x_data, self.y_data)
-
         joblib.dump(dt, './shape_detect/models/dt_model.pkl') 
     
     def train_svm(self):
-        clf = svm.SVC(kernel='linear', probability=True)
+        clf = svm.SVC(kernel='rbf', probability=True)
         clf.fit(self.x_data, self.y_data)
 
         joblib.dump(clf, './shape_detect/models/svm_model.pkl')

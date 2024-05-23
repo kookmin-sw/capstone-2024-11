@@ -1,12 +1,18 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&color=gradient&height=300&section=header&text=Only%20You&fontSize=90)
 
-<br> 
+<br>
+
+## [Only You 포스터 자료](only_you_poster.pdf)
+## [Only You 프레젠테이션 자료](https://docs.google.com/presentation/d/10ENYBYkp01L_Mxr9GB4tnNUHDi7lPJRU-2o6YY7Hyec/edit?usp=sharing)
+
+<br>
 
 # 2024 캡스톤 11조 **Only You**
 
 **_사람마다 어울리는 색과 머리스타일이 있다는 사실을 아시나요?_**<br>저희 서비스는 퍼스널 컬러 검출과 얼굴형 검출을 통해 <br>본인에게 맞는 퍼스널 컬러와 헤어스타일을 추천해드립니다.
 
 <br>
+
 
 # 프로젝트 소개
 
@@ -65,17 +71,22 @@ Role: 프론트엔드 개발, 프론트 디자인
 
 ### AI
 
-![Pytorch](https://img.shields.io/badge/PyTorch-EE4C2C.svg?style=flat-square&logo=React&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white)
+![Pytorch](https://img.shields.io/badge/PyTorch-EE4C2C.svg?style=for-the-badge&logo=React&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white)
+![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white)
+![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)
 
 ### Back-end
 
-![Spring Boot](https://img.shields.io/badge/SpringBoot-6DB33F.svg?style=flat-square&logo=React&logoColor=white)
-![Flask](https://img.shields.io/badge/Flask-000000?style=flat-square&logo=flask&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/SpringBoot-6DB33F.svg?style=for-the-badge&logo=React&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
 
 ### Front-end
 
-![React](https://img.shields.io/badge/React-61DAFB.svg?style=flat-square&logo=React&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB.svg?style=for-the-badge&logo=React&logoColor=white)
+![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
+![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white)
 
 <br>
 

@@ -56,6 +56,7 @@ function Camera() {
     const data = {
       email: email,
       gender: gender,
+      gan_permission: createImageChecked,
     };
 
     formdata.append("data", new Blob([JSON.stringify(data)], { type: "application/json" }));

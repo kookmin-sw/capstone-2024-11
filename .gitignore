@@ -10,3 +10,6 @@ gan/pretrained_models
 gan/output
 predict_image/*
 
+__pycache__
+.vscode
+*.idea

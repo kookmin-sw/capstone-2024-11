@@ -9,4 +9,5 @@ import org.springframework.web.multipart.MultipartFile;
 public class StartDto {
     String email;
     String gender;
+    Boolean gan_permission = false;
 }

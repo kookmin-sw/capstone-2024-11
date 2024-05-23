@@ -31,7 +31,7 @@ const InformationModal = ({ onClose }) => {
         <CloseButton onClick={onClose} alt="close">
           <AniXbutton onClick />
         </CloseButton>
-        <ModalH2>성별</ModalH2>
+        <CreateImageLabel>성별</CreateImageLabel>
         <GenderRadioGroup>
           <GenderRadioInput
             type="radio"
@@ -60,7 +60,7 @@ const InformationModal = ({ onClose }) => {
         <ModalH3>생성형 이미지를 받아보기 위해서는</ModalH3>
 
         <ModalH3>8분 정도의 시간이 소요됩니다.</ModalH3>
-        <ModalH2>이메일 주소</ModalH2>
+        <CreateImageLabel>이메일 주소</CreateImageLabel>
         <EmailLabel>
           <EmailInput value={email} onChange={handleEmailChange} />
         </EmailLabel>
@@ -114,24 +114,31 @@ const CloseButton = styled.button`
 `;
 const CreateImageLabel = styled.label`
   font-size: 24px;
-  font-weight: bold;
+  margin-top: 2rem;
   display: flex;
+  align-items: center;
   width: 100%;
   margin-bottom: 0.5rem;
 `;
 const GenderRadioGroup = styled.div`
   display: flex;
   align-items: center;
+  flex-direction: row;
+  height: 35px;
+  /* background-color: blue; */
+  /* justify-content: center; */
 `;
 
 const GenderRadioInput = styled.input`
   display: none;
   width: 1.5rem;
+  margin-left: 2rem;
+  margin-bottom: 4px;
   height: 1.5rem;
   &:checked + label::before {
     content: "";
     font-size: 1.2rem;
-    margin: 3px 3px 3px 4px;
+    /* margin: 3px 3px 3px 3px; */
     background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='%23fff' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
     background-color: #9747ff;
     background-size: 100% 100%;
@@ -144,7 +151,8 @@ const GenderRadioInput = styled.input`
 const GenderRadioLabel = styled.label`
   cursor: pointer;
   position: relative;
-  padding-left: 35px;
+  padding-left: 30px;
+  padding-right: 20px;
   font-size: 1.2rem;
 
   &::before {
@@ -178,8 +186,9 @@ const CreateImageButton = styled.input.attrs({ type: "checkbox" })`
   height: 1.5rem;
   border: 1.5px solid gainsboro;
   border-radius: 0.35rem;
-  margin-left: 10px;
-  margin-top: 10px;
+  margin-left: 20px;
+  /* margin-bottom: ; */
+  /* margin-top: 10px; */
   &:checked {
     border-color: transparent;
     background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");

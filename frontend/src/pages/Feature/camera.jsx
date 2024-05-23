@@ -17,9 +17,9 @@ function Camera() {
   const navigate = useNavigate();
   const location = useLocation();
   const { email, gender, createImageChecked } = location.state;
-  console.log(email);
-  console.log(gender);
-  console.log(createImageChecked);
+  // console.log(email);
+  // console.log(gender);
+  // console.log(createImageChecked);
   const videoConstraints = {
     width: 1000,
     height: 720,
@@ -59,15 +59,12 @@ function Camera() {
       gan_permission: createImageChecked,
     };
 
-    formdata.append(
-      "data",
-      new Blob([JSON.stringify(data)], { type: "application/json" })
-    );
+    formdata.append("data", new Blob([JSON.stringify(data)], { type: "application/json" }));
     formdata.append("file", base64ToFile(imageSrc, "test.jpg"));
 
     // .post("https://onyou.loca.lt/start", formdata)
     await axios
-      .post("http://localhost:8080/start", formdata)
+      .post("https://onyou.loca.lt/start", formdata)
       .then((response) => {
         setIsLoading(false);
         console.log(response.data);
@@ -86,15 +83,10 @@ function Camera() {
         height={720}
         screenshotFormat="image/jpeg"
         width={1280}
-        videoConstraints={videoConstraints}
-      >
+        videoConstraints={videoConstraints}>
         {({ getScreenshot }) => (
           <>
-            <ImageButton
-              src={CameraBtn}
-              alt="Capture"
-              onClick={() => CapturePhoto(getScreenshot)}
-            />
+            <ImageButton src={CameraBtn} alt="Capture" onClick={() => CapturePhoto(getScreenshot)} />
             <FaceRectangle />
           </>
         )}

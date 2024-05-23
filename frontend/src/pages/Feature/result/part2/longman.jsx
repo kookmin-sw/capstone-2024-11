@@ -20,26 +20,11 @@ const Longman = () => {
           <GirlImg src={RoundMan} alt="둥근 남자" />
         </ImgContainer>
         <MiddleRightContainer>
-          <H4>
-            {" "}
-            - 직선형 헤어스타일보다는 곡선형 헤어스타일을 매칭해 주셔야 합니다.{" "}
-          </H4>
-          <H4>
-            {" "}
-            - 직선은 일자로 뻗어나가는 형태라서 얼굴을 오히려 길게 보이게 하기
-            때문입니다.{" "}
-          </H4>
-          <H4>
-            {" "}
-            - 사이드의 볼륨이 중요하니 투블럭은 피하고 옆머리를 내려주는게
-            좋아요
-          </H4>
+          <H4> - 직선형 헤어스타일보다는 곡선형 헤어스타일을 매칭해 주셔야 합니다. </H4>
+          <H4> - 직선은 일자로 뻗어나가는 형태라서 얼굴을 오히려 길게 보이게 하기 때문입니다. </H4>
+          <H4> - 사이드의 볼륨이 중요하니 투블럭은 피하고 옆머리를 내려주는게 좋아요</H4>
           <H4> - 5대5 가르마는 피하세요!</H4>
-          <H4>
-            {" "}
-            - 머리색깔은 피부색과 비슷한 색깔로 해주시는 것이 좋아요. 대비감이
-            강하면 얼굴이 더 길어보여요
-          </H4>
+          <H4> - 머리색깔은 피부색과 비슷한 색깔로 해주시는 것이 좋아요. 대비감이 강하면 얼굴이 더 길어보여요</H4>
         </MiddleRightContainer>
       </MiddleContainer>
 
@@ -102,9 +87,6 @@ const BottomContainer = styled.div`
 `;
 const ImgContainer = styled.div`
   width: 30%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 const ImgContainer2 = styled.div`
   width: 100%;

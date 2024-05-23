@@ -72,6 +72,8 @@ const Text = styled.p`
   font-size: 1.3rem;
   font-weight: 600;
   text-align: center;
-  line-height: 2;
+  line-height: 160%;
+  word-break: keep-all;
+  margin: 0 2rem 0 2rem;
 `;
 export default IntroduceFirst;

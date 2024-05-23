@@ -6,18 +6,19 @@ const Section3Container = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: #f5cccc;
 `;
 const AboutText = styled.p`
   color: black;
   font-size: 5rem;
   font-weight: 700;
+  /* margin-top: 2rem; */
 `;
 const BottomContainer = styled.div`
   height: auto;
   width: auto;
-  /* display: flex; */
-  /* flex-direction: column; */
 `;
 const NameText = styled.div`
   color: black;

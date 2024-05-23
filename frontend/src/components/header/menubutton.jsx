@@ -22,10 +22,15 @@ const Sidebar = styled.div`
   height: 100%;
   background: #222;
   position: fixed;
+  color: white;
+  font-size: 1.2rem;
   top: 0;
   right: ${(props) => (props.isChecked ? "0" : "-300px")};
   z-index: 100;
   transition: all 0.35s;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 `;
 
 const Span = styled.span`
@@ -62,7 +67,7 @@ const StyledCheckbox = () => {
 
   return (
     <>
-      <Sidebar isChecked={isChecked} />
+      <Sidebar isChecked={isChecked}>ㅁㄴㅇㄹ</Sidebar>
       <Input checked={isChecked} onChange={handleCheckboxChange} />
       <LabelContainer>
         <Label>

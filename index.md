@@ -75,7 +75,7 @@ Therefore, we aim to provide a service that reduces these costs and time, enabli
 
 <br>
 
-# [🔗 소개 영상 🔗](www.youtube.com)
+# [🔗 소개 영상 🔗](https://youtu.be/UQUVMSHfx0k)
 
 <br>
 
@@ -139,10 +139,3 @@ Therefore, we aim to provide a service that reduces these costs and time, enabli
 [팀 노션](https://knotty-bed-a8d.notion.site/KMU-Capstone-2024-11-ab60adc91a7d4efb80765616c10c8f79)
 
 
-# 🎮 사용법
-
-> level 1
->
-> > level 2
-> >
-> > > level 3<br> 여기에 쓰면 됩니다.

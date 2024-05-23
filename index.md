@@ -82,10 +82,10 @@ Therefore, we aim to provide a service that reduces these costs and time, enabli
 # 😄 팀 소개
 <table>
     <tr align="center">
-        <td><img src="https://avatars.githubusercontent.com/u/49757982?v=4" width="250"></td>
-        <td><img src="https://avatars.githubusercontent.com/u/54920381?v=4" width="250"></td>
-        <td><img src="https://avatars.githubusercontent.com/u/54920308?v=4" width="250"></td>
-        <td><img src="https://avatars.githubusercontent.com/u/55116923?v=4" width="250"></td>
+        <td><img src="https://avatars.githubusercontent.com/u/49757982?v=4" width="150"></td>
+        <td><img src="https://avatars.githubusercontent.com/u/54920381?v=4" width="150"></td>
+        <td><img src="https://avatars.githubusercontent.com/u/54920308?v=4" width="150"></td>
+        <td><img src="https://avatars.githubusercontent.com/u/55116923?v=4" width="150"></td>
     </tr>
     <tr align="center">
         <td><a href="https://github.com/Topadonijah" target="_blank">정태성</a></td>

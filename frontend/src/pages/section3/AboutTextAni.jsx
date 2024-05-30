@@ -135,9 +135,9 @@ const AboutTextAni = () => {
     <Container ref={ref}>
       <Trail open={open}>
         <Span>소프트웨어학부 20191660 전병우</Span>
-        <Span>소프트웨어학부 20191660 전병우</Span>
-        <Span>소프트웨어학부 20191660 전병우</Span>
-        <Span>소프트웨어학부 20191660 전병우</Span>
+        <Span>소프트웨어학부 20191659 전기정</Span>
+        <Span>소프트웨어학부 20191627 오홍석</Span>
+        <Span>소프트웨어학부 20191668 정태성</Span>
       </Trail>
     </Container>
   );

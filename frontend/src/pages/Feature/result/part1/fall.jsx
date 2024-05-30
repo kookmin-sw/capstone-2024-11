@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Girl from "../../../../assets/GirlRound.png";
-import BestMatch from "../../../../assets/BestColor.png";
+import Girl from "../../../../assets/fallgirl.png";
+import BestMatch from "../../../../assets/FallBest.png";
 // import WorstMatch from "../../../assets/WorstColor.png";
 
 const Fall = () => {
@@ -11,14 +11,14 @@ const Fall = () => {
         <Title>Personal Color</Title>
         <LeftBottomContainer>
           <PersonalResult>
-            퍼스널 컬러는 <StrongPersonalResult>봄</StrongPersonalResult>입니다
+            퍼스널 컬러는 <StrongPersonalResult>가을</StrongPersonalResult>입니다
           </PersonalResult>
           <GirlImg src={Girl}></GirlImg>
           <HashTagContainer>
-            <HashTag>#귀여움</HashTag>
-            <HashTag>#발랄함</HashTag>
-            <HashTag>#여성스러움</HashTag>
-            <HashTag>#화사한</HashTag>
+            <HashTag>#차분함</HashTag>
+            <HashTag>#진중함</HashTag>
+            <HashTag>#무게감 있는</HashTag>
+            <HashTag>#따뜻한</HashTag>
           </HashTagContainer>
           <img src={BestMatch} />
         </LeftBottomContainer>
@@ -30,58 +30,43 @@ const Fall = () => {
           <Detail>
             <Detailtitle>1. 부드러운 웨이브가 가미된 헤어스타일</Detailtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;반듯하고 딱딱한 느낌보다는 부드러운 느낌의 웨이브가
-              어울립니다.
+              • &nbsp;&nbsp;반듯하고 딱딱한 느낌보다는 부드러운 느낌의 웨이브가 어울립니다.
             </Detailsubtitle>
-            <Detailsubtitle>
-              • &nbsp;&nbsp;중간정도의 S컬이나 C 컬 정도가 봄 타입의
-              여성스러움과 귀여움을 잘 나타냅니다.
-            </Detailsubtitle>
-            <Detailsubtitle>
-              • &nbsp;&nbsp;앞머리나 애교머리도 웨이브 느낌으로 빠져나오게
-              해줘도 좋습니다.
-            </Detailsubtitle>
+            <Detailsubtitle>• &nbsp;&nbsp;컬이 풀어진듯 자연스러운 컬이 어울려요</Detailsubtitle>
             <Detailtitle>2. 염색 선택 시 주의사항</Detailtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;반듯하고 딱딱한 느낌보다는 부드러운 느낌의 웨이브가
-              어울립니다.
+              • &nbsp;&nbsp; 노란기가 들어간 탁한 브라운 컬러들로 선택을 해주시는게 좋아요.
+            </Detailsubtitle>
+
+            <Detailsubtitle>
+              • &nbsp;&nbsp; 어울리는 색으로는 다크브라운, 초코브라운, 너무 밝지 않은 레드 브라운도 괜찮은 컬러입니다.
             </Detailsubtitle>
           </Detail>
         </HairStyleContainer>
         <FashonContainer>
           <Subtitle>#패션</Subtitle>
           <Detail>
-            <Detailtitle>1. 봄 타입에 어울리는 옷 스타일</Detailtitle>
+            <Detailtitle>1. 가을 타입에 어울리는 옷 스타일</Detailtitle>
+            <Detailsubtitle>• &nbsp;&nbsp;탁한 컬러들이 어울려요</Detailsubtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;봄 특유의 화사하면서도 샤랄라한 느낌이 잘 표현되는
-              옷이 잘 어울립니다.
+              • &nbsp;&nbsp;와인, 브라운, 카키컬러처럼 좀 칙칙하다 싶은 컬러들이 가을 웜톤이 가진 매력을 더 살려줍니다.
             </Detailsubtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;선이 딱 떨어지는 정장보다는 셔링, 퍼프 디테일이
-              가미된 스타일이 봄 타입의 매력을 더 돋보이게 해줍니다.
+              • &nbsp;&nbsp;상하의의 대비감이 느껴지지 않도록 부드럽게 그라데이션 되는 느낌의 컬러로 매치해주시는 것이
+              좋아요.
             </Detailsubtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;빳빳한 소재보다는 니트, 쉬폰 같은 부드러운 소재들이
-              좋습니다.
+              • &nbsp;&nbsp; 깔끔하게 직선으로 딱떨어지는 수트보다는 약간 부드러운 곡선이 가미된 자켓이 더 잘 어울려요.
             </Detailsubtitle>
           </Detail>
         </FashonContainer>
         <MakeupContainer>
-          <Subtitle>#메이크업</Subtitle>
+          <Subtitle>#스타일링 포인트</Subtitle>
           <Detail>
-            <Detailtitle>1. 은은한 광택이 있는 메이크업 스타일</Detailtitle>
-            <Detailsubtitle>
-              • &nbsp;&nbsp;피부표현은 쿠션이나 파운데이션을 사용하여 광택감을
-              살려줍니다.
-            </Detailsubtitle>
-            <Detailsubtitle>
-              • &nbsp;&nbsp;아이섀도우는 샤이니한 질감의 펄을 사용하여 은은한
-              광택을 연출해줍니다.
-            </Detailsubtitle>
-            <Detailsubtitle>
-              • &nbsp;&nbsp;립은 너무 매트한 립보다는 살짝 글로시한 립 제품을
-              선택하여 봄 특유의 맑고 깨끗한 느낌을 강조합니다.
-            </Detailsubtitle>
+            <Detailtitle>전체적으로 부드러운 스타일</Detailtitle>
+            <Detailsubtitle>• &nbsp;&nbsp;탁한컬러를 사용할 것</Detailsubtitle>
+            <Detailsubtitle>• &nbsp;&nbsp;소재는 니트, 마, 린넨처럼 매트한 소재</Detailsubtitle>
+            <Detailsubtitle>• &nbsp;&nbsp;부드러운 곡선 아이템</Detailsubtitle>
           </Detail>
         </MakeupContainer>
         {/* <MatchingColor src={BestMatch} alt="최적" /> */}

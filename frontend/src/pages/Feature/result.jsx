@@ -18,6 +18,9 @@ import Winter from "./result/part1/winter";
 import Longman from "./result/part2/longman";
 import Roundman from "./result/part2/roundman";
 import Squareman from "./result/part2/squareman";
+import LongGirl from "./result/part2/longgirl";
+import Roundgirl from "./result/part2/roundgirl";
+import Squaregirl from "./result/part2/squaregirl";
 
 const Result = () => {
   const { state } = useLocation();
@@ -79,12 +82,12 @@ const Result = () => {
     } else if (gender === "female") {
       switch (shape) {
         case "긴 형":
-          return <ResultDiv2 />;
+          return <LongGirl />;
 
         case "둥근형":
-          return <ResultDiv2 />;
+          return <Roundgirl />;
         case "각진형":
-          return <ResultDiv2 />;
+          return <Squaregirl />;
 
         default:
           break;

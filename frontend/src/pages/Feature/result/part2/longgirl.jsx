@@ -1,40 +1,47 @@
 import React from "react";
 import styled from "styled-components";
 
-import GirlRound from "../../../../assets/roundman.png";
-import squareTalent1 from "../../../../assets/square1.png";
-import squareTalent2 from "../../../../assets/square2.png";
-import squareTalent3 from "../../../../assets/square3.png";
+import RoundMan from "../../../../assets/GirlRound.png";
+import RoundTalent1 from "../../../../assets/long11.png";
+import RoundTalent2 from "../../../../assets/long22.png";
+import RoundTalent3 from "../../../../assets/long33.png";
 
-const Squareman = () => {
+const LongGirl = () => {
   return (
     <MainContainer>
       <TopContainer>
         <H3>당신의 얼굴형은 </H3>
-        <Title>각진형</Title>
+        <Title>긴형</Title>
         <H3> 입니다. </H3>
       </TopContainer>
 
       <MiddleContainer>
         <ImgContainer>
-          <GirlImg src={GirlRound} alt="각진 남자" />
+          <GirlImg src={RoundMan} alt="둥근 남자" />
         </ImgContainer>
         <MiddleRightContainer>
-          <H4> - 구렛나루를 기장을 주어서 시선을 아래로 끌어당겨주는게 좋아요</H4>
-          <H4> - 웨이브가 효과적인 방법일 수 있어요</H4>
           <H4>
-            {" "}
-            - 머리를 길러 어느정도 얼굴형을 감싸는 것도 방법입니다. 요즘 유행하는 스타일과 다른것이 문제긴 하지만요
+            - 긴 얼굴을 가진 분들은 얼굴을 좀 더 둥글게 보이도록 자연스럽고 부드러운 웨이브를 선택하는 것이 좋아요.
+            자연스러운 웨이브가 어울려요.
           </H4>
-          <H4> - 내린머리보다는 올린머리를 추천해요</H4>
+          <H4>
+            - 긴 얼굴형에는 얼굴을 둘러싸는 레이어드 컷이나 머리카락을 어깨 아래까지 자르는 스타일이 어울리며, 이는
+            얼굴을 더 감싸고 짧아 보이게 만들어 줄 수 있어요.
+          </H4>
+          <H4>
+            - 긴 얼굴을 가진 분들에게는 앞머리가 도움이 될 수 있어요. 약간의 레이어드가 있는 앞머리나 사이드 브리지
+            앞머리는 얼굴을 가로로 보이게 만들어 주어 긴 얼굴을 보다 균형있게 만들어 줄 거예요.
+          </H4>
+          <H4> - 5대5 가르마는 피하세요!</H4>
+          <H4>- 머리색깔은 피부색과 비슷한 색깔로 해주시는 것이 좋아요. 대비감이 강하면 얼굴이 더 길어보여요</H4>
         </MiddleRightContainer>
       </MiddleContainer>
 
       <BottomContainer>
         <ImgContainer2>
-          <GirlImg2 src={squareTalent1} />
-          <GirlImg2 src={squareTalent2} />
-          <GirlImg2 src={squareTalent3} />
+          <GirlImg2 src={RoundTalent1} />
+          <GirlImg2 src={RoundTalent2} />
+          <GirlImg2 src={RoundTalent3} />
         </ImgContainer2>
       </BottomContainer>
     </MainContainer>
@@ -103,4 +110,4 @@ const GirlImg = styled.img``;
 const GirlImg2 = styled.img`
   margin: 0.5rem 0rem 0.5rem 0rem;
 `;
-export default Squareman;
+export default LongGirl;

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Girl from "../../../../assets/GirlRound.png";
-import BestMatch from "../../../../assets/BestColor.png";
+import BestMatch from "../../../../assets/SpringBest.png";
 import SpringMan from "../../../../assets/SpringMan.png";
 
 const Springman = () => {
@@ -30,26 +30,18 @@ const Springman = () => {
           <Detail>
             <Detailtitle>1. 자연스럽고 부드러운 헤어스타일</Detailtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp; 봄 웜톤의 남자는 깔끔하고 딱 떨어지는
-              헤어스타일보다 봄타입 특유의 부드러움을 어필할 수 있는 약간의 컬이
-              들어가면 좋아요
+              • &nbsp;&nbsp; 봄 웜톤의 남자는 깔끔하고 딱 떨어지는 헤어스타일보다 봄타입 특유의 부드러움을 어필할 수
+              있는 약간의 컬이 들어가면 좋아요
             </Detailsubtitle>
+            <Detailsubtitle>• &nbsp;&nbsp;중간정도의 S컬이나 C 컬 정도가 좋아요.</Detailsubtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;중간정도의 S컬이나 C 컬 정도가 좋아요.
-            </Detailsubtitle>
-            <Detailsubtitle>
-              • &nbsp;&nbsp;컬이 작거나 부스스한 느낌의 펌은 어울리지 않기
-              때문에 피하는 것도 고려해 보세요.
+              • &nbsp;&nbsp;컬이 작거나 부스스한 느낌의 펌은 어울리지 않기 때문에 피하는 것도 고려해 보세요.
             </Detailsubtitle>
             <Detailtitle>2. 염색 선택 시 주의사항</Detailtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;다크브라운 부터 레드브라운까지 브라운 계열의 컬러가
-              잘 어울립니다.
+              • &nbsp;&nbsp;다크브라운 부터 레드브라운까지 브라운 계열의 컬러가 잘 어울립니다.
             </Detailsubtitle>
-            <Detailsubtitle>
-              • &nbsp;&nbsp;추천하지 않는 컬러로는 블루블랙이나, 애쉬톤의
-              컬러입니다.
-            </Detailsubtitle>
+            <Detailsubtitle>• &nbsp;&nbsp;추천하지 않는 컬러로는 블루블랙이나, 애쉬톤의 컬러입니다.</Detailsubtitle>
           </Detail>
         </HairStyleContainer>
         <FashonContainer>
@@ -57,16 +49,13 @@ const Springman = () => {
           <Detail>
             <Detailtitle>1. 봄 타입에 어울리는 옷 스타일</Detailtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;깔끔한 선 느낌의 셔츠, 심플한 정장이 잘 어울려요.
-              면티와 깔끔한 자켓도 아주 좋은 조합이에요
+              • &nbsp;&nbsp;깔끔한 선 느낌의 셔츠, 심플한 정장이 잘 어울려요. 면티와 깔끔한 자켓도 아주 좋은 조합이에요
             </Detailsubtitle>
-            <Detailsubtitle>
-              • &nbsp;&nbsp; 선명하고 쨍한 컬러가 하나쯤은 들어가주면 좋아요.
-            </Detailsubtitle>
+            <Detailsubtitle>• &nbsp;&nbsp; 선명하고 쨍한 컬러가 하나쯤은 들어가주면 좋아요.</Detailsubtitle>
 
             <Detailsubtitle>
-              • &nbsp;&nbsp; 하의나 자켓을 무채색으로 입더라도 이너는 블루나,
-              옐로우, 레드와 같은 화사한 컬러로 입는게 좋아요.
+              • &nbsp;&nbsp; 하의나 자켓을 무채색으로 입더라도 이너는 블루나, 옐로우, 레드와 같은 화사한 컬러로 입는게
+              좋아요.
             </Detailsubtitle>
           </Detail>
         </FashonContainer>
@@ -75,15 +64,11 @@ const Springman = () => {
           <Detail>
             <Detailtitle>1. 부드럽고 따뜻한 스타일</Detailtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;상하의, 이너 아우터 중 한 가지는 밝고 화사한 컬러를
-              매치 할 것
+              • &nbsp;&nbsp;상하의, 이너 아우터 중 한 가지는 밝고 화사한 컬러를 매치 할 것
             </Detailsubtitle>
+            <Detailsubtitle>• &nbsp;&nbsp;컬러의 대비감을 확실히 줄 것</Detailsubtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;컬러의 대비감을 확실히 줄 것
-            </Detailsubtitle>
-            <Detailsubtitle>
-              • &nbsp;&nbsp;잔잔하고 은은한 패턴보다 크기가 있고 확실한 느낌의
-              패턴이 더 어울림
+              • &nbsp;&nbsp;잔잔하고 은은한 패턴보다 크기가 있고 확실한 느낌의 패턴이 더 어울림
             </Detailsubtitle>
           </Detail>
         </MakeupContainer>

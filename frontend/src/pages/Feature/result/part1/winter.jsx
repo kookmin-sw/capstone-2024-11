@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Girl from "../../../../assets/GirlRound.png";
-import BestMatch from "../../../../assets/BestColor.png";
+import Girl from "../../../../assets/wintergirl.png";
+import BestMatch from "../../../../assets/WinterBest.png";
 
 const Winter = () => {
   return (
@@ -10,14 +10,14 @@ const Winter = () => {
         <Title>Personal Color</Title>
         <LeftBottomContainer>
           <PersonalResult>
-            퍼스널 컬러는 <StrongPersonalResult>봄</StrongPersonalResult>입니다
+            퍼스널 컬러는 <StrongPersonalResult>겨울</StrongPersonalResult>입니다
           </PersonalResult>
           <GirlImg src={Girl}></GirlImg>
           <HashTagContainer>
-            <HashTag>#귀여움</HashTag>
-            <HashTag>#발랄함</HashTag>
-            <HashTag>#여성스러움</HashTag>
-            <HashTag>#화사한</HashTag>
+            <HashTag>#세련됨</HashTag>
+            <HashTag>#도시적인</HashTag>
+            <HashTag>#차가운</HashTag>
+            <HashTag>#심플한</HashTag>
           </HashTagContainer>
           <img src={BestMatch} />
         </LeftBottomContainer>
@@ -27,59 +27,36 @@ const Winter = () => {
         <HairStyleContainer>
           <Subtitle>#헤어스타일</Subtitle>
           <Detail>
-            <Detailtitle>1. 부드러운 웨이브가 가미된 헤어스타일</Detailtitle>
-            <Detailsubtitle>
-              • &nbsp;&nbsp;반듯하고 딱딱한 느낌보다는 부드러운 느낌의 웨이브가
-              어울립니다.
-            </Detailsubtitle>
-            <Detailsubtitle>
-              • &nbsp;&nbsp;중간정도의 S컬이나 C 컬 정도가 봄 타입의
-              여성스러움과 귀여움을 잘 나타냅니다.
-            </Detailsubtitle>
-            <Detailsubtitle>
-              • &nbsp;&nbsp;앞머리나 애교머리도 웨이브 느낌으로 빠져나오게
-              해줘도 좋습니다.
-            </Detailsubtitle>
+            <Detailtitle>1. 깔끔하고 직선적인 헤어스타일</Detailtitle>
+
             <Detailtitle>2. 염색 선택 시 주의사항</Detailtitle>
+            <Detailsubtitle>• &nbsp;&nbsp;노란기가 도는 따뜻한 브라운 컬러는 피하시는게 좋아요.</Detailsubtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;반듯하고 딱딱한 느낌보다는 부드러운 느낌의 웨이브가
-              어울립니다.
+              • &nbsp;&nbsp;검정색이 가장 잘 어울리니 헤어컬러도 최대한 어둡게 유지하는 걸 추천해요.
             </Detailsubtitle>
           </Detail>
         </HairStyleContainer>
         <FashonContainer>
           <Subtitle>#패션</Subtitle>
           <Detail>
-            <Detailtitle>1. 봄 타입에 어울리는 옷 스타일</Detailtitle>
+            <Detailtitle>1. 겨울 타입에 어울리는 옷 스타일</Detailtitle>
+            <Detailsubtitle>• &nbsp;&nbsp;최대한 어두운 색이 많이 보이게 스타일링하세요.</Detailsubtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;봄 특유의 화사하면서도 샤랄라한 느낌이 잘 표현되는
-              옷이 잘 어울립니다.
-            </Detailsubtitle>
-            <Detailsubtitle>
-              • &nbsp;&nbsp;선이 딱 떨어지는 정장보다는 셔링, 퍼프 디테일이
-              가미된 스타일이 봄 타입의 매력을 더 돋보이게 해줍니다.
-            </Detailsubtitle>
-            <Detailsubtitle>
-              • &nbsp;&nbsp;빳빳한 소재보다는 니트, 쉬폰 같은 부드러운 소재들이
-              좋습니다.
+              • &nbsp;&nbsp;올블랙을 멋지게 소화할 것 같아요. 상하의 전부다 어두운 색이 많이 보이도록 코디를 하는게
+              좋아요
             </Detailsubtitle>
           </Detail>
         </FashonContainer>
         <MakeupContainer>
-          <Subtitle>#메이크업</Subtitle>
+          <Subtitle>#스타일링 포인트</Subtitle>
           <Detail>
-            <Detailtitle>1. 은은한 광택이 있는 메이크업 스타일</Detailtitle>
+            <Detailtitle>1. 시크한 이미지의 스타일</Detailtitle>
+            <Detailsubtitle>• &nbsp;&nbsp;크기가 큰 패턴</Detailsubtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;피부표현은 쿠션이나 파운데이션을 사용하여 광택감을
-              살려줍니다.
+              • &nbsp;&nbsp;화사한 색으로 포인트를 주고 싶다면 이너를 쨍한 컬러로 선택하는 것도 좋은 방법이에요.
             </Detailsubtitle>
             <Detailsubtitle>
-              • &nbsp;&nbsp;아이섀도우는 샤이니한 질감의 펄을 사용하여 은은한
-              광택을 연출해줍니다.
-            </Detailsubtitle>
-            <Detailsubtitle>
-              • &nbsp;&nbsp;립은 너무 매트한 립보다는 살짝 글로시한 립 제품을
-              선택하여 봄 특유의 맑고 깨끗한 느낌을 강조합니다.
+              • &nbsp;&nbsp;밝은 컬러를 입고 싶다면 밝은 그레이 컬러를 활용하는 것도 좋은 방법이에요
             </Detailsubtitle>
           </Detail>
         </MakeupContainer>

@@ -5,10 +5,13 @@ import Second from "../../../../assets/plus2.png";
 import Third from "../../../../assets/result.png";
 import MainPersonal from "../../../../assets/MainPersonal.png";
 import MainShape from "../../../../assets/MainShape.png";
+import PyramidLoaderComponent from "../../../../components/Pyramid";
 const SecondOne = () => {
   return (
     <SecondOneContainer>
-      <BlackCircle />
+      <BlackCircle>
+        <PyramidLoaderComponent />
+      </BlackCircle>
       <FirstContainer>
         <First1Container>
           <LeftIMG src={MainPersonal} />
